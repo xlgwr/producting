@@ -1627,27 +1627,6 @@
     <Content Include="WorkDll\13\zh-CN\DevExpress.XtraVerticalGrid.v13.1.resources.dll" />
     <Content Include="WorkDll\13\zh-CN\DevExpress.XtraWizard.v13.1.resources.dll" />
     <Content Include="WorkDll\Basic.dll" />
-    <Content Include="WorkDll\DevExpress.BonusSkins.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.Charts.v9.3.Core.dll" />
-    <Content Include="WorkDll\DevExpress.Data.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.Localization.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.OfficeSkins.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.Utils.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraBars.v9.3.Design.dll" />
-    <Content Include="WorkDll\DevExpress.XtraBars.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraCharts.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraCharts.v9.3.UI.dll" />
-    <Content Include="WorkDll\DevExpress.XtraEditors.v13.1.dll" />
-    <Content Include="WorkDll\DevExpress.XtraEditors.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraGrid.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraLayout.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraNavBar.v9.3.Design.dll" />
-    <Content Include="WorkDll\DevExpress.XtraNavBar.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraPivotGrid.v9.3.Core.dll" />
-    <Content Include="WorkDll\DevExpress.XtraPivotGrid.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraPrinting.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraReports.v9.3.dll" />
-    <Content Include="WorkDll\DevExpress.XtraTreeList.v9.3.dll" />
     <Content Include="WorkDll\Encrypt.dll" />
     <Content Include="WorkDll\Interop.Excel.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -2146,47 +2146,6 @@ namespace MachineSystem.form.Pad
         {
             this.Close();
         }
-
-        private void btn0PgUp_Click(object sender, EventArgs e)
-        {
-            if (panelContent.AutoScroll == true)
-            {
-                if (panelContent.VerticalScroll.Enabled == true)
-                {
-                    btn0PgUp.Enabled = false;
-                    var tmpv = panelContent.VerticalScroll.Value - (panelContent.VerticalScroll.LargeChange / 2);
-                    if (tmpv < 0)
-                    {
-                        tmpv = 2;
-                    }
-                    panelContent.VerticalScroll.Value = tmpv;
-                    panelContent.VerticalScroll.Value = tmpv;
-                    btn0PgUp.Enabled = true;
-                }
-
-            }
-        }
-
-        private void btn2PgDn_Click(object sender, EventArgs e)
-        {
-            if (panelContent.AutoScroll == true)
-            {
-                if (panelContent.VerticalScroll.Enabled == true)
-                {
-                    btn2PgDn.Enabled = false;
-                    var tmpv = panelContent.VerticalScroll.Value + (panelContent.VerticalScroll.LargeChange / 2);
-                    if (tmpv > panelContent.VerticalScroll.LargeChange)
-                    {
-                        tmpv = panelContent.VerticalScroll.LargeChange - 2;
-                    }
-                    panelContent.VerticalScroll.Value = tmpv;
-                    panelContent.VerticalScroll.Value = tmpv;
-                    btn2PgDn.Enabled = true;
-                }
-
-            }
-        }
-
         private void button1_MouseEnter(object sender, EventArgs e)
         {
             btnRef.Enabled = true;

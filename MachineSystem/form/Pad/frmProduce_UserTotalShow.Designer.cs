@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.panelTop = new System.Windows.Forms.Panel();
-            this.btn2PgDn = new System.Windows.Forms.Button();
             this.lblbuzu = new DevExpress.XtraEditors.LabelControl();
-            this.btn0PgUp = new System.Windows.Forms.Button();
             this.lblsheding = new DevExpress.XtraEditors.LabelControl();
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -80,21 +78,21 @@
             this.dateOperDate1 = new DevExpress.XtraEditors.TextEdit();
             this.lookmyteamName = new DevExpress.XtraEditors.TextEdit();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.validData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorInfo)).BeginInit();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkAll.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOperDate1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookmyteamName.Properties)).BeginInit();
+            this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.White;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTop.Controls.Add(this.btn2PgDn);
             this.panelTop.Controls.Add(this.lblbuzu);
-            this.panelTop.Controls.Add(this.btn0PgUp);
             this.panelTop.Controls.Add(this.lblsheding);
             this.panelTop.Controls.Add(this.labelControl23);
             this.panelTop.Controls.Add(this.labelControl4);
@@ -148,44 +146,22 @@
             this.panelTop.Size = new System.Drawing.Size(1360, 140);
             this.panelTop.TabIndex = 8;
             // 
-            // btn2PgDn
-            // 
-            this.btn2PgDn.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.btn2PgDn.Location = new System.Drawing.Point(1033, 58);
-            this.btn2PgDn.Name = "btn2PgDn";
-            this.btn2PgDn.Size = new System.Drawing.Size(77, 69);
-            this.btn2PgDn.TabIndex = 1;
-            this.btn2PgDn.Text = "下翻";
-            this.btn2PgDn.UseVisualStyleBackColor = true;
-            this.btn2PgDn.Click += new System.EventHandler(this.btn2PgDn_Click);
-            // 
             // lblbuzu
             // 
             this.lblbuzu.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblbuzu.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblbuzu.Location = new System.Drawing.Point(241, 100);
+            this.lblbuzu.Location = new System.Drawing.Point(294, 100);
             this.lblbuzu.Name = "lblbuzu";
             this.lblbuzu.Size = new System.Drawing.Size(13, 28);
             this.lblbuzu.TabIndex = 112;
             this.lblbuzu.Tag = "UserName";
             this.lblbuzu.Text = "0";
             // 
-            // btn0PgUp
-            // 
-            this.btn0PgUp.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.btn0PgUp.Location = new System.Drawing.Point(954, 58);
-            this.btn0PgUp.Name = "btn0PgUp";
-            this.btn0PgUp.Size = new System.Drawing.Size(77, 69);
-            this.btn0PgUp.TabIndex = 0;
-            this.btn0PgUp.Text = "上翻";
-            this.btn0PgUp.UseVisualStyleBackColor = true;
-            this.btn0PgUp.Click += new System.EventHandler(this.btn0PgUp_Click);
-            // 
             // lblsheding
             // 
             this.lblsheding.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblsheding.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblsheding.Location = new System.Drawing.Point(241, 62);
+            this.lblsheding.Location = new System.Drawing.Point(294, 62);
             this.lblsheding.Name = "lblsheding";
             this.lblsheding.Size = new System.Drawing.Size(13, 28);
             this.lblsheding.TabIndex = 112;
@@ -196,7 +172,7 @@
             // 
             this.labelControl23.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl23.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl23.Location = new System.Drawing.Point(275, 100);
+            this.labelControl23.Location = new System.Drawing.Point(328, 100);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(21, 28);
             this.labelControl23.TabIndex = 111;
@@ -207,7 +183,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl4.Location = new System.Drawing.Point(275, 62);
+            this.labelControl4.Location = new System.Drawing.Point(328, 62);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(21, 28);
             this.labelControl4.TabIndex = 111;
@@ -231,7 +207,7 @@
             // 
             this.lblsheding0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblsheding0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblsheding0.Location = new System.Drawing.Point(146, 62);
+            this.lblsheding0.Location = new System.Drawing.Point(199, 62);
             this.lblsheding0.Name = "lblsheding0";
             this.lblsheding0.Size = new System.Drawing.Size(89, 28);
             this.lblsheding0.TabIndex = 85;
@@ -262,7 +238,7 @@
             this.chkAll.Properties.Appearance.Options.UseForeColor = true;
             this.chkAll.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.chkAll.Properties.Caption = "全选";
-            this.chkAll.Size = new System.Drawing.Size(76, 40);
+            this.chkAll.Size = new System.Drawing.Size(76, 39);
             this.chkAll.TabIndex = 105;
             this.chkAll.CheckedChanged += new System.EventHandler(this.chkAll_CheckedChanged);
             // 
@@ -401,7 +377,7 @@
             // 
             this.labelControl17.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl17.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl17.Location = new System.Drawing.Point(788, 100);
+            this.labelControl17.Location = new System.Drawing.Point(950, 100);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(89, 28);
             this.labelControl17.TabIndex = 85;
@@ -412,7 +388,7 @@
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl15.Location = new System.Drawing.Point(915, 100);
+            this.labelControl15.Location = new System.Drawing.Point(1077, 100);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(21, 28);
             this.labelControl15.TabIndex = 85;
@@ -423,7 +399,7 @@
             // 
             this.lblyudinglizhi.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblyudinglizhi.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblyudinglizhi.Location = new System.Drawing.Point(883, 100);
+            this.lblyudinglizhi.Location = new System.Drawing.Point(1045, 100);
             this.lblyudinglizhi.Name = "lblyudinglizhi";
             this.lblyudinglizhi.Size = new System.Drawing.Size(13, 28);
             this.lblyudinglizhi.TabIndex = 85;
@@ -434,7 +410,7 @@
             // 
             this.lbljianjie0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbljianjie0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lbljianjie0.Location = new System.Drawing.Point(315, 100);
+            this.lbljianjie0.Location = new System.Drawing.Point(421, 100);
             this.lbljianjie0.Name = "lbljianjie0";
             this.lbljianjie0.Size = new System.Drawing.Size(47, 28);
             this.lbljianjie0.TabIndex = 85;
@@ -445,7 +421,7 @@
             // 
             this.lblchongdie.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblchongdie.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblchongdie.Location = new System.Drawing.Point(881, 62);
+            this.lblchongdie.Location = new System.Drawing.Point(1043, 62);
             this.lblchongdie.Name = "lblchongdie";
             this.lblchongdie.Size = new System.Drawing.Size(13, 28);
             this.lblchongdie.TabIndex = 85;
@@ -456,7 +432,7 @@
             // 
             this.labelControl13.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl13.Location = new System.Drawing.Point(915, 62);
+            this.labelControl13.Location = new System.Drawing.Point(1077, 62);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(21, 28);
             this.labelControl13.TabIndex = 85;
@@ -467,7 +443,7 @@
             // 
             this.lblchongdie0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblchongdie0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblchongdie0.Location = new System.Drawing.Point(788, 62);
+            this.lblchongdie0.Location = new System.Drawing.Point(950, 62);
             this.lblchongdie0.Name = "lblchongdie0";
             this.lblchongdie0.Size = new System.Drawing.Size(89, 28);
             this.lblchongdie0.TabIndex = 85;
@@ -489,7 +465,7 @@
             // 
             this.lblbuzu0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblbuzu0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblbuzu0.Location = new System.Drawing.Point(146, 100);
+            this.lblbuzu0.Location = new System.Drawing.Point(199, 100);
             this.lblbuzu0.Name = "lblbuzu0";
             this.lblbuzu0.Size = new System.Drawing.Size(89, 28);
             this.lblbuzu0.TabIndex = 85;
@@ -500,7 +476,7 @@
             // 
             this.lblzhiyuanOut.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzhiyuanOut.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzhiyuanOut.Location = new System.Drawing.Point(713, 62);
+            this.lblzhiyuanOut.Location = new System.Drawing.Point(852, 62);
             this.lblzhiyuanOut.Name = "lblzhiyuanOut";
             this.lblzhiyuanOut.Size = new System.Drawing.Size(13, 28);
             this.lblzhiyuanOut.TabIndex = 85;
@@ -511,7 +487,7 @@
             // 
             this.labelControl18.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl18.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl18.Location = new System.Drawing.Point(747, 100);
+            this.labelControl18.Location = new System.Drawing.Point(886, 100);
             this.labelControl18.Name = "labelControl18";
             this.labelControl18.Size = new System.Drawing.Size(21, 28);
             this.labelControl18.TabIndex = 85;
@@ -522,7 +498,7 @@
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl11.Location = new System.Drawing.Point(747, 62);
+            this.labelControl11.Location = new System.Drawing.Point(886, 62);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(21, 28);
             this.labelControl11.TabIndex = 85;
@@ -533,7 +509,7 @@
             // 
             this.lblzhiyuanOut0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzhiyuanOut0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzhiyuanOut0.Location = new System.Drawing.Point(618, 62);
+            this.lblzhiyuanOut0.Location = new System.Drawing.Point(757, 62);
             this.lblzhiyuanOut0.Name = "lblzhiyuanOut0";
             this.lblzhiyuanOut0.Size = new System.Drawing.Size(89, 28);
             this.lblzhiyuanOut0.TabIndex = 85;
@@ -544,7 +520,7 @@
             // 
             this.lblzhiyuanIn.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzhiyuanIn.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzhiyuanIn.Location = new System.Drawing.Point(713, 100);
+            this.lblzhiyuanIn.Location = new System.Drawing.Point(852, 100);
             this.lblzhiyuanIn.Name = "lblzhiyuanIn";
             this.lblzhiyuanIn.Size = new System.Drawing.Size(13, 28);
             this.lblzhiyuanIn.TabIndex = 85;
@@ -555,7 +531,7 @@
             // 
             this.lblzhiyuanIn0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzhiyuanIn0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzhiyuanIn0.Location = new System.Drawing.Point(618, 100);
+            this.lblzhiyuanIn0.Location = new System.Drawing.Point(757, 100);
             this.lblzhiyuanIn0.Name = "lblzhiyuanIn0";
             this.lblzhiyuanIn0.Size = new System.Drawing.Size(89, 28);
             this.lblzhiyuanIn0.TabIndex = 85;
@@ -577,7 +553,7 @@
             // 
             this.labelControl20.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl20.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl20.Location = new System.Drawing.Point(551, 100);
+            this.labelControl20.Location = new System.Drawing.Point(686, 100);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(21, 28);
             this.labelControl20.TabIndex = 85;
@@ -588,7 +564,7 @@
             // 
             this.lbltiguan.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbltiguan.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lbltiguan.Location = new System.Drawing.Point(517, 100);
+            this.lbltiguan.Location = new System.Drawing.Point(652, 100);
             this.lbltiguan.Name = "lbltiguan";
             this.lbltiguan.Size = new System.Drawing.Size(13, 28);
             this.lbltiguan.TabIndex = 85;
@@ -599,7 +575,7 @@
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl10.Location = new System.Drawing.Point(551, 62);
+            this.labelControl10.Location = new System.Drawing.Point(686, 62);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(21, 28);
             this.labelControl10.TabIndex = 85;
@@ -610,7 +586,7 @@
             // 
             this.lblzaiji.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzaiji.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzaiji.Location = new System.Drawing.Point(517, 62);
+            this.lblzaiji.Location = new System.Drawing.Point(652, 62);
             this.lblzaiji.Name = "lblzaiji";
             this.lblzaiji.Size = new System.Drawing.Size(13, 28);
             this.lblzaiji.TabIndex = 85;
@@ -621,7 +597,7 @@
             // 
             this.lblzaiji0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzaiji0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzaiji0.Location = new System.Drawing.Point(446, 62);
+            this.lblzaiji0.Location = new System.Drawing.Point(581, 62);
             this.lblzaiji0.Name = "lblzaiji0";
             this.lblzaiji0.Size = new System.Drawing.Size(65, 28);
             this.lblzaiji0.TabIndex = 85;
@@ -632,7 +608,7 @@
             // 
             this.labelControl22.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl22.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl22.Location = new System.Drawing.Point(403, 100);
+            this.labelControl22.Location = new System.Drawing.Point(509, 100);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(21, 28);
             this.labelControl22.TabIndex = 85;
@@ -643,7 +619,7 @@
             // 
             this.lbljianjie.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbljianjie.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lbljianjie.Location = new System.Drawing.Point(369, 100);
+            this.lbljianjie.Location = new System.Drawing.Point(475, 100);
             this.lbljianjie.Name = "lbljianjie";
             this.lbljianjie.Size = new System.Drawing.Size(13, 28);
             this.lbljianjie.TabIndex = 85;
@@ -654,7 +630,7 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.labelControl8.Location = new System.Drawing.Point(403, 62);
+            this.labelControl8.Location = new System.Drawing.Point(509, 62);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(21, 28);
             this.labelControl8.TabIndex = 85;
@@ -665,7 +641,7 @@
             // 
             this.lblzhijie.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzhijie.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzhijie.Location = new System.Drawing.Point(369, 62);
+            this.lblzhijie.Location = new System.Drawing.Point(475, 62);
             this.lblzhijie.Name = "lblzhijie";
             this.lblzhijie.Size = new System.Drawing.Size(13, 28);
             this.lblzhijie.TabIndex = 85;
@@ -676,7 +652,7 @@
             // 
             this.lblzhijie0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblzhijie0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblzhijie0.Location = new System.Drawing.Point(315, 62);
+            this.lblzhijie0.Location = new System.Drawing.Point(421, 62);
             this.lblzhijie0.Name = "lblzhijie0";
             this.lblzhijie0.Size = new System.Drawing.Size(47, 28);
             this.lblzhijie0.TabIndex = 85;
@@ -687,7 +663,7 @@
             // 
             this.lbltiguan0.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbltiguan0.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lbltiguan0.Location = new System.Drawing.Point(446, 100);
+            this.lbltiguan0.Location = new System.Drawing.Point(581, 100);
             this.lbltiguan0.Name = "lbltiguan0";
             this.lbltiguan0.Size = new System.Drawing.Size(68, 28);
             this.lbltiguan0.TabIndex = 85;
@@ -730,20 +706,29 @@
             // 
             // panelContent
             // 
-            this.panelContent.AutoScroll = true;
+            this.panelContent.AutoSize = true;
             this.panelContent.BackColor = System.Drawing.Color.White;
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(0, 140);
+            this.panelContent.Location = new System.Drawing.Point(2, 3);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1360, 581);
+            this.panelContent.Size = new System.Drawing.Size(1360, 558);
             this.panelContent.TabIndex = 9;
+            // 
+            // xtraScrollableControl1
+            // 
+            this.xtraScrollableControl1.AllowTouchScroll = true;
+            this.xtraScrollableControl1.Controls.Add(this.panelContent);
+            this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 140);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1360, 581);
+            this.xtraScrollableControl1.TabIndex = 10;
             // 
             // frmProduce_UserTotalShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 721);
-            this.Controls.Add(this.panelContent);
+            this.Controls.Add(this.xtraScrollableControl1);
             this.Controls.Add(this.panelTop);
             this.MinimizeBox = false;
             this.Name = "frmProduce_UserTotalShow";
@@ -756,6 +741,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOperDate1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookmyteamName.Properties)).EndInit();
+            this.xtraScrollableControl1.ResumeLayout(false);
+            this.xtraScrollableControl1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -812,8 +799,7 @@
         private DevExpress.XtraEditors.LabelControl lbltiguan;
         private DevExpress.XtraEditors.LabelControl labelControl22;
         private DevExpress.XtraEditors.LabelControl lbljianjie;
-        private System.Windows.Forms.Button btn2PgDn;
-        private System.Windows.Forms.Button btn0PgUp;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
         
     }
 }
