@@ -1,0 +1,1648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EA867C2B-001C-4E99-B35D-7D3642BE59D7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MachineSystem</RootNamespace>
+    <AssemblyName>MachineSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <ApplicationIcon>login48.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoUpdate, Version=1.0.2103.42856, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AutoUpdate.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Office.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Localization.v13.1, Version=13.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v13.1.Wizard, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v13.1.Win, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v13.1.Design, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v13.1.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v13.1.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v13.1.Reporting.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v13.1.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpellChecker.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.SpellChecker.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Dxper.LocalizationCHS.Win.v13.1.5, Version=13.1.5.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Encrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Interop.Excel, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>WorkDll\Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>WorkDll\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="form\Attend\frmTeamShow_LeaveAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_LeaveAdd.Designer.cs">
+      <DependentUpon>frmTeamShow_LeaveAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_Leave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_Leave.Designer.cs">
+      <DependentUpon>frmTeamShow_Leave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_NoAttendAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_NoAttendAdd.Designer.cs">
+      <DependentUpon>frmTeamShow_NoAttendAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_AttendResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_AttendResult.Designer.cs">
+      <DependentUpon>frmTeamShow_AttendResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_NoAttend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_NoAttend.Designer.cs">
+      <DependentUpon>frmTeamShow_NoAttend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_OT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_OT.Designer.cs">
+      <DependentUpon>frmTeamShow_OT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_OTAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_OTAdd.Designer.cs">
+      <DependentUpon>frmTeamShow_OTAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_TeamSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_TeamSet.Designer.cs">
+      <DependentUpon>frmTeamShow_TeamSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_TeamSetAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_TeamSetAdd.Designer.cs">
+      <DependentUpon>frmTeamShow_TeamSetAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_Vacation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_Vacation.Designer.cs">
+      <DependentUpon>frmTeamShow_Vacation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmForLeave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmForLeave.Designer.cs">
+      <DependentUpon>frmForLeave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmFreeXu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmFreeXu.Designer.cs">
+      <DependentUpon>frmFreeXu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmLessFrequently.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmLessFrequently.Designer.cs">
+      <DependentUpon>frmLessFrequently.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmOvertime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmOvertime.Designer.cs">
+      <DependentUpon>frmOvertime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmOvertimeHours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmOvertimeHours.Designer.cs">
+      <DependentUpon>frmOvertimeHours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmScheduling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmScheduling.Designer.cs">
+      <DependentUpon>frmScheduling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmTurnover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmTurnover.Designer.cs">
+      <DependentUpon>frmTurnover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_LeaveReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_LeaveReason.Designer.cs">
+      <DependentUpon>frmEditP_LeaveReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_LeaveReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_LeaveReason.Designer.cs">
+      <DependentUpon>frmP_LeaveReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_JobFor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_JobFor.Designer.cs">
+      <DependentUpon>frmEditP_Produce_JobFor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_Line.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_Line.Designer.cs">
+      <DependentUpon>frmEditP_Produce_Line.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_Project.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_Project.Designer.cs">
+      <DependentUpon>frmEditP_Produce_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_Team.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmEditP_Produce_Team.Designer.cs">
+      <DependentUpon>frmEditP_Produce_Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_JobFor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_JobFor.Designer.cs">
+      <DependentUpon>frmP_Produce_JobFor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_Line.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_Line.Designer.cs">
+      <DependentUpon>frmP_Produce_Line.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_Project.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_Project.Designer.cs">
+      <DependentUpon>frmP_Produce_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_Team.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmP_Produce_Team.Designer.cs">
+      <DependentUpon>frmP_Produce_Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmDataRevealSummaryCharShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmDataRevealSummaryCharShow.Designer.cs">
+      <DependentUpon>frmDataRevealSummaryCharShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmProduce_TeamAttend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmProduce_TeamAttend.Designer.cs">
+      <DependentUpon>frmProduce_TeamAttend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmProduce_TeamChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmProduce_TeamChange.Designer.cs">
+      <DependentUpon>frmProduce_TeamChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Pad\frmProduce_UserTotalShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Pad\frmProduce_UserTotalShow.Designer.cs">
+      <DependentUpon>frmProduce_UserTotalShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmLicense_Rec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmLicense_Rec.Designer.cs">
+      <DependentUpon>frmLicense_Rec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmLicense_RecAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmLicense_RecAdd.designer.cs">
+      <DependentUpon>frmLicense_RecAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmProdSchedulingMnanger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmProdSchedulingMnanger.Designer.cs">
+      <DependentUpon>frmProdSchedulingMnanger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmRoleWithPermissions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmRoleWithPermissions.Designer.cs">
+      <DependentUpon>frmRoleWithPermissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmRoleWithPermissionsManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmRoleWithPermissionsManager.Designer.cs">
+      <DependentUpon>frmRoleWithPermissionsManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmAttendanceDayReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmAttendanceDayReport.Designer.cs">
+      <DependentUpon>frmAttendanceDayReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmProduceRemoveReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmProduceRemoveReport.designer.cs">
+      <DependentUpon>frmProduceRemoveReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmProduce_LineShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmProduce_LineShow.designer.cs">
+      <DependentUpon>frmProduce_LineShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmV_Attend_Line.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmV_Attend_Line.designer.cs">
+      <DependentUpon>frmV_Attend_Line.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmV_Attend_Line_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmV_Attend_Line_Detail.designer.cs">
+      <DependentUpon>frmV_Attend_Line_Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmV_Attend_Sum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmV_Attend_Sum.designer.cs">
+      <DependentUpon>frmV_Attend_Sum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmWorkOverTimeDetailReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmWorkOverTimeDetailReport.Designer.cs">
+      <DependentUpon>frmWorkOverTimeDetailReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmWorkOverTimeSummaryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmWorkOverTimeSummaryReport.Designer.cs">
+      <DependentUpon>frmWorkOverTimeSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmAttendanceSummaryDayReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmAttendanceSummaryDayReport.Designer.cs">
+      <DependentUpon>frmAttendanceSummaryDayReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmDailyAttendReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmDailyAttendReport.Designer.cs">
+      <DependentUpon>frmDailyAttendReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmDataRevealSummaryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmDataRevealSummaryReport.Designer.cs">
+      <DependentUpon>frmDataRevealSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Report\frmAttendanceSummaryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Report\frmAttendanceSummaryReport.Designer.cs">
+      <DependentUpon>frmAttendanceSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\FrmAttendDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\FrmAttendDialog.Designer.cs">
+      <DependentUpon>FrmAttendDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\FrmMoveDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\FrmMoveDialog.Designer.cs">
+      <DependentUpon>FrmMoveDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\frmMyTeamNameSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\frmMyTeamNameSearch.Designer.cs">
+      <DependentUpon>frmMyTeamNameSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\frmRoleInfoSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\frmRoleInfoSearch.Designer.cs">
+      <DependentUpon>frmRoleInfoSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\FrmSetDateTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\FrmSetDateTime.Designer.cs">
+      <DependentUpon>FrmSetDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\frmUserInfoSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\frmUserInfoSearch.Designer.cs">
+      <DependentUpon>frmUserInfoSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\LogSystem\frmSiteLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\LogSystem\frmSiteLog.Designer.cs">
+      <DependentUpon>frmSiteLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Menu\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Menu\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmEditP_LicenseType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmEditP_LicenseType.designer.cs">
+      <DependentUpon>frmEditP_LicenseType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmP_LicenseType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmP_LicenseType.designer.cs">
+      <DependentUpon>frmP_LicenseType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_OTApplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_OTApplay.designer.cs">
+      <DependentUpon>frmEditP_OTApplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_OTType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_OTType.Designer.cs">
+      <DependentUpon>frmEditP_OTType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_Duty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_Duty.Designer.cs">
+      <DependentUpon>frmEditP_Produce_Duty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_Guanwei.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_Guanwei.designer.cs">
+      <DependentUpon>frmEditP_Produce_Guanwei.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_Para.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_Para.Designer.cs">
+      <DependentUpon>frmEditP_Produce_Para.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_User_Status1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmEditP_Produce_User_Status1.designer.cs">
+      <DependentUpon>frmEditP_Produce_User_Status1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_OTApplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_OTApplay.designer.cs">
+      <DependentUpon>frmP_OTApplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_OTType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_OTType.Designer.cs">
+      <DependentUpon>frmP_OTType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_Duty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_Duty.Designer.cs">
+      <DependentUpon>frmP_Produce_Duty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_Guanwei.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_Guanwei.designer.cs">
+      <DependentUpon>frmP_Produce_Guanwei.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_Para.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_Para.Designer.cs">
+      <DependentUpon>frmP_Produce_Para.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_User_Status1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmP_Produce_User_Status1.designer.cs">
+      <DependentUpon>frmP_Produce_User_Status1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmEditP_LicenseEntitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmEditP_LicenseEntitle.Designer.cs">
+      <DependentUpon>frmEditP_LicenseEntitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmEditP_LicenseMarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmEditP_LicenseMarks.Designer.cs">
+      <DependentUpon>frmEditP_LicenseMarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmP_LicenseEntitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmP_LicenseEntitle.Designer.cs">
+      <DependentUpon>frmP_LicenseEntitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmP_LicenseMarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaLicense\frmP_LicenseMarks.Designer.cs">
+      <DependentUpon>frmP_LicenseMarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmUserDept.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\ParaSystem\frmUserDept.Designer.cs">
+      <DependentUpon>frmUserDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Produce\frmProduceScheduling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Produce\frmProduceScheduling.Designer.cs">
+      <DependentUpon>frmProduceScheduling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Remove\frmTeamShowEdit_Replace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Remove\frmTeamShowEdit_Replace.designer.cs">
+      <DependentUpon>frmTeamShowEdit_Replace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Remove\frmTeamShow_Replace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Remove\frmTeamShow_Replace.designer.cs">
+      <DependentUpon>frmTeamShow_Replace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\UserRole\frmEditOper_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\UserRole\frmEditOper_Info.Designer.cs">
+      <DependentUpon>frmEditOper_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\UserRole\frmOper_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\UserRole\frmOper_Info.Designer.cs">
+      <DependentUpon>frmOper_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\UserSystem\frmEditProduce_User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\UserSystem\frmEditProduce_User.Designer.cs">
+      <DependentUpon>frmEditProduce_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\UserSystem\frmProduce_User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\UserSystem\frmProduce_User.Designer.cs">
+      <DependentUpon>frmProduce_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\UserSystem\frmUser_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\UserSystem\frmUser_Info.Designer.cs">
+      <DependentUpon>frmUser_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_VacationAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Attend\frmTeamShow_VacationAdd.Designer.cs">
+      <DependentUpon>frmTeamShow_VacationAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintRibbonControllerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrintRibbonControllerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SysCommon\ConditionDataSource.cs" />
+    <Compile Include="SysCommon\ExcelOperate.cs" />
+    <Compile Include="SysCommon\GridCommon.cs" />
+    <Compile Include="SysCommon\EnumDefine.cs" />
+    <Compile Include="form\Menu\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Menu\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Menu\frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Menu\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Menu\frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Menu\frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="SysCommon\Lib_VarKey.cs" />
+    <Compile Include="SysCommon\MasterTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SysCommon\NetworkSharedFolder.cs" />
+    <Compile Include="SysCommon\SettingTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SysCommon\SysParam.cs" />
+    <Compile Include="SysCommon\Tables.cs" />
+    <Compile Include="UserControls\LineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LineControl.Designer.cs">
+      <DependentUpon>LineControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserPerson.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserPerson.Designer.cs">
+      <DependentUpon>UserPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserPersonNull.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserPersonNull.Designer.cs">
+      <DependentUpon>UserPersonNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserPersonsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserPersonsList.Designer.cs">
+      <DependentUpon>UserPersonsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserPicture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserPicture.Designer.cs">
+      <DependentUpon>UserPicture.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_LeaveAdd.resx">
+      <DependentUpon>frmTeamShow_LeaveAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_AttendResult.resx">
+      <DependentUpon>frmTeamShow_AttendResult.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_Leave.resx">
+      <DependentUpon>frmTeamShow_Leave.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_NoAttend.resx">
+      <DependentUpon>frmTeamShow_NoAttend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_NoAttendAdd.resx">
+      <DependentUpon>frmTeamShow_NoAttendAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_OT.resx">
+      <DependentUpon>frmTeamShow_OT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_OTAdd.resx">
+      <DependentUpon>frmTeamShow_OTAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_TeamSet.resx">
+      <DependentUpon>frmTeamShow_TeamSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_TeamSetAdd.resx">
+      <DependentUpon>frmTeamShow_TeamSetAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_Vacation.resx">
+      <DependentUpon>frmTeamShow_Vacation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmForLeave.resx">
+      <DependentUpon>frmForLeave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmFreeXu.resx">
+      <DependentUpon>frmFreeXu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmLessFrequently.resx">
+      <DependentUpon>frmLessFrequently.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmOvertime.resx">
+      <DependentUpon>frmOvertime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmOvertimeHours.resx">
+      <DependentUpon>frmOvertimeHours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmProduce_TeamAttend.resx">
+      <DependentUpon>frmProduce_TeamAttend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmProduce_TeamChange.resx">
+      <DependentUpon>frmProduce_TeamChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmProduce_UserTotalShow.resx">
+      <DependentUpon>frmProduce_UserTotalShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmScheduling.resx">
+      <DependentUpon>frmScheduling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Pad\frmTurnover.resx">
+      <DependentUpon>frmTurnover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmLicense_Rec.resx">
+      <DependentUpon>frmLicense_Rec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmLicense_RecAdd.resx">
+      <DependentUpon>frmLicense_RecAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_LeaveReason.resx">
+      <DependentUpon>frmEditP_LeaveReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_LeaveReason.resx">
+      <DependentUpon>frmP_LeaveReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmEditP_Produce_JobFor.resx">
+      <DependentUpon>frmEditP_Produce_JobFor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmEditP_Produce_Line.resx">
+      <DependentUpon>frmEditP_Produce_Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmEditP_Produce_Project.resx">
+      <DependentUpon>frmEditP_Produce_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmEditP_Produce_Team.resx">
+      <DependentUpon>frmEditP_Produce_Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmProdSchedulingMnanger.resx">
+      <DependentUpon>frmProdSchedulingMnanger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmP_Produce_JobFor.resx">
+      <DependentUpon>frmP_Produce_JobFor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmP_Produce_Line.resx">
+      <DependentUpon>frmP_Produce_Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmP_Produce_Project.resx">
+      <DependentUpon>frmP_Produce_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmP_Produce_Team.resx">
+      <DependentUpon>frmP_Produce_Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmRoleWithPermissions.resx">
+      <DependentUpon>frmRoleWithPermissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmRoleWithPermissionsManager.resx">
+      <DependentUpon>frmRoleWithPermissionsManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmAttendanceDayReport.resx">
+      <DependentUpon>frmAttendanceDayReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmDataRevealSummaryCharShow.resx">
+      <DependentUpon>frmDataRevealSummaryCharShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmProduceRemoveReport.resx">
+      <DependentUpon>frmProduceRemoveReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmProduce_LineShow.resx">
+      <DependentUpon>frmProduce_LineShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmV_Attend_Line.resx">
+      <DependentUpon>frmV_Attend_Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmV_Attend_Line_Detail.resx">
+      <DependentUpon>frmV_Attend_Line_Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmV_Attend_Sum.resx">
+      <DependentUpon>frmV_Attend_Sum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmWorkOverTimeDetailReport.resx">
+      <DependentUpon>frmWorkOverTimeDetailReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmWorkOverTimeSummaryReport.resx">
+      <DependentUpon>frmWorkOverTimeSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmAttendanceSummaryDayReport.resx">
+      <DependentUpon>frmAttendanceSummaryDayReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmDataRevealSummaryReport.resx">
+      <DependentUpon>frmDataRevealSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Report\frmAttendanceSummaryReport.resx">
+      <DependentUpon>frmAttendanceSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\FrmAttendDialog.resx">
+      <DependentUpon>FrmAttendDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\FrmMoveDialog.resx">
+      <DependentUpon>FrmMoveDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\frmMyTeamNameSearch.resx">
+      <DependentUpon>frmMyTeamNameSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\frmRoleInfoSearch.resx">
+      <DependentUpon>frmRoleInfoSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\FrmSetDateTime.resx">
+      <DependentUpon>FrmSetDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\frmUserInfoSearch.resx">
+      <DependentUpon>frmUserInfoSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\LogSystem\frmSiteLog.resx">
+      <DependentUpon>frmSiteLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Menu\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Menu\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Menu\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Menu\frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmEditP_LicenseType.resx">
+      <DependentUpon>frmEditP_LicenseType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmP_LicenseType.resx">
+      <DependentUpon>frmP_LicenseType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_OTApplay.resx">
+      <DependentUpon>frmEditP_OTApplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_OTType.resx">
+      <DependentUpon>frmEditP_OTType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_Produce_Duty.resx">
+      <DependentUpon>frmEditP_Produce_Duty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_Produce_Guanwei.resx">
+      <DependentUpon>frmEditP_Produce_Guanwei.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_Produce_Para.resx">
+      <DependentUpon>frmEditP_Produce_Para.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmEditP_Produce_User_Status1.resx">
+      <DependentUpon>frmEditP_Produce_User_Status1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_OTApplay.resx">
+      <DependentUpon>frmP_OTApplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_OTType.resx">
+      <DependentUpon>frmP_OTType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_Produce_Duty.resx">
+      <DependentUpon>frmP_Produce_Duty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_Produce_Guanwei.resx">
+      <DependentUpon>frmP_Produce_Guanwei.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_Produce_Para.resx">
+      <DependentUpon>frmP_Produce_Para.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmP_Produce_User_Status1.resx">
+      <DependentUpon>frmP_Produce_User_Status1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmEditP_LicenseEntitle.resx">
+      <DependentUpon>frmEditP_LicenseEntitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmEditP_LicenseMarks.resx">
+      <DependentUpon>frmEditP_LicenseMarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmP_LicenseEntitle.resx">
+      <DependentUpon>frmP_LicenseEntitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaLicense\frmP_LicenseMarks.resx">
+      <DependentUpon>frmP_LicenseMarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\ParaSystem\frmUserDept.resx">
+      <DependentUpon>frmUserDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Produce\frmProduceScheduling.resx">
+      <DependentUpon>frmProduceScheduling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Remove\frmTeamShowEdit_Replace.resx">
+      <DependentUpon>frmTeamShowEdit_Replace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Remove\frmTeamShow_Replace.resx">
+      <DependentUpon>frmTeamShow_Replace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\UserRole\frmEditOper_Info.resx">
+      <DependentUpon>frmEditOper_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\UserRole\frmOper_Info.resx">
+      <DependentUpon>frmOper_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\UserSystem\frmEditProduce_User.resx">
+      <DependentUpon>frmEditProduce_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\UserSystem\frmProduce_User.resx">
+      <DependentUpon>frmProduce_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\UserSystem\frmUser_Info.resx">
+      <DependentUpon>frmUser_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Attend\frmTeamShow_VacationAdd.resx">
+      <DependentUpon>frmTeamShow_VacationAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintRibbonControllerResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrintRibbonControllerResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LineControl.resx">
+      <DependentUpon>LineControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserPerson.resx">
+      <DependentUpon>UserPerson.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserPersonNull.resx">
+      <DependentUpon>UserPersonNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserPersonsList.resx">
+      <DependentUpon>UserPersonsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserPicture.resx">
+      <DependentUpon>UserPicture.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\app.manifest" />
+    <None Include="Resources\501.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adim1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="login48.ico" />
+    <None Include="Resources\01.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\02.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\03.png" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\04.png" />
+    <None Include="Resources\4.png" />
+    <None Include="Resources\05.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\06.png" />
+    <None Include="Resources\6.png" />
+    <None Include="Resources\07.png" />
+    <None Include="Resources\7.png" />
+    <None Include="Resources\08.png" />
+    <None Include="Resources\8.png" />
+    <None Include="Resources\09.png" />
+    <None Include="Resources\9.png" />
+    <None Include="Resources\010.png" />
+    <None Include="Resources\10.png" />
+    <None Include="Resources\011.png" />
+    <None Include="Resources\11.png" />
+    <None Include="Resources\012.png" />
+    <None Include="Resources\12.png" />
+    <None Include="Resources\013.png" />
+    <None Include="Resources\13.png" />
+    <None Include="Resources\014.png" />
+    <None Include="Resources\14.png" />
+    <None Include="Resources\015.png" />
+    <None Include="Resources\15.png" />
+    <Content Include="Resources\adim.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aplicationicon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app_chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\applications1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\applications2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\applications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ball_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baojing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_appointment_missed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_box_track.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_card_modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_cards_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_delivery_into.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_delivery_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_delivery_outer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_delivery_waring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_dept_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_emergency.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_gaim_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_insert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_Position.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_system_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_system_setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c_user_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chaoshi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chuangui.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\complog.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\configure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\credit card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dianchi1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dianchi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dianjian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit1.png">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\huang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\isec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JB-CJQ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JB-DY.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JB-RZ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jiankong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\large icons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\module2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NH-SH.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\objects.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pohuai1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pohuai.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\posun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print preview1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\richang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SDianjian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping cart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping cart full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ST-BF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ST-HF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ST-SC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\weigen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\weihu.png" />
+    <None Include="WorkDll\Use2r.xls" />
+    <None Include="WorkDll\User.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="c_setting_logo.ico" />
+    <Content Include="logo64.ico" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\c_sysLogin.png" />
+    <None Include="Resources\icon_add_small.png" />
+    <None Include="Resources\icon_del_small.png" />
+    <None Include="Resources\icon_upd_small.png" />
+    <None Include="Resources\c_scanner_diable.png" />
+    <None Include="Resources\c_scanner_enable.png" />
+    <None Include="Resources\check-6.png" />
+    <None Include="Resources\c_product_print.jpg" />
+    <None Include="Resources\Alarm2.png" />
+    <None Include="Resources\Alarm1.png" />
+    <None Include="Resources\headlogo2.gif" />
+    <None Include="Resources\forward.png" />
+    <None Include="Resources\Device.jpg" />
+    <None Include="Resources\Logo3.jpg" />
+    <Content Include="Resources\rest.png" />
+    <Content Include="Resources\mend.png" />
+    <Content Include="Resources\NoPO.png" />
+    <Content Include="Resources\adim01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\down.png" />
+    <Content Include="Resources\icon_device.png" />
+    <Content Include="Resources\icon_device_bg.png" />
+    <Content Include="Resources\icon_device_bg1.png" />
+    <None Include="Resources\Yellow.ico" />
+    <None Include="Resources\Yellow2.png" />
+    <None Include="Resources\Yellow.png" />
+    <None Include="Resources\icon_device_bg_green.png" />
+    <None Include="Resources\icon_device_bg_yellow.png" />
+    <None Include="Resources\icon_device_bg_blue.png" />
+    <None Include="Resources\icon_device_bg_red.png" />
+    <None Include="Resources\icon_device_bg_populer.png" />
+    <None Include="Resources\warning1.png" />
+    <None Include="Resources\warning2.png" />
+    <None Include="Resources\searching.jpg" />
+    <None Include="Resources\searching.gif" />
+    <Content Include="Resources\ReportCommandTemp1.JPG" />
+    <Content Include="Resources\ReportCommandTemp2.JPG" />
+    <Content Include="Resources\ReportCommandTemp3.JPG" />
+    <Content Include="Resources\right.png" />
+    <Content Include="Resources\TrmnUpdTime_Alarm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TrmnUpdTime_high.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\图标切片\登录\X.png" />
+    <None Include="Resources\图标切片\登录\选中.png" />
+    <None Include="Resources\图标切片\主画面图标\01.png" />
+    <None Include="Resources\图标切片\主画面图标\02.png" />
+    <None Include="Resources\图标切片\主画面图标\03.png" />
+    <None Include="Resources\图标切片\主画面图标\04.png" />
+    <None Include="Resources\图标切片\主画面图标\05.png" />
+    <None Include="Resources\图标切片\主画面图标\06.png" />
+    <None Include="Resources\图标切片\主画面图标\07.png" />
+    <None Include="Resources\图标切片\主画面图标\09.png" />
+    <None Include="Resources\图标切片\主画面图标\010.png" />
+    <None Include="Resources\图标切片\主画面图标\011.png" />
+    <None Include="Resources\图标切片\主画面图标\012.png" />
+    <None Include="Resources\图标切片\主画面图标\013.png" />
+    <None Include="Resources\图标切片\主画面图标\014.png" />
+    <None Include="Resources\图标切片\主画面图标\015.png" />
+    <None Include="Resources\图标切片\主画面图标\1.png" />
+    <None Include="Resources\图标切片\主画面图标\2.png" />
+    <None Include="Resources\图标切片\主画面图标\3.png" />
+    <None Include="Resources\图标切片\主画面图标\4.png" />
+    <None Include="Resources\图标切片\主画面图标\5.png" />
+    <None Include="Resources\图标切片\主画面图标\6.png" />
+    <None Include="Resources\图标切片\主画面图标\7.png" />
+    <None Include="Resources\图标切片\主画面图标\8.png" />
+    <None Include="Resources\图标切片\主画面图标\9.png" />
+    <None Include="Resources\图标切片\主画面图标\10.png" />
+    <None Include="Resources\图标切片\主画面图标\11.png" />
+    <None Include="Resources\图标切片\主画面图标\12.png" />
+    <None Include="Resources\图标切片\主画面图标\13.png" />
+    <None Include="Resources\图标切片\主画面图标\14.png" />
+    <None Include="Resources\图标切片\主画面图标\15.png" />
+    <None Include="Resources\X.png" />
+    <None Include="Resources\X2.png" />
+    <Content Include="WorkDll\13\DevExpress.BonusSkins.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.Charts.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.Data.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.Office.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.PivotGrid.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.Printing.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.RichEdit.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.Sparkline.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.Spreadsheet.v13.1.Core.dll" />
+    <Content Include="WorkDll\13\DevExpress.Utils.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraBars.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraCharts.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraEditors.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraGrid.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraLayout.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraNavBar.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraPrinting.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraReports.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraRichEdit.v13.1.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraRichEdit.v13.1.Extensions.dll" />
+    <Content Include="WorkDll\13\DevExpress.XtraTreeList.v13.1.dll" />
+    <Content Include="WorkDll\13\Dxper.LocalizationCHS.Win.v13.1.5.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Dashboard.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Dashboard.v13.1.Web.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Dashboard.v13.1.Win.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Data.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.DataAccess.v13.1.UI.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.ConditionalEditorState.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.HtmlPropertyEditor.Win.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.PivotChart.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Reports.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Scheduler.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Scheduler.Web.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Security.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Validation.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Web.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Win.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Office.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Pdf.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.PivotGrid.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Printing.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.RichEdit.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Snap.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Snap.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Spreadsheet.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Utils.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Utils.v13.1.UI.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxHtmlEditor.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxScheduler.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxSpellChecker.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxTreeList.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Charts.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Core.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Docking.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Gauges.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Grid.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.LayoutControl.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.NavBar.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Printing.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.ReportDesigner.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Ribbon.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.RichEdit.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Scheduler.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpo.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraBars.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraCharts.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraCharts.v13.1.Wizard.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraDashboard.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraDashboard.v13.1.Web.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraEditors.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGauges.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGauges.v13.1.Presets.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGrid.v13.1.Design.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGrid.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraLayout.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraNavBar.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraPdfViewer.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraPivotGrid.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraPrinting.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraReports.v13.1.Extensions.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraReports.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraReports.v13.1.Web.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraRichEdit.v13.1.Extensions.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraRichEdit.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.Core.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.Extensions.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.Reporting.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraSpellChecker.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraTreeList.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraVerticalGrid.v13.1.resources.dll" />
+    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraWizard.v13.1.resources.dll" />
+    <Content Include="WorkDll\Basic.dll" />
+    <Content Include="WorkDll\DevExpress.BonusSkins.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.Charts.v9.3.Core.dll" />
+    <Content Include="WorkDll\DevExpress.Data.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.Localization.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.OfficeSkins.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.Utils.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraBars.v9.3.Design.dll" />
+    <Content Include="WorkDll\DevExpress.XtraBars.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraCharts.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraCharts.v9.3.UI.dll" />
+    <Content Include="WorkDll\DevExpress.XtraEditors.v13.1.dll" />
+    <Content Include="WorkDll\DevExpress.XtraEditors.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraGrid.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraLayout.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraNavBar.v9.3.Design.dll" />
+    <Content Include="WorkDll\DevExpress.XtraNavBar.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraPivotGrid.v9.3.Core.dll" />
+    <Content Include="WorkDll\DevExpress.XtraPivotGrid.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraPrinting.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraReports.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraTreeList.v9.3.dll" />
+    <Content Include="WorkDll\Encrypt.dll" />
+    <Content Include="WorkDll\Interop.Excel.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WorkDll\log4net.dll" />
+    <Content Include="WorkDll\UHFReader18CSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="form\Admin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{BE676BEA-CE6D-4575-9A49-B14E697F6231}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

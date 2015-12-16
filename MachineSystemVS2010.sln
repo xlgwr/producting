@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineSystem", "MachineSystem\MachineSystem.csproj", "{EA867C2B-001C-4E99-B35D-7D3642BE59D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{BE676BEA-CE6D-4575-9A49-B14E697F6231}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MachineSystemSetup", "MachineSystem\MachineSystemSetup\MachineSystemSetup.vdproj", "{0CAE6A24-39DE-416E-9A39-3099C25DE170}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA867C2B-001C-4E99-B35D-7D3642BE59D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA867C2B-001C-4E99-B35D-7D3642BE59D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA867C2B-001C-4E99-B35D-7D3642BE59D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA867C2B-001C-4E99-B35D-7D3642BE59D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE676BEA-CE6D-4575-9A49-B14E697F6231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE676BEA-CE6D-4575-9A49-B14E697F6231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE676BEA-CE6D-4575-9A49-B14E697F6231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE676BEA-CE6D-4575-9A49-B14E697F6231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CAE6A24-39DE-416E-9A39-3099C25DE170}.Debug|Any CPU.ActiveCfg = Debug
+		{0CAE6A24-39DE-416E-9A39-3099C25DE170}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<AutoUpdater>
+  <Description>生产考勤系统</Description>
+  <Updater>
+    <Url>\\192.168.1.5\Common\MachineSystem1\</Url>
+    <LastUpdateTime>2012-11-21</LastUpdateTime>
+  </Updater>
+  <Application applicationId = "生产考勤系统">
+    <EntryPoint>MachineSystem.exe</EntryPoint>
+    <Location>.</Location>
+    <Version>1.0.0.3</Version>
+  </Application>
+  <Files>
+    <File Ver="1.0.0.3" Name= "Framework.dll" />
+    <File Ver="1.0.0.3" Name= "MachineSystem.exe" />
+    <File Ver="1.0.0.3" Name= "MachineSystem.dat" />
+	  <File Ver="1.0.0.3" Name= "MachineSystem.exe.config" />
+	  <File Ver="1.0.0.3" Name= "log4net.config" />
+    <File Ver="1.0.0.3" Name= "UpdateList.xml" />
+  </Files>
+</AutoUpdater>
