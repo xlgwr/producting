@@ -77,17 +77,33 @@ namespace MachineSystem
             Common.GetIniData();
 
             //皮肤设定
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("zh-CN");
 
             DevExpress.Skins.SkinManager.EnableMdiFormSkins();
             Application.SetCompatibleTextRenderingDefault(false);
             DevExpress.Skins.SkinManager.Default.RegisterAssembly(typeof(DevExpress.Skins.FormSkins).Assembly);
-           
-            
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
-
             Application.EnableVisualStyles();
+
+            DevExpress.XtraGrid.Localization.GridResLocalizer.Active = new Dxper.LocalizationCHS.Win.XtraGridCHS();
+            DevExpress.XtraEditors.Controls.Localizer.Active = new Dxper.LocalizationCHS.Win.XtraEditorsCHS();
+            DevExpress.XtraCharts.Localization.ChartResLocalizer.Active = new Dxper.LocalizationCHS.Win.XtraChartsCHS();
+            DevExpress.XtraLayout.Localization.LayoutLocalizer.Active = new Dxper.LocalizationCHS.Win.XtraLayoutCHS();
+            DevExpress.XtraPrinting.Localization.PreviewLocalizer.Active = new Dxper.LocalizationCHS.Win.XtraPrintingCHS();
+            DevExpress.XtraTreeList.Localization.TreeListResLocalizer.Active = new Dxper.LocalizationCHS.Win.XtraTreeListCHS();
+            //DevExpress.Office.Localization.OfficeResLocalizer.Active = new Dxper.LocalizationCHS.Win.OfficeCHS();
+            //DevExpress.XtraSpreadsheet.Localization.XtraSpreadsheetLocalizer.Active = new Dxper.LocalizationCHS.Win.XtraSpreadsheetCHS();
+
+            //本地化控件
+            //DevExpress.XtraBars.Localization.BarLocalizer.Active = new Dxper.LocalizationCHS.Win..DevExpressXtraBarsLocalizationCHS();
+            //DevExpress.XtraLayout.Localization.LayoutLocalizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraLayoutLocalizationCHS();
+            //DevExpress.XtraEditors.Controls.Localizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraEditorsLocalizationCHS();
+            //DevExpress.XtraGrid.Localization.GridLocalizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraGridLocalizationCHS();
+            //DevExpress.XtraNavBar.NavBarLocalizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraNavBarLocalizationCHS();
+            //DevExpress.XtraPrinting.Localization.PreviewLocalizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraPrintingLocalizationCHS();
+            //DevExpress.XtraTreeList.Localization.TreeListLocalizer.Active = new DevExpress.LocalizationCHS.DevExpressXtraTreeListLocalizationCHS();
+
+            DevExpress.Skins.SkinManager.EnableFormSkins();
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(DevExpress.Skins.SkinManager.Default.Skins[Convert.ToInt32(Common._sysrun.FormSkin)].SkinName);
             Common._sysrun.EditColumnBackColor = System.Drawing.Color.Orange;
 
@@ -294,8 +310,8 @@ namespace MachineSystem
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message, "Unhandled Thread Exception");
-            // here you can log the exception ...
+           // MessageBox.Show(e.Exception.Message, "Unhandled Thread Exception");
+           // here you can log the exception ...
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -306,12 +322,12 @@ namespace MachineSystem
         public static void logFlagStart(ILog log, Stopwatch start, string msg)
         {
             start.Start();
-            log.Info("14开始运行：" + msg);
+            log.Info("13开始运行：" + msg);
         }
         public static void logFlagEnd(ILog log, Stopwatch end, string msg)
         {
             end.Stop();
-            log.Info("14结束运行：" + msg + ",使用时间：" + end.Elapsed.ToString());
+            log.Info("13结束运行：" + msg + ",使用时间：" + end.Elapsed.ToString());
             end.Reset();
         }
     }

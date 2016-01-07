@@ -191,7 +191,7 @@ namespace MachineSystem.TabPage
                 }
                 if (lookmyteamName.EditValue.ToString() != "-1" && lookmyteamName.Text.ToString() != "全部")
                 {
-                    _sql = " and a.myTeamName='" + lookmyteamName.EditValue.ToString() + "'";
+                    _sql += " and a.myTeamName='" + lookmyteamName.EditValue.ToString() + "'";
                 }
                 if (lookGuanwei.EditValue.ToString() != "-1" && lookGuanwei.Text.ToString() != "全部")
                 {

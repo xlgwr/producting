@@ -19,6 +19,7 @@ using MachineSystem.SysCommon;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace MachineSystem.form.Pad
 {
@@ -27,6 +28,8 @@ namespace MachineSystem.form.Pad
         #region 变量定义
         bool isEditValue { get; set; }
         public bool isRun { get; set; }
+        public objCl _oldUsedObj { get; set; }
+        bool isFirst { get; set; }
         /// <summary>
         /// 人员数据表
         /// </summary>
@@ -65,12 +68,12 @@ namespace MachineSystem.form.Pad
         /// <summary>
         /// 参数：向别
         /// </summary>
-        string parMyteamName;
+        public string parMyteamName;
 
         /// <summary>
         /// 参数：日期
         /// </summary>
-        string parDdateOperDate;
+        public string parDdateOperDate;
 
         // 日志	
         private static readonly ILog log = LogManager.GetLogger(typeof(frmProduce_UserTotalShow));
@@ -135,6 +138,8 @@ namespace MachineSystem.form.Pad
         /// </summary>
         int mGuanWeiHeight = new UserPersonsList().Height + 23;//关位（工种）控件高
 
+        [DllImport("User32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        internal static extern int SendMessage(IntPtr hwnd, int msg, int wParam, int lParam);
         #endregion
 
         #region 画面初始化
@@ -143,6 +148,7 @@ namespace MachineSystem.form.Pad
         /// </summary>
         public frmProduce_UserTotalShow(string parMyteamName, string parDdateOperDate)
         {
+            isFirst = true;
             Stopwatch s = new Stopwatch();
             try
             {
@@ -153,9 +159,10 @@ namespace MachineSystem.form.Pad
                 this.TopMost = true;
                 isRun = false;
                 isEditValue = false;
+                _oldUsedObj = new objCl() { u_gwNum = 0, u_UserNullNum = 0, u_UserPersonNum = 0, gwNum = 0, UserNullNum = 0, UserPersonNum = 0 };
+                xtraScrollableControl1.HorizontalScroll.Visible = false;
+                xtraScrollableControl1.HorizontalScroll.Enabled = false;
 
-                panelContent.AutoScroll = true;
-                panelContent.VerticalScroll.SmallChange = 2;
                 btnRef.Enabled = true;
                 btnConfirm.Enabled = true;
                 btnProduce_TeamAttend.Enabled = true;
@@ -177,7 +184,7 @@ namespace MachineSystem.form.Pad
             finally
             {
                 this.Cursor = Cursors.Default;
-
+                isFirst = false;
                 this.TopMost = true;
                 Program.logFlagEnd(log, s, "人员揭示总显示时间：");
             }
@@ -187,10 +194,21 @@ namespace MachineSystem.form.Pad
         private void frmProduce_UserTotalShow_Load(object sender, EventArgs e)
         {
 
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);//防止窗口跳动
+            SetStyle(ControlStyles.DoubleBuffer, true); //防止控件跳动 
         }
         void frmProduce_UserTotalShow_Activated(object sender, EventArgs e)
         {
             //throw new NotImplementedException();
+            btnRef.Enabled = true;
+            btnConfirm.Enabled = true;
+            btnProduce_TeamAttend.Enabled = true;
+            button1.Enabled = true;
+            if (!isFirst)
+            {
+                SetFormValue();
+            }
             this.TopMost = true;
         }
 
@@ -265,19 +283,22 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnRef_Click(object sender, EventArgs e)
         {
-            //this.TopMost = false;
+            this.Cursor = Cursors.WaitCursor;
+
+            this.TopMost = true;
 
             if (isEditValue)
             {
                 return;
             }
-            isEditValue = true;
 
             this.btnRef.Enabled = false;
             if (lookmyteamName.Text.ToString() == "" || dateOperDate1.Text.Trim() == "")
             {
                 return;
             }
+
+            chkAll.Checked = false;
 
             try
             {
@@ -348,6 +369,7 @@ namespace MachineSystem.form.Pad
                 //执行存储过程2,打卡时间
                 Common.AdoConnect.Connect.SetExecuteSP("PROC_CardData_Attend_Result", Common.Choose.OnlyExecSp, paraListCardData);
 
+
                 //重新取得页面数据
                 GetProduce_TeamShow();
                 GetDspDataList();
@@ -367,6 +389,7 @@ namespace MachineSystem.form.Pad
                 btnConfirm.Enabled = true;
                 btnProduce_TeamAttend.Enabled = true;
                 button1.Enabled = true;
+                this.Cursor = Cursors.Default;
             }
 
 
@@ -375,14 +398,9 @@ namespace MachineSystem.form.Pad
         //人员调动按钮点击
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             try
             {
-                this.Cursor = Cursors.WaitCursor;
-
-                button1.Enabled = false;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
                 if (Program._frmProduce_TeamChange != null)
                 {
                     Program._frmProduce_TeamChange.parMyteamName = lookmyteamName.Text.ToString();
@@ -393,8 +411,11 @@ namespace MachineSystem.form.Pad
                     frmProduce_TeamChange frm = new frmProduce_TeamChange(lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
 
                 }
-                Program._frmProduce_TeamChange.TopMost = true;
+                this.TopMost = false;
+                this.Hide();
+
                 Program._frmProduce_TeamChange.Show();
+                Program._frmProduce_TeamChange.TopMost = true;
             }
             catch (Exception ex)
             {
@@ -412,14 +433,9 @@ namespace MachineSystem.form.Pad
         //人员考勤按钮点击
         private void btnProduce_TeamAttend_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             try
             {
-                this.Cursor = Cursors.WaitCursor;
-
-                this.btnProduce_TeamAttend.Enabled = false;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
                 if (Program._frmProduce_TeamAttend != null)
                 {
                     Program._frmProduce_TeamAttend.parMyteamName = lookmyteamName.Text.ToString();
@@ -430,8 +446,11 @@ namespace MachineSystem.form.Pad
                     frmProduce_TeamAttend frm = new frmProduce_TeamAttend(lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
 
                 }
-                Program._frmProduce_TeamAttend.TopMost = true;
+                this.TopMost = false;
+                this.Hide();
+
                 Program._frmProduce_TeamAttend.Show();
+                Program._frmProduce_TeamAttend.TopMost = true;
             }
             catch (Exception ex)
             {
@@ -449,6 +468,7 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             //this.TopMost = false;
             this.btnConfirm.Enabled = false;
             try
@@ -500,6 +520,7 @@ namespace MachineSystem.form.Pad
 
                         FrmAttendDialog FrmDialog = new FrmAttendDialog(message + updateCnt + "人考勤确认成功！");
                         FrmDialog.ShowDialog();
+                        Application.DoEvents();
 
                         //自动刷新
                         btnConfirm.Enabled = true;
@@ -515,7 +536,11 @@ namespace MachineSystem.form.Pad
             {
                 log.Error(ex);
             }
-            this.btnConfirm.Enabled = true;
+            finally
+            {
+                this.btnConfirm.Enabled = true;
+                this.Cursor = Cursors.Default;
+            }
         }
 
         /// <summary>
@@ -526,8 +551,12 @@ namespace MachineSystem.form.Pad
 
             if (chkAll.Checked)
             {//全部选中
-                foreach (var col in panelContent.Controls)
+                foreach (Control col in panelContent.Controls)
                 {
+                    if (!col.Visible)
+                    {
+                        continue;
+                    }
                     //只有人员才可以选择
                     if (col.GetType().ToString() == "MachineSystem.UserControls.UserPerson")
                     {
@@ -543,8 +572,12 @@ namespace MachineSystem.form.Pad
             }
             else
             {//取消全部选中
-                foreach (var col in panelContent.Controls)
+                foreach (Control col in panelContent.Controls)
                 {
+                    if (!col.Visible)
+                    {
+                        continue;
+                    }
                     if (col.GetType().ToString() == "MachineSystem.UserControls.UserPerson")
                     {
                         UserPerson person = col as UserPerson;
@@ -571,6 +604,8 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void lookmyteamName_EditValueChanged(object sender, EventArgs e)
         {
+            Application.DoEvents();
+
             this.TopMost = true;
 
             if (lookmyteamName.Text.Trim() == "" || dateOperDate1.Text.Trim() == "") return;
@@ -585,6 +620,8 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void dateOperDate1_EditValueChanged(object sender, EventArgs e)
         {
+            Application.DoEvents();
+
             //this.TopMost = false;
             if (lookmyteamName.Text.Trim() == "" || dateOperDate1.Text.Trim() == "") return;
 
@@ -669,7 +706,8 @@ namespace MachineSystem.form.Pad
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frm.Hide();
-                Application.DoEvents();
+
+                this.parDdateOperDate = DateTime.Parse(frm.m_DateTime).ToString("yyyy-MM-dd HH:mm");
                 dateOperDate1.Text = DateTime.Parse(frm.m_DateTime).ToString("yyyy-MM-dd HH:mm");
             }
         }
@@ -685,6 +723,9 @@ namespace MachineSystem.form.Pad
             frmMyTeamNameSearch frm = new frmMyTeamNameSearch();
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                frm.Hide();
+
+                this.parMyteamName = frm.m_myTeamName;
                 lookmyteamName.Text = frm.m_myTeamName;
             }
         }
@@ -1136,7 +1177,7 @@ namespace MachineSystem.form.Pad
             {
                 Program._frmMain.BeginInvoke(new Action(delegate()
                   {
-                      panelContent.AutoScroll = true;
+                      //panelContent.AutoScroll = true;
                       this.Cursor = Cursors.Default;
                   }));
             }
@@ -1248,6 +1289,7 @@ namespace MachineSystem.form.Pad
 
                 //关位
                 string strGuwanweiID = string.Empty;
+
                 this.SuspendLayout();
                 var gwcount = m_tblGuanweiList.Rows.Count;
                 for (int a = 0; a < gwcount; a++)
@@ -1276,9 +1318,19 @@ namespace MachineSystem.form.Pad
 
                     this.setImgIndex(true);//设置显示位置
                     //panelContent.Controls.Add(m_PersonList);//展示空间
-                    m_PersonList.Location = _point;//设置空间展示坐标
-                    m_PersonList.Visible = true;
-
+                    Program._frmMain.Invoke(new Action(delegate()
+                    {
+                        m_PersonList.Location = _point;//设置空间展示坐标
+                        if (!m_PersonList.Visible)
+                        {
+                            Program._frmMain.Invoke(new Action(delegate()
+                                {
+                                    Application.DoEvents();
+                                    m_PersonList.Visible = true;
+                                }));
+                        }
+                        //
+                    }));
                     gwShowSite = 1;
                     view = new DataView(dt_temp.Copy());
                     view.RowFilter = "GuanweiSite='99'";
@@ -1341,9 +1393,14 @@ namespace MachineSystem.form.Pad
 
                             this.setImgIndex(false);//设置显示位置
                             //panelContent.Controls.Add(m_Person);//展示空间
-                            m_Person.Location = _point;//设置空间展示坐标
-                            m_Person.Visible = true;
-
+                            Program._frmMain.Invoke(new Action(delegate()
+                           {
+                               m_Person.Location = _point;//设置空间展示坐标
+                               if (!m_Person.Visible)
+                               {
+                                   m_Person.Visible = true;
+                               }
+                           }));
                             gwShowSite = GwSite + 1;
                             dt_temp.Rows[0].Delete();
                             NoLicenseCount++;
@@ -1409,9 +1466,19 @@ namespace MachineSystem.form.Pad
 
                             this.setImgIndex(false);//设置显示位置
                             //panelContent.Controls.Add(m_Person);//展示空间
-                            m_Person.Location = _point;//设置空间展示坐标
-                            m_Person.Visible = true;
-
+                            Program._frmMain.Invoke(new Action(delegate()
+                           {
+                               Application.DoEvents();
+                               m_Person.Location = _point;//设置空间展示坐标
+                               if (!m_Person.Visible)
+                               {
+                                   Program._frmMain.Invoke(new Action(delegate()
+                                   {
+                                       Application.DoEvents();
+                                       m_Person.Visible = true;
+                                   }));
+                               }
+                           }));
                             gwShowSite++;
                             dt_temp.Rows[0].Delete();
                             NoLicenseCount++;
@@ -1435,8 +1502,19 @@ namespace MachineSystem.form.Pad
 
                             this.setImgIndex(false);//设置显示位置
                             //panelContent.Controls.Add(m_PersonNull);//展示空间
-                            m_PersonNull.Location = _point;//设置空间展示坐标
-                            m_PersonNull.Visible = true;
+                            Program._frmMain.Invoke(new Action(delegate()
+                            {
+                                Application.DoEvents();
+                                m_PersonNull.Location = _point;//设置空间展示坐标
+                                if (!m_PersonNull.Visible)
+                                {
+                                    Program._frmMain.Invoke(new Action(delegate()
+                                    {
+                                        Application.DoEvents();
+                                        m_PersonNull.Visible = true;
+                                    }));
+                                }
+                            }));
 
                             gwShowSite++;
                         }
@@ -1455,9 +1533,63 @@ namespace MachineSystem.form.Pad
                 wid_Left_Cnt = 1;
                 wid_Right_Cnt = 1;
                 isRun = false;
+
+                #region hide no use control
+                //未使用的不显示
+                if (_oldUsedObj.gwNum <= 0)
+                {
+                    _oldUsedObj.gwNum = Program._objCl.gwNum;
+                    _oldUsedObj.u_gwNum = Program._objCl.u_gwNum;
+                    _oldUsedObj.UserPersonNum = Program._objCl.UserPersonNum;
+                    _oldUsedObj.u_UserPersonNum = Program._objCl.u_UserPersonNum;
+                    _oldUsedObj.UserNullNum = Program._objCl.UserNullNum;
+                    _oldUsedObj.u_UserNullNum = Program._objCl.u_UserNullNum;
+                }
+                else
+                {
+                    //关位
+                    if (_oldUsedObj.u_gwNum >= Program._objCl.u_gwNum)
+                    {
+                        for (int i = Program._objCl.u_gwNum; i <= _oldUsedObj.u_gwNum; i++)
+                        {
+                            Program._listCtro[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        _oldUsedObj.u_gwNum = Program._objCl.u_gwNum;
+                    }
+                    //人员
+                    if (_oldUsedObj.u_UserPersonNum >= Program._objCl.u_UserPersonNum)
+                    {
+                        for (int i = Program._objCl.u_UserPersonNum; i <= _oldUsedObj.u_UserPersonNum; i++)
+                        {
+                            Program._listCtro[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        _oldUsedObj.u_UserPersonNum = Program._objCl.u_UserPersonNum;
+                    }
+                    //空位
+                    if (_oldUsedObj.u_UserNullNum >= Program._objCl.u_UserNullNum)
+                    {
+                        for (int i = Program._objCl.u_UserNullNum; i <= _oldUsedObj.u_UserNullNum; i++)
+                        {
+                            Program._listCtro[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        _oldUsedObj.u_UserNullNum = Program._objCl.u_UserNullNum;
+                    }
+
+                }
+
+
+                #endregion
                 this.ResumeLayout(false);
                 this.PerformLayout();
-
                 watchControl.Stop();
                 //this.Text += ",移动控件：" + watchControl.Elapsed.ToString();
                 log.Info(",移动控件：" + watchControl.Elapsed.ToString());
@@ -1472,7 +1604,7 @@ namespace MachineSystem.form.Pad
             }
             finally
             {
-                panelContent.AutoScroll = true;
+                //panelContent.AutoScroll = true;
                 this.Cursor = Cursors.Default;
 
             }
@@ -1837,12 +1969,19 @@ namespace MachineSystem.form.Pad
                     return;
                 }
                 this.Cursor = Cursors.WaitCursor;
-                panelContent.AutoScroll = false;
-                foreach (Control item in Program._listCtro)
+                //panelContent.AutoScroll = false;
+                xtraScrollableControl1.VerticalScroll.Value = 0;
+                var isCheckCL = Program._listCtro.Where(m => !m.BackColor.Equals(Color.Transparent) || !m.Tag.Equals("0")).ToList();
+                foreach (Control item in isCheckCL)
                 {
+                    if (item.GetType().ToString() == "MachineSystem.UserControls.UserPerson")
+                    {
+                        item.BackColor = Color.Transparent;
+                    }
                     item.Tag = "0";
-                    item.Visible = false;
+                    //item.Visible = false;
                 }
+
                 Stopwatch tmpW = new Stopwatch();
                 tmpW.Start();
 
@@ -1916,11 +2055,16 @@ namespace MachineSystem.form.Pad
 
                 Stopwatch s6 = new Stopwatch();
                 Program.logFlagStart(log, s6, "SQL 重       叠: 6:");
+//                str_sql = string.Format(@"select  ISNULL(sum(T.cc),0) as counts from 
+//                                                (select A.JobForID,A.ProjectID,A.LineID,A.TeamID,A.GuanweiID,A.GuanweiNM,A.GuanweiSite,sum(1) as cc  from (select distinct * from V_User_TotalShow_Image)  as A
+//                                                where  A.myTeamName='{0}' and A.AttendDate=CONVERT(VARCHAR(10),'{1}',120) 
+//                                                group by A.JobForID,A.ProjectID,A.LineID,A.TeamID,A.GuanweiID,A.GuanweiNM,A.GuanweiSite having sum(1) > 1) as T",
+                                                //lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
                 str_sql = string.Format(@"select  ISNULL(sum(T.cc),0) as counts from 
-                                                (select A.JobForID,A.ProjectID,A.LineID,A.TeamID,A.GuanweiID,A.GuanweiNM,A.GuanweiSite,sum(1) as cc  from (select distinct * from V_User_TotalShow_Image)  as A
-                                                where  A.myTeamName='{0}' and A.AttendDate=CONVERT(VARCHAR(10),'{1}',120) 
-                                                group by A.JobForID,A.ProjectID,A.LineID,A.TeamID,A.GuanweiID,A.GuanweiNM,A.GuanweiSite having sum(1) > 1) as T",
+                                                (select GuanweiID,GuanweiSite,sum(1) as cc  from V_User_TotalShow_Image 
+                                                where  myTeamName='{0}' and AttendDate=CONVERT(VARCHAR(10),'{1}',120) group by GuanweiID,GuanweiSite having sum(1) > 1) as T ",
                                                 lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
+
                 dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
                 Program.logFlagEnd(log, s6, "SQL 重       叠: 6:");
 
@@ -1929,7 +2073,8 @@ namespace MachineSystem.form.Pad
                     lblchongdie.Text = dt_temp.Rows[0]["counts"].ToString();// + "人"; "重       叠:" +
                 }
 
-                str_sql = string.Format(@" select ISNULL(sum(SetNum),0) as SetNumCount from V_Produce_Para_i where  myTeamName='{0}' and AttendDate=CONVERT(VARCHAR(10),'{1}',120)",
+                str_sql = string.Format(@" select ISNULL(sum(SetNum),0) as SetNumCount from V_Produce_Para_i where  myTeamName='{0}' and AttendDate=CONVERT(VARCHAR(10),'{1}',120)
+                                               and (GuanweiID<>'1' and GuanweiID<>'18' and GuanweiID<>'3' and GuanweiID<>'2') ",
                                             lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
                 dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
                 if (dt_temp.Rows.Count > 0)
@@ -2132,13 +2277,13 @@ namespace MachineSystem.form.Pad
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //this.TopMost = false;
+            this.TopMost = false;
             System.Diagnostics.Process.Start("http://10.71.1.242:8082");
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            //this.TopMost = false;
+            this.TopMost = false;
             System.Diagnostics.Process.Start("http://192.168.1.246:8082");
         }
 
@@ -2168,6 +2313,16 @@ namespace MachineSystem.form.Pad
             btnConfirm.Enabled = true;
             btnProduce_TeamAttend.Enabled = true;
             button1.Enabled = true;
+        }
+
+        private void frmProduce_UserTotalShow_Deactivate(object sender, EventArgs e)
+        {
+            this.TopMost = false;
+        }
+
+        private void frmProduce_UserTotalShow_Leave(object sender, EventArgs e)
+        {
+            this.TopMost = false;
         }
     }
 

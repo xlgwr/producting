@@ -87,7 +87,27 @@ namespace MachineSystem.form.Pad
                 FrmDialog.ShowDialog();
             }
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
 
+                CreateParams cp = base.CreateParams;
+
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED  
+                this.Opacity = 1;
+
+                //if (this.IsXpOr2003 == true)
+                //{
+                //    cp.ExStyle |= 0x00080000;  // Turn on WS_EX_LAYERED
+                //    this.Opacity = 1;
+                //}
+
+                return cp;
+
+            }
+
+        }  //防止闪烁
         private void frmOvertime_Load(object sender, EventArgs e)
         {
             try

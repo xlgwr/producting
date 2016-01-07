@@ -75,7 +75,27 @@ namespace MachineSystem.form.Pad
                 FrmDialog.ShowDialog();
             }
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
 
+                CreateParams cp = base.CreateParams;
+
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED  
+                this.Opacity = 1;
+
+                //if (this.IsXpOr2003 == true)
+                //{
+                //    cp.ExStyle |= 0x00080000;  // Turn on WS_EX_LAYERED
+                //    this.Opacity = 1;
+                //}
+
+                return cp;
+
+            }
+
+        }  //防止闪烁
         private void frmTurnover_Load(object sender, EventArgs e)
         {
             try
@@ -201,11 +221,12 @@ namespace MachineSystem.form.Pad
                     //str_sql += " AND CONVERT(varchar(10),SetDate,120) = '" + dtSetDate.Text.ToString() + "'";//最后上班日期
                     if (SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql).Rows.Count > 0)
                     {
-                        Common.AdoConnect.Connect.TransactionRollback();
                         FrmAttendDialog FrmDialog = new FrmAttendDialog(
-                            m_tblDataList.Rows[i]["UserID"].ToString() + ":" + m_tblDataList.Rows[i]["UserName"].ToString()
+                            m_tblDataList.Rows[i]["UserID"].ToString() + ":" + m_tblDataList.Rows[i]["UserNM"].ToString()
                             + ",\n已经登记了离职信息！");
+                       
                         FrmDialog.ShowDialog();
+                        Common.AdoConnect.Connect.TransactionRollback();
                         return;
                     }
 
@@ -227,28 +248,27 @@ namespace MachineSystem.form.Pad
                 }
                 if (m_tblDataList.Rows.Count == count)
                 {
-                    Common.AdoConnect.Connect.TransactionCommit();
-                    FrmAttendDialog FrmDialog = new FrmAttendDialog(count+"人的离职登记信息，成功提交！");
+                    FrmAttendDialog FrmDialog = new FrmAttendDialog(count+"人的离职登记信息，成功提交！");                   
                     FrmDialog.ShowDialog();
+                    Common.AdoConnect.Connect.TransactionCommit();
                     this.Close();
                 }
                 else
                 {
-                    Common.AdoConnect.Connect.TransactionRollback();
-
                     FrmAttendDialog FrmDialog = new FrmAttendDialog("离职登记提交失败！");
+                   
                     FrmDialog.ShowDialog();
-
+                    Common.AdoConnect.Connect.TransactionRollback();
                 }
 
             }
             catch (Exception ex)
             {
-                Common.AdoConnect.Connect.TransactionRollback();
-                log.Error(ex);
 
                 FrmAttendDialog FrmDialog = new FrmAttendDialog("离职登记提交失败！");
                 FrmDialog.ShowDialog();
+                Common.AdoConnect.Connect.TransactionRollback();
+                log.Error(ex);
 
             }
         }

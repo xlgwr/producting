@@ -164,6 +164,7 @@ namespace MachineSystem.form.Master
                 Cursor.Current = Cursors.WaitCursor;
 
 
+
                 //退出按钮
                 if (e.Link.Item.Tag.ToString() == "Exit")
                 {
@@ -284,21 +285,6 @@ namespace MachineSystem.form.Master
                 {
                     Cursor currentCursor = Cursor.Current;
                     Cursor.Current = Cursors.WaitCursor;
-
-                    //
-                    if (e.Link.Item.Tag.ToString() == "Exit")
-                    {
-                        //common._its_accessdb = null;
-                        this.Close();
-                        return;
-                    }
-                    //关于
-                    if (e.Item.Tag.ToString().ToLower() == "about")
-                    {
-                        MachineSystem.TabPage.frmAbout frm = new MachineSystem.TabPage.frmAbout();
-                        frm.ShowDialog();
-                        return;
-                    }
                     //人员揭示
                     if (e.Item.Tag.ToString().ToLower() == "usertotalshow")
                     {
@@ -315,6 +301,37 @@ namespace MachineSystem.form.Master
 
                         return;
                     }
+                    else
+                    {
+                        if (Program._frmProduce_UserTotalShow != null)
+                        {
+                            Program._frmProduce_UserTotalShow.TopMost = false;
+                        }
+                    }
+                    if (Program._frmProduce_TeamAttend != null)
+                    {
+                        Program._frmProduce_TeamAttend.TopMost = false;
+                    }
+                    if (Program._frmProduce_TeamChange != null)
+                    {
+                        Program._frmProduce_TeamChange.TopMost = false;
+                    }
+                    //
+                    if (e.Link.Item.Tag.ToString() == "Exit")
+                    {
+                        //common._its_accessdb = null;
+                        this.Close();
+                        return;
+                    }
+                    //关于
+                    if (e.Item.Tag.ToString().ToLower() == "about")
+                    {
+                        MachineSystem.TabPage.frmAbout frm = new MachineSystem.TabPage.frmAbout();
+                        frm.ShowDialog();
+                        return;
+                    }
+
+
                     if (!CheckExistsForm(e.Item.Tag.ToString().ToString()))
                     {
                         ShowForm(e.Link.Item.Tag.ToString());

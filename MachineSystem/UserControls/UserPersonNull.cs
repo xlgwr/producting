@@ -288,6 +288,10 @@ namespace MachineSystem.UserControls
 
         public UserPersonNull()
         {
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);//防止窗口跳动
+            SetStyle(ControlStyles.DoubleBuffer, true); //防止控件跳动 
             InitializeComponent();
         }
 

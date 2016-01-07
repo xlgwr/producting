@@ -150,7 +150,7 @@ namespace MachineSystem.form.ParaLicense
                 SaveButtonEnabled = true;
                 ExcelButtonEnabled = true;
 
-                if (m_isPad != "") 
+                if (m_isPad != "")
                 {
                     gridView1.OptionsBehavior.Editable = false;
                     btnAdd.Visible = false;
@@ -292,9 +292,9 @@ namespace MachineSystem.form.ParaLicense
                     m_dicItemData["OperDate"] = DateTime.Now.ToString();
                     result = SysParam.m_daoCommon.SetInsertDataItem("P_License_Detail", m_dicItemData);
                 }
+                Common.AdoConnect.Connect.TransactionCommit();
                 if (result > 0)
                 {
-                    Common.AdoConnect.Connect.TransactionCommit();
                     XtraMsgBox.Show("新增数据成功！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //日志
                     SysParam.m_daoCommon.WriteLog("免许登记", "新增", "用户编号：" + txtUserID.Text.ToString());
@@ -408,7 +408,7 @@ namespace MachineSystem.form.ParaLicense
                     m_dicItemData["OperDate"] = DateTime.Now.ToString();
                     result = SysParam.m_daoCommon.SetInsertDataItem("P_License_Detail", m_dicItemData);
                 }
-                
+
 
                 if (result > 0)
                 {
@@ -761,23 +761,23 @@ namespace MachineSystem.form.ParaLicense
                     }
                 }
 
-                DataTable dt_temp = ((DataView)gridView1.DataSource).ToTable();
-                for (int a = 0; a < dt_temp.Rows.Count; a++)
-                {
-                    DataRow row = dt_temp.Rows[a];
-                    row = dt_temp.Rows[a];
-                    for (int b = 0; b < dt_temp.Rows.Count; b++)
-                    {
-                        if (a == b) continue;
-                        DataRow d_dr = dt_temp.Rows[b];
-                        if (row["JobForName"] == d_dr["JobForName"] && row["ProjectName"] == d_dr["ProjectName"] && row["LineName"] == d_dr["LineName"] && row["guanweiName"] == d_dr["guanweiName"] && row["levelName"] == d_dr["levelName"])
-                        {
-                            XtraMsgBox.Show("请检查明细表中，同一向别工程别Line别关位下的免许等级不能相同！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            isSucces = false;
-                            return;
-                        }
-                    }
-                }
+                //    DataTable dt_temp = ((DataView)gridView1.DataSource).ToTable();
+                //    for (int a = 0; a < dt_temp.Rows.Count; a++)
+                //    {
+                //        DataRow row = dt_temp.Rows[a];
+                //        row = dt_temp.Rows[a];
+                //        for (int b = 0; b < dt_temp.Rows.Count; b++)
+                //        {
+                //            if (a == b) continue;
+                //            DataRow d_dr = dt_temp.Rows[b];
+                //            if (row["JobForName"] == d_dr["JobForName"] && row["ProjectName"] == d_dr["ProjectName"] && row["LineName"] == d_dr["LineName"] && row["guanweiName"] == d_dr["guanweiName"] && row["levelName"] == d_dr["levelName"])
+                //            {
+                //                XtraMsgBox.Show("请检查明细表中，同一向别工程别Line别关位下的免许等级不能相同！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //                isSucces = false;
+                //                return;
+                //            }
+                //        }
+                //    }
 
             }
             //数据库重复判断
@@ -785,7 +785,7 @@ namespace MachineSystem.form.ParaLicense
             {
                 string str = string.Format(@"select * from License_Rec_i where UserID='{0}'", this.txtUserID.Text.Trim());
                 DataTable dt = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     isSucces = false;
                     DataValid.ShowErrorInfo(this.ErrorInfo, this.txtUserID, "此用户的免许记录已经存在!");
@@ -892,7 +892,7 @@ namespace MachineSystem.form.ParaLicense
             }
             catch (Exception ex)
             {
-                log.Error("取得修改数据失败"+ex.ToString());
+                log.Error("取得修改数据失败" + ex.ToString());
                 XtraMsgBox.Show("取得修改数据失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, ex, this.GetType());
             }
 
@@ -902,16 +902,16 @@ namespace MachineSystem.form.ParaLicense
         {
             try
             {
-                if (xtraTabControl1.SelectedTabPageIndex == 1) 
+                if (xtraTabControl1.SelectedTabPageIndex == 1)
                 {
                     if (txtUserID.Text.Trim() == "") return;
-                    string str_sql = string.Format(@"select * from P_Subsisiary where Userid='{0}'",txtUserID.Text.Trim());
+                    string str_sql = string.Format(@"select * from P_Subsisiary where Userid='{0}'", txtUserID.Text.Trim());
                     DataTable dt_data = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
-                    gridControl2.DataSource = dt_data; 
+                    gridControl2.DataSource = dt_data;
                     gridView2.OptionsBehavior.Editable = false;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -948,7 +948,7 @@ namespace MachineSystem.form.ParaLicense
         //        if (userId == "")
         //        {
         //            AtPathDir = AtPathDir + "01.png";
-                    
+
         //        }
         //        //ip是10.71开始：EmHttpIpRoom；ip是192.168开始：EmHttpIpWork；
         //        string serverIp = EmHttpIpRoom;

@@ -17,7 +17,7 @@ namespace Framework.Abstract
     {
 
         #region 变量定义
-        
+
         /// <summary>
         /// 数据项控件
         /// </summary>
@@ -30,7 +30,7 @@ namespace Framework.Abstract
         /// <summary>
         /// 记录日志数据
         /// </summary>
-        private  static readonly ILog log = LogManager.GetLogger(typeof(frmBaseXC));
+        private static readonly ILog log = LogManager.GetLogger(typeof(frmBaseXC));
 
         #region 画面数据变量定义
 
@@ -86,16 +86,16 @@ namespace Framework.Abstract
         /// 数据排序字符串
         /// </summary>
         protected string m_OrderBy = "";
-        
+
         /// <summary>
         /// 画面表格绑定数据
         /// </summary>
-        protected DataTable TableGrid ;
+        protected DataTable TableGrid;
 
         /// <summary>
         /// 画面查询表名称
         /// </summary>
-        protected string ViewTableName="";
+        protected string ViewTableName = "";
 
         /// <summary>
         /// 重名检测列名
@@ -156,7 +156,7 @@ namespace Framework.Abstract
         /// </summary>
         protected virtual void GetDspDataList()
         {
-            
+
         }
 
 
@@ -219,7 +219,7 @@ namespace Framework.Abstract
         /// <returns></returns>
         protected virtual bool GetRepNameCheck()
         {
-           return false;
+            return false;
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Framework.Abstract
         /// <param name="ReadOnly"></param>
         protected virtual void SetIniGridStyle(Common.enumGridStyle style)
         {
- 
+
         }
 
         /// <summary>
@@ -241,6 +241,14 @@ namespace Framework.Abstract
         }
 
         #endregion
+
+        private void frmBaseXC_Load(object sender, EventArgs e)
+        {
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+        }
 
         //protected override CreateParams CreateParams
         //{

@@ -40,13 +40,15 @@
             this.panelContent = new System.Windows.Forms.Panel();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.panelProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.txtProductUserID = new DevExpress.XtraEditors.TextEdit();
             this.btnUserIDSearch2 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelProduct = new System.Windows.Forms.Panel();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraScrollableControl3 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.panelSupport = new System.Windows.Forms.FlowLayoutPanel();
             this.txtSupportID = new DevExpress.XtraEditors.TextEdit();
             this.btnUserIDSearch3 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelSupport = new System.Windows.Forms.Panel();
             this.panelBottm = new System.Windows.Forms.Panel();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnCanel = new DevExpress.XtraEditors.SimpleButton();
@@ -57,6 +59,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpStartDate = new DevExpress.XtraEditors.TextEdit();
             this.dtpEndDate = new DevExpress.XtraEditors.TextEdit();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.validData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorInfo)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -65,12 +68,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
+            this.xtraScrollableControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductUserID.Properties)).BeginInit();
             this.xtraTabPage3.SuspendLayout();
+            this.xtraScrollableControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSupportID.Properties)).BeginInit();
             this.panelBottm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpEndDate.Properties)).BeginInit();
+            this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -198,12 +204,12 @@
             // 
             // panelContent
             // 
-            this.panelContent.AutoScroll = true;
+            this.panelContent.AutoSize = true;
             this.panelContent.BackColor = System.Drawing.Color.White;
             this.panelContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelContent.Location = new System.Drawing.Point(0, 62);
+            this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1141, 582);
+            this.panelContent.Size = new System.Drawing.Size(1120, 582);
             this.panelContent.TabIndex = 10;
             // 
             // xtraTabControl1
@@ -223,13 +229,29 @@
             // xtraTabPage2
             // 
             this.xtraTabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.xtraTabPage2.Controls.Add(this.xtraScrollableControl2);
             this.xtraTabPage2.Controls.Add(this.txtProductUserID);
             this.xtraTabPage2.Controls.Add(this.btnUserIDSearch2);
-            this.xtraTabPage2.Controls.Add(this.panelProduct);
             this.xtraTabPage2.Font = new System.Drawing.Font("Tahoma", 9F);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(225, 616);
             this.xtraTabPage2.Text = "未 定 义";
+            // 
+            // xtraScrollableControl2
+            // 
+            this.xtraScrollableControl2.AllowTouchScroll = true;
+            this.xtraScrollableControl2.Controls.Add(this.panelProduct);
+            this.xtraScrollableControl2.Location = new System.Drawing.Point(1, 51);
+            this.xtraScrollableControl2.Name = "xtraScrollableControl2";
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(223, 562);
+            this.xtraScrollableControl2.TabIndex = 99;
+            // 
+            // panelProduct
+            // 
+            this.panelProduct.Location = new System.Drawing.Point(0, 0);
+            this.panelProduct.Name = "panelProduct";
+            this.panelProduct.Size = new System.Drawing.Size(226, 573);
+            this.panelProduct.TabIndex = 0;
             // 
             // txtProductUserID
             // 
@@ -258,28 +280,32 @@
             this.btnUserIDSearch2.Text = "搜索";
             this.btnUserIDSearch2.Click += new System.EventHandler(this.btnUserIDSearch2_Click);
             // 
-            // panelProduct
-            // 
-            this.panelProduct.AutoScroll = true;
-            this.panelProduct.BackColor = System.Drawing.Color.White;
-            this.panelProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelProduct.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelProduct.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.panelProduct.Location = new System.Drawing.Point(0, 48);
-            this.panelProduct.Name = "panelProduct";
-            this.panelProduct.Size = new System.Drawing.Size(225, 568);
-            this.panelProduct.TabIndex = 98;
-            // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.xtraTabPage3.Controls.Add(this.xtraScrollableControl3);
             this.xtraTabPage3.Controls.Add(this.txtSupportID);
             this.xtraTabPage3.Controls.Add(this.btnUserIDSearch3);
-            this.xtraTabPage3.Controls.Add(this.panelSupport);
             this.xtraTabPage3.Font = new System.Drawing.Font("Tahoma", 9F);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(225, 616);
             this.xtraTabPage3.Text = " 支  援 ";
+            // 
+            // xtraScrollableControl3
+            // 
+            this.xtraScrollableControl3.AllowTouchScroll = true;
+            this.xtraScrollableControl3.Controls.Add(this.panelSupport);
+            this.xtraScrollableControl3.Location = new System.Drawing.Point(-1, 52);
+            this.xtraScrollableControl3.Name = "xtraScrollableControl3";
+            this.xtraScrollableControl3.Size = new System.Drawing.Size(231, 569);
+            this.xtraScrollableControl3.TabIndex = 99;
+            // 
+            // panelSupport
+            // 
+            this.panelSupport.Location = new System.Drawing.Point(0, 0);
+            this.panelSupport.Name = "panelSupport";
+            this.panelSupport.Size = new System.Drawing.Size(228, 561);
+            this.panelSupport.TabIndex = 0;
             // 
             // txtSupportID
             // 
@@ -306,16 +332,6 @@
             this.btnUserIDSearch3.TabIndex = 98;
             this.btnUserIDSearch3.Text = "搜索";
             this.btnUserIDSearch3.Click += new System.EventHandler(this.btnUserIDSearch3_Click);
-            // 
-            // panelSupport
-            // 
-            this.panelSupport.AutoScroll = true;
-            this.panelSupport.BackColor = System.Drawing.Color.White;
-            this.panelSupport.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSupport.Location = new System.Drawing.Point(0, 48);
-            this.panelSupport.Name = "panelSupport";
-            this.panelSupport.Size = new System.Drawing.Size(225, 568);
-            this.panelSupport.TabIndex = 96;
             // 
             // panelBottm
             // 
@@ -444,20 +460,32 @@
             this.dtpEndDate.Tag = "ID";
             this.dtpEndDate.Click += new System.EventHandler(this.dtpEndDate_Click);
             // 
+            // xtraScrollableControl1
+            // 
+            this.xtraScrollableControl1.AllowTouchScroll = true;
+            this.xtraScrollableControl1.Controls.Add(this.panelContent);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 65);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1141, 580);
+            this.xtraScrollableControl1.TabIndex = 11;
+            // 
             // frmProduce_TeamChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1372, 691);
+            this.Controls.Add(this.xtraScrollableControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelBottm);
-            this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelTop);
             this.LookAndFeel.SkinName = "Office 2007 Blue";
             this.MinimizeBox = false;
             this.Name = "frmProduce_TeamChange";
             this.Text = "人员调换";
+            this.Deactivate += new System.EventHandler(this.frmProduce_TeamChange_Deactivate);
+            this.Load += new System.EventHandler(this.frmProduce_TeamChange_Load);
+            this.Leave += new System.EventHandler(this.frmProduce_TeamChange_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.validData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorInfo)).EndInit();
             this.panelTop.ResumeLayout(false);
@@ -467,13 +495,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
+            this.xtraScrollableControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtProductUserID.Properties)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
+            this.xtraScrollableControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSupportID.Properties)).EndInit();
             this.panelBottm.ResumeLayout(false);
             this.panelBottm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpEndDate.Properties)).EndInit();
+            this.xtraScrollableControl1.ResumeLayout(false);
+            this.xtraScrollableControl1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -494,7 +526,6 @@
         private DevExpress.XtraEditors.SimpleButton btnCanel;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.Panel panelProduct;
         private DevExpress.XtraEditors.TextEdit txtProductUserID;
         private DevExpress.XtraEditors.SimpleButton btnUserIDSearch2;
         private DevExpress.XtraEditors.SimpleButton btnUserTotalShow;
@@ -502,13 +533,17 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraEditors.TextEdit txtSupportID;
         private DevExpress.XtraEditors.SimpleButton btnUserIDSearch3;
-        private System.Windows.Forms.Panel panelSupport;
         private DevExpress.XtraEditors.TextEdit dateOperDate1;
         private DevExpress.XtraEditors.TextEdit lookmyteamName;
         private DevExpress.XtraEditors.TextEdit dtpStartDate;
         private DevExpress.XtraEditors.TextEdit dtpEndDate;
         private DevExpress.XtraEditors.SimpleButton btnRef;
         private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl2;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl3;
+        private System.Windows.Forms.FlowLayoutPanel panelProduct;
+        private System.Windows.Forms.FlowLayoutPanel panelSupport;
 
     }
 }

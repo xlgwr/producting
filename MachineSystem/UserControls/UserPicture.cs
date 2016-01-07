@@ -91,15 +91,16 @@ namespace MachineSystem.UserControls
                         }
                         else
                         {
-                            var tmpimage = (Image)Image.FromFile(currPath).Clone();
+                            var tmpimage = Image.FromFile(currPath);
                             Program._dicCheckImage.Add(currPath, tmpimage);
                         }
-
+                        this.pictureBox1.Image = Program._dicCheckImage[currPath];
                     }
-                    //this.pictureBox1.ImageLocation = m_ImageUrl;
-
-                    this.pictureBox1.Image = (Image)Program._dicCheckImage[currPath].Clone();
-
+                    else
+                    {
+                        this.pictureBox1.ImageLocation = m_ImageUrl;
+                    }
+                    //
                     //_stopwatch.Stop();
                     //var msg = "使用时间:" + _stopwatch.Elapsed.ToString();
                     //logger.InfoFormat("***文件名存在：{0},{1}", tmpm_ImageUrl, msg);
@@ -145,19 +146,23 @@ namespace MachineSystem.UserControls
                             FileInfo tmpfile = new FileInfo(currPath);
                             if (tmpfile.Length < 512)
                             {
+                                o.userPicture.Image = o.nullPath;
                                 File.Delete(currPath);
                             }
                             else
                             {
                                 var tmpimage = Image.FromFile(currPath);
+                                o.userPicture.Image = tmpimage;
                                 Program._dicCheckImage.Add(currPath, tmpimage);
                             }
-                            
-                        }
-                        //this.pictureBox1.ImageLocation = m_ImageUrl;
-                        //o.userPicture.ImageLocation = setImagePath;
 
-                        o.userPicture.Image = Program._dicCheckImage[currPath];
+                        }
+                        else
+                        {
+                            o.userPicture.Image = Program._dicCheckImage[currPath];
+                        }
+
+
 
                         o._stopwatch.Stop();
                         var msg = "使用时间:" + o._stopwatch.Elapsed.ToString();
@@ -199,6 +204,7 @@ namespace MachineSystem.UserControls
 
             //考勤系统头像目录
             string AtPathDir = Application.StartupPath + "\\" + Common.AtPathDir;
+            var getImagePath = "";
             try
             {
                 if (string.IsNullOrEmpty(Common.AtPathDir))
@@ -221,20 +227,33 @@ namespace MachineSystem.UserControls
                 if (!File.Exists(setImagePath))
                 {
                     WebClient myWebClient = new WebClient();
+                    //EmPathDir:，EmPathDir2：车间
+
+                    //办公
                     string serverIp = Common.EmPathDir;
-                    var getImagePath = serverIp + toUserID.ToString() + ".jpg";
+                    //车间
+                    //string serverIp = Common.EmPathDir2;
+
+                    getImagePath = serverIp + toUserID.ToString() + ".jpg";
+
+                    //logger.DebugFormat("********************下载地址：{0}.", getImagePath);
                     myWebClient.DownloadFile(new Uri(getImagePath), setImagePath);
                 }
                 return setImagePath;
             }
             catch (Exception ex)
             {
+                logger.DebugFormat("********************下载地址：{0}   \nError:{1}", getImagePath, ex);
                 return "";
                 //throw ex;
             }
         }
         public UserPicture()
         {
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);//防止窗口跳动
+            SetStyle(ControlStyles.DoubleBuffer, true); //防止控件跳动 
             InitializeComponent();
         }
 

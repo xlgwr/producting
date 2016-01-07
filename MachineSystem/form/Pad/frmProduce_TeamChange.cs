@@ -44,9 +44,11 @@ namespace MachineSystem.form.Pad
         #region 变量定义
         public static Control[] _lstContr2;
         public static objCl _objcl2;
+        public objCl _oldUsedObj { get; set; }
 
         bool isEditValue { get; set; }
         bool isRun { get; set; }
+        bool isFirst { get; set; }
         /// <summary>
         /// 人员数据表
         /// </summary>
@@ -279,6 +281,7 @@ namespace MachineSystem.form.Pad
         /// </summary>
         public frmProduce_TeamChange(string parMyteamName, string parDdateOperDate)
         {
+            isFirst = true;
             Stopwatch s = new Stopwatch();
             try
             {
@@ -286,19 +289,23 @@ namespace MachineSystem.form.Pad
                 this.Cursor = Cursors.WaitCursor;
                 InitializeComponent();
                 this.TopMost = true;
+                xtraScrollableControl1.HorizontalScroll.Enabled = false;
+                xtraScrollableControl1.HorizontalScroll.Visible = false;
                 isRun = false;
                 isEditValue = false;
-
-                initCl();
+                m_Person = new UserPerson();
 
                 this.parMyteamName = parMyteamName;
                 this.parDdateOperDate = parDdateOperDate;
                 this.Activated += new EventHandler(frmProduce_TeamChange_Activated);
                 this.FormClosing += new FormClosingEventHandler(frmProduce_TeamChange_FormClosing);
 
+                initCl();
                 SetFormValue();
                 Program._frmProduce_TeamChange = this;
 
+                dtpStartDate.EditValue = DateTime.Now.ToString("yyyy-MM-dd") + " 08:00";
+                dtpEndDate.EditValue = DateTime.Now.ToString("yyyy-MM-dd") + " 18:00";
             }
             catch (Exception ex)
             {
@@ -308,8 +315,9 @@ namespace MachineSystem.form.Pad
             finally
             {
                 this.Cursor = Cursors.Default;
-                Program.logFlagEnd(log, s, "人员调换总显示时间："); 
+                Program.logFlagEnd(log, s, "人员调换总显示时间：");
                 this.TopMost = true;
+                isFirst = false;
             }
 
         }
@@ -318,6 +326,8 @@ namespace MachineSystem.form.Pad
         {
             try
             {
+                _oldUsedObj = new objCl() { u_gwNum = 0, u_UserNullNum = 0, u_UserPersonNum = 0, gwNum = 0, UserNullNum = 0, UserPersonNum = 0 };
+
                 _objcl2 = new objCl() { cl = panelContent, gwNum = 30, UserPersonNum = 80, UserNullNum = 70 };
                 initPanelContentAddcl(_objcl2);
 
@@ -423,7 +433,12 @@ namespace MachineSystem.form.Pad
 
         void frmProduce_TeamChange_Activated(object sender, EventArgs e)
         {
+            if (!isFirst)
+            {
+                SetFormValue();
+            }
             this.TopMost = true;
+
             //throw new NotImplementedException();
         }
 
@@ -452,9 +467,6 @@ namespace MachineSystem.form.Pad
 
                 }
 
-                dtpStartDate.EditValue = DateTime.Now.ToString("yyyy-MM-dd") + " 08:00";
-                dtpEndDate.EditValue = DateTime.Now.ToString("yyyy-MM-dd") + " 18:00";
-
                 isLoad = false;
             }
             catch (Exception ex)
@@ -479,6 +491,7 @@ namespace MachineSystem.form.Pad
             frmMyTeamNameSearch frm = new frmMyTeamNameSearch();
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                this.parMyteamName = frm.m_myTeamName;
                 lookmyteamName.Text = frm.m_myTeamName;
                 if (lookmyteamName.Text.Trim() == "" || dateOperDate1.Text.Trim() == "") return;
                 //重新取得页面数据
@@ -498,6 +511,8 @@ namespace MachineSystem.form.Pad
             FrmSetDateTime frm = new FrmSetDateTime();
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                frm.Hide();
+                this.parDdateOperDate = DateTime.Parse(frm.m_DateTime).ToString("yyyy-MM-dd HH:mm");
                 dateOperDate1.Text = DateTime.Parse(frm.m_DateTime).ToString("yyyy-MM-dd HH:mm");
 
             }
@@ -514,6 +529,7 @@ namespace MachineSystem.form.Pad
             FrmSetDateTime frm = new FrmSetDateTime();
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                frm.Hide();
                 dtpStartDate.Text = DateTime.Parse(frm.m_DateTime).ToString("yyyy-MM-dd HH:mm");
             }
             this.TopMost = true;
@@ -766,7 +782,8 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnRef_Click(object sender, EventArgs e)
         {
-
+            this.Cursor = Cursors.WaitCursor;
+            panelContent.Refresh();
             if (isEditValue)
             {
                 return;
@@ -790,6 +807,7 @@ namespace MachineSystem.form.Pad
             {
                 isEditValue = false;
                 this.btnRef.Enabled = true;
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -927,7 +945,7 @@ namespace MachineSystem.form.Pad
                 return;
             }
             m_tblAllList = new DataTable();
-            string str_sql = string.Format(@"select distinct JobForID,ProjectID,LineID,TeamID from V_Produce_para where myTeamName='{0}' ", lookmyteamName.Text.Trim());
+            string str_sql = string.Format(@"select distinct JobForID,JobForName,ProjectID,ProjectName,LineID,LineName,TeamID from V_Produce_para  where myTeamName='{0}' ", lookmyteamName.Text.Trim());
             m_tblAllList = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
             try
             {
@@ -1002,10 +1020,11 @@ namespace MachineSystem.form.Pad
                         m_dicItemData["OperID"] = Common._personid;
                         m_dicItemData["OperDate"] = DateTime.Now.ToString();
                         result = SysParam.m_daoCommon.SetInsertDataItem(TableNames.Attend_Move, m_dicItemData);
-
-
+                        
                         if (result > 0)
                         {
+                            result=SetUserInfoToEmployee(m_dicItemData["userID"], m_tblAllList.Rows[0]["JobForName"].ToString(), m_tblAllList.Rows[0]["ProjectName"].ToString(), m_tblAllList.Rows[0]["LineName"].ToString(),
+                                                  moveToPersonNull.GuanweiNM);
                             Common.AdoConnect.Connect.TransactionCommit();
 
                             FrmMoveDialog frmMoveDialog = new FrmMoveDialog("人员调入", txtFrom.Text, txtTo.Text,
@@ -1070,6 +1089,9 @@ namespace MachineSystem.form.Pad
                         result = SysParam.m_daoCommon.SetInsertDataItem(TableNames.Attend_Move, m_dicItemData);
                         if (result > 0)
                         {
+                            result = SetUserInfoToEmployee(m_dicItemData["userID"], m_tblAllList.Rows[0]["JobForName"].ToString(), m_tblAllList.Rows[0]["ProjectName"].ToString(), m_tblAllList.Rows[0]["LineName"].ToString(),
+                                                  moveToPersonNull.GuanweiNM);
+
                             Common.AdoConnect.Connect.TransactionCommit();
 
                             FrmMoveDialog frmMoveDialog = new FrmMoveDialog("人员调出", txtFrom.Text, txtTo.Text,
@@ -1143,6 +1165,9 @@ namespace MachineSystem.form.Pad
                         result = SysParam.m_daoCommon.SetInsertDataItem(TableNames.Attend_Move, m_dicItemData);
                         if (result > 0)
                         {
+                            result = SetUserInfoToEmployee(m_dicItemData["userID"], m_tblAllList.Rows[0]["JobForName"].ToString(), m_tblAllList.Rows[0]["ProjectName"].ToString(), m_tblAllList.Rows[0]["LineName"].ToString(),
+                                                  moveToPersonNull.GuanweiNM);
+
                             Common.AdoConnect.Connect.TransactionCommit();
                             FrmMoveDialog frmMoveDialog = new FrmMoveDialog("关位调整", txtFrom.Text, txtTo.Text,
                                dtpStartDate.EditValue.ToString(), "");
@@ -1288,9 +1313,7 @@ namespace MachineSystem.form.Pad
 
                     default: break;
                 }
-
-
-
+                 
             }
             catch (Exception ex)
             {
@@ -1339,8 +1362,12 @@ namespace MachineSystem.form.Pad
             }
 
             //清除所有【考勤】选择
-            foreach (var cols in panelContent.Controls)
+            foreach (Control cols in panelContent.Controls)
             {
+                if (!cols.Visible)
+                {
+                    continue;
+                }
                 if (cols.GetType().Name == "UserPersonsList")
                 {
                     UserPersonsList m_PersonList = (UserPersonsList)cols;
@@ -1370,8 +1397,12 @@ namespace MachineSystem.form.Pad
                 }
             }
             //清除所有【未定义】选择
-            foreach (var cols in panelProduct.Controls)
+            foreach (Control cols in panelProduct.Controls)
             {
+                if (!cols.Visible)
+                {
+                    continue;
+                }
                 if (cols.GetType().Name == "UserPerson")
                 {
                     UserPerson m_Person = (UserPerson)cols;
@@ -1392,8 +1423,12 @@ namespace MachineSystem.form.Pad
                 }
             }
             //清除所有【支援】选择
-            foreach (var cols in panelSupport.Controls)
+            foreach (Control cols in panelSupport.Controls)
             {
+                if (!cols.Visible)
+                {
+                    continue;
+                }
                 if (cols.GetType().Name == "UserPerson")
                 {
                     UserPerson m_Person = (UserPerson)cols;
@@ -1420,14 +1455,9 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnProduce_TeamAttend_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             try
             {
-                this.Cursor = Cursors.WaitCursor;
-                //this.TopMost = false;
-                //this.timer1.Enabled = false;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
                 if (Program._frmProduce_TeamAttend != null)
                 {
                     Program._frmProduce_TeamAttend.parMyteamName = lookmyteamName.Text.ToString();
@@ -1437,8 +1467,11 @@ namespace MachineSystem.form.Pad
                 {
                     frmProduce_TeamAttend frm = new frmProduce_TeamAttend(lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
                 }
-                Program._frmProduce_TeamAttend.TopMost = true;
+                this.TopMost = false;
+                this.Hide();
+
                 Program._frmProduce_TeamAttend.Show();
+                Program._frmProduce_TeamAttend.TopMost = true;
             }
             catch (Exception ex)
             {
@@ -1458,17 +1491,20 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnUserTotalShow_Click(object sender, EventArgs e)
         {
-            //this.TopMost = false;
-            //this.timer1.Enabled = false;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-
             if (Program._frmProduce_UserTotalShow == null)
             {
                 frmProduce_UserTotalShow frm = new frmProduce_UserTotalShow(lookmyteamName.Text, dateOperDate1.Text);
             }
-            Program._frmProduce_UserTotalShow.TopMost = true;
+            else
+            {
+                Program._frmProduce_UserTotalShow.parMyteamName = lookmyteamName.Text.ToString();
+                Program._frmProduce_UserTotalShow.parDdateOperDate = dateOperDate1.Text.ToString();
+            }
+            this.TopMost = false;
+            this.Hide();
+
             Program._frmProduce_UserTotalShow.Show();
+            Program._frmProduce_UserTotalShow.TopMost = true;
             ////自动刷新
             // //btnRef_Click(null,null)
 
@@ -1476,6 +1512,27 @@ namespace MachineSystem.form.Pad
         #endregion
 
         #region 共同方法
+
+
+        /// <summary>
+        /// 更新人员调动信息到人事系统数据库
+        /// 必须是考勤单位是1，不包括替关和支援
+        /// </summary>
+        public int SetUserInfoToEmployee(string userid, string JobForName, string ProjectName, string LineName, string GuanweiName) 
+        {
+            int result = 0;
+            try
+            {
+                string str_sql = string.Format(@"update D12011.dbo.Employee set CustomItem13='{0}',CustomItem14='{1}',CustomItem15='{2}',CustomItem9='{3}' where EmpNo='{4}'",
+                                                    JobForName, ProjectName, LineName,GuanweiName,userid);
+                result = SysParam.m_daoCommon.SetModifyDataItemBySql(str_sql, new StringDictionary(),new StringDictionary(),new StringDictionary());
+                
+            }catch(Exception ex)
+            {
+                log.Error(ex);
+            }
+            return result;
+        }
 
         public void btnRefleash(object o)
         {
@@ -1539,7 +1596,7 @@ namespace MachineSystem.form.Pad
                 {
                     Application.DoEvents();
                     //panelContent.Enabled = false;
-                    panelContent.AutoScroll = false;
+                    //panelContent.AutoScroll = false;
                     btnRef.Enabled = false;
                     lookmyteamName.Enabled = false;
                     dateOperDate1.Enabled = false;
@@ -1657,7 +1714,7 @@ namespace MachineSystem.form.Pad
                     Program._frmMain.Invoke(new Action(delegate()
                     {
                         Application.DoEvents();
-                        var m_PersonList = (UserPersonsList)_lstContr2[_objcl2.u_gwNum]; //new UserPersonsList();
+                        m_PersonList = (UserPersonsList)_lstContr2[_objcl2.u_gwNum]; //new UserPersonsList();
                         _objcl2.u_gwNum++;
 
                         m_PersonList.TitleGuanwei = m_tblGuanweiList.Rows[a]["GuanweiName"].ToString();//关位名称
@@ -1702,7 +1759,7 @@ namespace MachineSystem.form.Pad
                             {
                                 Application.DoEvents();
                                 //人员信息   
-                                var m_Person = (UserPerson)_lstContr2[_objcl2.u_UserPersonNum];
+                                m_Person = (UserPerson)_lstContr2[_objcl2.u_UserPersonNum];
                                 _objcl2.u_UserPersonNum++; //new UserPerson();
 
                                 perFlg = false;
@@ -1773,7 +1830,7 @@ namespace MachineSystem.form.Pad
                             Program._frmMain.Invoke(new Action(delegate()
                             {
                                 Application.DoEvents();
-                                var m_Person = (UserPerson)_lstContr2[_objcl2.u_UserPersonNum];
+                                m_Person = (UserPerson)_lstContr2[_objcl2.u_UserPersonNum];
                                 _objcl2.u_UserPersonNum++; //new UserPerson();
 
                                 //位置相同
@@ -1836,7 +1893,7 @@ namespace MachineSystem.form.Pad
                                 Application.DoEvents();
                                 //位置不同，显示空关位
                                 //人员信息  
-                                var m_PersonNull = (UserPersonNull)_lstContr2[_objcl2.u_UserNullNum];
+                                m_PersonNull = (UserPersonNull)_lstContr2[_objcl2.u_UserNullNum];
                                 _objcl2.u_UserNullNum++;
 
                                 m_PersonNull.TitleName = m_tblGuanweiList.Rows[a]["GuanweiName"].ToString() + " - " + gwShowSite;
@@ -1876,7 +1933,7 @@ namespace MachineSystem.form.Pad
                 {
                     Application.DoEvents();
                     //panelContent.Enabled = true;
-                    panelContent.AutoScroll = true;
+                    //panelContent.AutoScroll = true;
                     btnRef.Enabled = true;
                     lookmyteamName.Enabled = true;
                     dateOperDate1.Enabled = true;
@@ -1894,7 +1951,7 @@ namespace MachineSystem.form.Pad
                 {
                     Application.DoEvents();
                     //panelContent.Enabled = true;
-                    panelContent.AutoScroll = true;
+                    //panelContent.AutoScroll = true;
                 }));
 
             }
@@ -1918,7 +1975,7 @@ namespace MachineSystem.form.Pad
                 //this.TopMost = false;
 
                 panelProduct.Controls.Clear();
-                panelProduct.AutoScroll = false;
+                //panelProduct.AutoScroll = false;
 
                 string str_sql = "";
                 if (m_tblAllList.Rows.Count == 0)
@@ -1929,7 +1986,6 @@ namespace MachineSystem.form.Pad
                     {
 
                         panelProduct.Controls.Clear();
-
                         return;
                     }
                 }
@@ -1959,13 +2015,17 @@ namespace MachineSystem.form.Pad
                 int lint_Top = 0;//上边距
                 int lint_TopCount = 0;//当前Top有几行
 
-                for (int i = 0; i < m_tblProduceList.Rows.Count; i++)
+                var tmpcount = m_tblProduceList.Rows.Count;
+                panelProduct.Width = 2 * (m_Person.Width + 15);
+                panelProduct.Height = ((tmpcount + 5) / 2) * m_Person.Height;
+                Control[] tmpCl = new Control[tmpcount + 1];
+                for (int i = 0; i < tmpcount; i++)
                 {
-                    if (i % 2 == 0 && i != 0)
-                    {
-                        lint_TopCount++;
-                        lint_Left = 0;
-                    }
+                    //if (i % 2 == 0 && i != 0)
+                    //{
+                    //    lint_TopCount++;
+                    //    lint_Left = 0;
+                    //}
                     //人员信息
                     m_Person = new UserPerson();
                     m_Person.Name = ("person_" + (i + 1)).ToString();
@@ -1979,19 +2039,21 @@ namespace MachineSystem.form.Pad
                     m_Person.AllEventClick += new UserPerson.AllEvent(m_Person_ProductAllEventClick);
                     m_Person.ImageUrl = GridCommon.GetUserImage(SysParam.m_daoCommon, m_tblProduceList.Rows[i]["UserID"].ToString());
 
-                    panelProduct.Controls.Add(m_Person);
-                    lint_Top = lint_TopCount * m_Person.Height;
-                    _point = new Point(lint_Left + 10, lint_Top + 5);
-                    m_Person.Location = _point;
+                    tmpCl[i] = m_Person;
+                    //panelProduct.Controls.Add(m_Person);
 
-                    lint_Left += m_Person.Width + 5;
+                    //lint_Top = lint_TopCount * m_Person.Height;
+                    //_point = new Point(lint_Left + 10, lint_Top + 5);
+                    //m_Person.Location = _point;
+
+                    //lint_Left += m_Person.Width + 5;
                 }
 
-                if (m_tblProduceList.Rows.Count % 2 == 0 && m_tblProduceList.Rows.Count != 0)
-                {
-                    lint_TopCount++;
-                    lint_Left = 0;
-                }
+                //if (m_tblProduceList.Rows.Count % 2 == 0 && m_tblProduceList.Rows.Count != 0)
+                //{
+                //    lint_TopCount++;
+                //    lint_Left = 0;
+                //}
 
                 //未定义-人员信息空位
 
@@ -2004,18 +2066,25 @@ namespace MachineSystem.form.Pad
                 m_PersonNull.AllEventClick += new UserPersonNull.AllEvent(m_ProjectNull_AllEventClick);
                 m_PersonNull.ImageUrl = "";
 
+                tmpCl[tmpcount] = m_PersonNull;
 
-                panelProduct.Controls.Add(m_PersonNull);
-                lint_Top = lint_TopCount * m_PersonNull.Height;
-                _point = new Point(lint_Left + 10, lint_Top + 5);
-                m_PersonNull.Location = _point;
+                //panelProduct.Controls.Add(m_PersonNull);
 
+                //lint_Top = lint_TopCount * m_PersonNull.Height;
+                //_point = new Point(lint_Left + 10, lint_Top + 5);
+                //m_PersonNull.Location = _point;
 
-                btnCanel_Click(null, null);
-                panelProduct.AutoScroll = true;
+                Program._frmMain.Invoke(new Action(delegate()
+                {
+                    Application.DoEvents();
+                    panelProduct.Controls.AddRange(tmpCl);
+                }));
+
                 this.TopMost = true;
                 this.ResumeLayout(false);
                 this.PerformLayout();
+
+                btnCanel_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -2023,7 +2092,7 @@ namespace MachineSystem.form.Pad
                 FrmAttendDialog FrmDialog = new FrmAttendDialog("未定义数据检索失败！" + ex);
                 FrmDialog.ShowDialog();
                 log.Error(ex);
-                panelProduct.AutoScroll = true;
+                //panelProduct.AutoScroll = true;
 
             }
             finally
@@ -2079,7 +2148,7 @@ namespace MachineSystem.form.Pad
                 m_tblGuanweiList = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
                 if (m_tblGuanweiList.Rows.Count == 0)
                 {
-                    panelContent.Controls.Clear();
+                    //panelContent.Controls.Clear();
                     return;
                 }
                 //2、人员考勤情况数据取得
@@ -2110,11 +2179,25 @@ namespace MachineSystem.form.Pad
                     }
 
                 }
+                this.SuspendLayout();
                 //循环把人员信息放入panel
-                panelContent.Controls.Clear();
+                //panelContent.Controls.Clear();
                 isLeftInto = true;//是否考勤区域处理
 
-
+                xtraScrollableControl1.VerticalScroll.Value = 0;
+                var isCheckCL = _lstContr2.Where(m => !m.BackColor.Equals(Color.Transparent) || !m.Tag.Equals("0")).ToList();
+                foreach (Control item in isCheckCL)
+                {
+                    if (item.GetType().ToString() == "MachineSystem.UserControls.UserPerson")
+                    {
+                        item.BackColor = Color.Transparent;
+                    }
+                    item.Tag = "0";
+                    //item.Visible = false;
+                }
+                _objcl2.u_gwNum = 0;
+                _objcl2.u_UserPersonNum = _objcl2.gwNum;
+                _objcl2.u_UserNullNum = _objcl2.gwNum + _objcl2.UserPersonNum;
                 //关位
                 string strGuwanweiID = string.Empty;
 
@@ -2130,17 +2213,35 @@ namespace MachineSystem.form.Pad
                     DataTable dt_temp = view.ToTable();
 
                     //添加关位(工种）
-                    m_PersonList = new UserPersonsList();
+                    m_PersonList = (UserPersonsList)_lstContr2[_objcl2.u_gwNum]; //new UserPersonsList();
+                    _objcl2.u_gwNum++;
+
                     m_PersonList.TitleGuanwei = m_tblGuanweiList.Rows[a]["GuanweiName"].ToString();//关位名称
                     m_PersonList.GuanweiID = m_tblGuanweiList.Rows[a]["GuanweiID"].ToString();
                     bpCnt = int.Parse(m_tblGuanweiList.Rows[a]["SetNum"].ToString());
 
                     m_PersonList.StandardCount = bpCnt;//关位标配人数
                     m_PersonList.RealCount = int.Parse(m_tblGuanweiList.Rows[a]["realityCount"].ToString());//关位实配人数
+                    try
+                    {
+                        m_PersonList.AllEventClick -= new UserPersonsList.AllEvent(m_PersonList_AllEventClick);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("AllEventClick Error:" + m_Person.UserID);
+                    }
                     m_PersonList.AllEventClick += new UserPersonsList.AllEvent(m_PersonList_AllEventClick);
                     this.setImgIndex(true);//设置显示位置
-                    panelContent.Controls.Add(m_PersonList);//展示空间
+                    //panelContent.Controls.Add(m_PersonList);//展示空间
                     m_PersonList.Location = _point;//设置空间展示坐标
+                    if (!m_PersonList.Visible)
+                    {
+                        Program._frmMain.Invoke(new Action(delegate()
+                        {
+                            Application.DoEvents();
+                            m_PersonList.Visible = true;
+                        }));
+                    }
 
                     gwShowSite = 1;
                     view = new DataView(dt_temp.Copy());
@@ -2157,7 +2258,9 @@ namespace MachineSystem.form.Pad
                         while (GwSite == (i + 1))
                         {
                             //人员信息
-                            m_Person = new UserPerson();
+                            m_Person = (UserPerson)_lstContr2[_objcl2.u_UserPersonNum];
+                            _objcl2.u_UserPersonNum++; //new UserPerson();
+
                             perFlg = false;
                             //位置相同
                             m_Person.TitleName = dt_temp.Rows[0]["GuanweiNM"].ToString() + " - " + GwSite;
@@ -2187,12 +2290,30 @@ namespace MachineSystem.form.Pad
                             m_Person.UserName = dt_temp.Rows[0]["UserNM"].ToString();
                             m_Person.UserIdNmColor = dt_temp.Rows[0]["UserIdColor"].ToString();
                             m_Person.Tag = "0";
+                            try
+                            {
+                                m_Person.AllEventClick -= new UserPerson.AllEvent(m_Person_AllEventClick);
+                                m_Person.DoubleClick -= new UserPerson.DoubleEvent(m_Person_DoubleClick);
+                            }
+                            catch (Exception ex)
+                            {
+                                log.Error("AllEventClick Error:" + m_Person.UserID);
+                            }
                             m_Person.AllEventClick += new UserPerson.AllEvent(m_Person_AllEventClick);
                             m_Person.ImageUrl = GridCommon.GetUserImage(SysParam.m_daoCommon, dt_temp.Rows[0]["UserID"].ToString());
                             m_Person.DoubleClick += new UserPerson.DoubleEvent(m_Person_DoubleClick);
                             this.setImgIndex(false);//设置显示位置
-                            panelContent.Controls.Add(m_Person);//展示空间
+
+                            //panelContent.Controls.Add(m_Person);//展示空间
                             m_Person.Location = _point;//设置空间展示坐标
+                            if (!m_Person.Visible)
+                            {
+                                Program._frmMain.Invoke(new Action(delegate()
+                                {
+                                    Application.DoEvents();
+                                    m_Person.Visible = true;
+                                }));
+                            }
                             gwShowSite = GwSite + 1;
                             dt_temp.Rows[0].Delete();
                             if (dt_temp.Rows.Count > 0)
@@ -2208,7 +2329,8 @@ namespace MachineSystem.form.Pad
 
                         if (perFlg && GwSite == 99 && gwShowSite > bpCnt)
                         {
-                            m_Person = new UserPerson();
+                            m_Person = (UserPerson)_lstContr2[_objcl2.u_UserPersonNum];
+                            _objcl2.u_UserPersonNum++; //new UserPerson();
 
                             //位置相同
 
@@ -2243,8 +2365,18 @@ namespace MachineSystem.form.Pad
                             m_Person.ImageUrl = GridCommon.GetUserImage(SysParam.m_daoCommon, dt_temp.Rows[0]["UserID"].ToString());
                             m_Person.DoubleClick += new UserPerson.DoubleEvent(m_Person_DoubleClick);
                             this.setImgIndex(false);//设置显示位置
-                            panelContent.Controls.Add(m_Person);//展示空间
+
+                            //panelContent.Controls.Add(m_Person);//展示空间
                             m_Person.Location = _point;//设置空间展示坐标
+                            if (!m_Person.Visible)
+                            {
+                                Program._frmMain.Invoke(new Action(delegate()
+                                {
+                                    Application.DoEvents();
+                                    m_Person.Visible = true;
+                                }));
+                            }
+
                             gwShowSite++;
                             dt_temp.Rows[0].Delete();
                         }
@@ -2252,7 +2384,9 @@ namespace MachineSystem.form.Pad
                         {
                             //位置不同，显示空关位
                             //人员信息
-                            m_PersonNull = new UserPersonNull();
+                            m_PersonNull = (UserPersonNull)_lstContr2[_objcl2.u_UserNullNum];
+                            _objcl2.u_UserNullNum++;
+
                             m_PersonNull.TitleName = m_tblGuanweiList.Rows[a]["GuanweiName"].ToString() + " - " + gwShowSite;
                             m_PersonNull.GuanweiID = m_tblGuanweiList.Rows[a]["GuanweiID"].ToString();
                             m_PersonNull.GuanweiNM = m_tblGuanweiList.Rows[a]["GuanweiName"].ToString();
@@ -2262,8 +2396,18 @@ namespace MachineSystem.form.Pad
                             m_PersonNull.AllEventClick += new UserPersonNull.AllEvent(m_PersonNull_AllEventClick);
                             m_PersonNull.ImageUrl = "";
                             this.setImgIndex(false);//设置显示位置
-                            panelContent.Controls.Add(m_PersonNull);//展示空间
+
+                            //panelContent.Controls.Add(m_PersonNull);//展示空间
                             m_PersonNull.Location = _point;//设置空间展示坐标
+
+                            if (!m_PersonNull.Visible)
+                            {
+                                Program._frmMain.Invoke(new Action(delegate()
+                                {
+                                    Application.DoEvents();
+                                    m_PersonNull.Visible = true;
+                                }));
+                            }
                             gwShowSite++;
 
                         }
@@ -2272,6 +2416,64 @@ namespace MachineSystem.form.Pad
                 }
                 wid_Left_Cnt = 1;
                 wid_Right_Cnt = 1;
+
+
+                #region hide no use control
+                //未使用的不显示
+                if (_oldUsedObj.gwNum <= 0)
+                {
+                    _oldUsedObj.gwNum = _objcl2.gwNum;
+                    _oldUsedObj.u_gwNum = _objcl2.u_gwNum;
+                    _oldUsedObj.UserPersonNum = _objcl2.UserPersonNum;
+                    _oldUsedObj.u_UserPersonNum = _objcl2.u_UserPersonNum;
+                    _oldUsedObj.UserNullNum = _objcl2.UserNullNum;
+                    _oldUsedObj.u_UserNullNum = _objcl2.u_UserNullNum;
+                }
+                else
+                {
+                    //关位
+                    if (_oldUsedObj.u_gwNum >= _objcl2.u_gwNum)
+                    {
+                        for (int i = _objcl2.u_gwNum; i <= _oldUsedObj.u_gwNum; i++)
+                        {
+                            _lstContr2[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        _oldUsedObj.u_gwNum = _objcl2.u_gwNum;
+                    }
+                    //人员
+                    if (_oldUsedObj.u_UserPersonNum >= _objcl2.u_UserPersonNum)
+                    {
+                        for (int i = _objcl2.u_UserPersonNum; i <= _oldUsedObj.u_UserPersonNum; i++)
+                        {
+                            _lstContr2[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        _oldUsedObj.u_UserPersonNum = _objcl2.u_UserPersonNum;
+                    }
+                    //空位
+                    if (_oldUsedObj.u_UserNullNum >= _objcl2.u_UserNullNum)
+                    {
+                        for (int i = _objcl2.u_UserNullNum; i <= _oldUsedObj.u_UserNullNum; i++)
+                        {
+                            _lstContr2[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        _oldUsedObj.u_UserNullNum = _objcl2.u_UserNullNum;
+                    }
+
+                }
+
+
+                #endregion
+                this.ResumeLayout(false);
+                this.PerformLayout();
             }
             catch (Exception ex)
             {
@@ -2281,7 +2483,6 @@ namespace MachineSystem.form.Pad
             }
             finally
             {
-
                 Program.logFlagEnd(log, s, "获取考勤人员信息一览");
                 this.TopMost = true;
             }
@@ -2295,10 +2496,11 @@ namespace MachineSystem.form.Pad
             Program.logFlagStart(log, s, "获取支援的人员");
             try
             {
+                this.SuspendLayout();
 
                 //this.TopMost = false;
                 panelSupport.Controls.Clear(); //JobForID，ProjectID，LineID，TeamID
-                panelSupport.AutoScroll = false;
+                //panelSupport.AutoScroll = false;
 
                 string str_sql = string.Empty;
                 if (m_tblAllList.Rows.Count == 0)
@@ -2330,14 +2532,21 @@ namespace MachineSystem.form.Pad
                 int lint_Top = 0;//上边距
                 int lint_TopCount = 0;//当前Top有几行
                 //if (m_tblDataList.Rows.Count == 0) return;//2015-11-23
+                var tmpcount = m_tblSupportList.Rows.Count;
 
-                for (int i = 0; i < m_tblSupportList.Rows.Count; i++)
+
+                var listCL = new Control[tmpcount + 1];
+
+                panelSupport.Width = 2 * (m_Person.Width + 15);
+                panelSupport.Height = ((tmpcount + 5) / 2) * m_Person.Height;
+
+                for (int i = 0; i < tmpcount; i++)
                 {
-                    if (i % 2 == 0 && i != 0)
-                    {
-                        lint_TopCount++;
-                        lint_Left = 0;
-                    }
+                    //if (i % 2 == 0 && i != 0)
+                    //{
+                    //    lint_TopCount++;
+                    //    lint_Left = 0;
+                    //}
                     //人员信息
                     m_Person = new UserPerson();
                     m_Person.Name = ("person" + (i + 1)).ToString();
@@ -2381,20 +2590,25 @@ namespace MachineSystem.form.Pad
                     m_Person.AllEventClick += new UserPerson.AllEvent(m_Person_SupportAllEventClick);
                     m_Person.ImageUrl = GridCommon.GetUserImage(SysParam.m_daoCommon, m_tblSupportList.Rows[i]["UserID"].ToString());
 
-                    panelSupport.Controls.Add(m_Person);
-                    lint_Top = lint_TopCount * m_Person.Height;
-                    _point = new Point(lint_Left + 10, lint_Top + 10);
-                    lint_Left = m_Person.Width;
-                    m_Person.Location = _point;
-                    m_Person.Visible = true;
+                    //panelSupport.Controls.Add(m_Person);
+                    //lint_Top = lint_TopCount * m_Person.Height;
+                    //_point = new Point(lint_Left + 10, lint_Top + 10);
+                    //lint_Left = m_Person.Width;
+                    //m_Person.Location = _point;
+                    Program._frmMain.Invoke(new Action(delegate()
+                         {
+                             Application.DoEvents();
+                             m_Person.Visible = true;
+                         }));
 
+                    listCL[i] = m_Person;
                 }
 
-                if (m_tblSupportList.Rows.Count % 2 == 0 && m_tblSupportList.Rows.Count != 0)
-                {
-                    lint_TopCount++;
-                    lint_Left = 0;
-                }
+                //if (m_tblSupportList.Rows.Count % 2 == 0 && m_tblSupportList.Rows.Count != 0)
+                //{
+                //    lint_TopCount++;
+                //    lint_Left = 0;
+                //}
                 //人员信息
                 m_PersonNull = new UserPersonNull();
                 m_PersonNull.Name = ("person" + m_tblSupportList.Rows.Count + 1).ToString();
@@ -2405,10 +2619,23 @@ namespace MachineSystem.form.Pad
                 m_PersonNull.AllEventClick += new UserPersonNull.AllEvent(m_SupperNull_AllEventClick);
                 m_PersonNull.ImageUrl = "";
 
-                panelSupport.Controls.Add(m_PersonNull);
-                lint_Top = lint_TopCount * m_PersonNull.Height;
-                _point = new Point(lint_Left + 10, lint_Top + 5);
-                m_PersonNull.Location = _point;
+                Program._frmMain.Invoke(new Action(delegate()
+                {
+                    Application.DoEvents();
+                    m_PersonNull.Visible = true;
+
+                }));
+                listCL[tmpcount] = m_PersonNull;
+
+                //panelSupport.Controls.Add(m_PersonNull);
+                //lint_Top = lint_TopCount * m_PersonNull.Height;
+                //_point = new Point(lint_Left + 10, lint_Top + 5);
+                //m_PersonNull.Location = _point;
+
+                panelSupport.Controls.AddRange(listCL);
+
+                this.ResumeLayout(false);
+                this.PerformLayout();
 
 
             }
@@ -2423,7 +2650,7 @@ namespace MachineSystem.form.Pad
             finally
             {
 
-                panelSupport.AutoScroll = true;
+                //panelSupport.AutoScroll = true;
 
                 Program.logFlagEnd(log, s, "获取支援的人员");
                 this.TopMost = true;
@@ -2629,7 +2856,7 @@ namespace MachineSystem.form.Pad
                             UserPerson m_Person = ObjSender as UserPerson;
                             if (m_Person.BackColor == Color.Red
                                 || m_Person.GuanweiNM == "组长" || m_Person.GuanweiNM == "班长"
-                                || m_Person.GuanweiNM == "副班长" || m_Person.GuanweiNM == "替关者")
+                                || m_Person.GuanweiNM == "副班长")//|| m_Person.GuanweiNM == "替关者"  修改日期2015-12-29
                             {//选择自己的场合,组长\副班长\班长\替关者 选择的场合，不可选择
                                 return;
                             }
@@ -2639,7 +2866,14 @@ namespace MachineSystem.form.Pad
                             moveToPerson = m_Person;
                             txtTo.Text = m_Person.TitleName + ":" + m_Person.UserID + "," + m_Person.UserName;
                             moveToPersonFlg = "2";//1:moveToPersonList; 2:moveToPerson;3:moveToPersonNull
-                            if (moveFromPerson.TitleName.Substring(1, 1) == "替"
+                            if (moveFromPerson.TitleName.Substring(0, 2) == "班长"
+                                || moveFromPerson.TitleName.Substring(0, 3) == "副班长" || moveFromPerson.TitleName.Substring(0, 2) == "组长")
+                            {
+                                pflag = "6";//人员调动类型:替关调动
+                                dtpStartDate.Enabled = true;//开始日期
+                                dtpEndDate.Enabled = true;//结束日期
+                            }
+                            else if (moveFromPerson.TitleName.Substring(1, 1) == "替"
                                 || moveFromPerson.TitleName.Substring(0, 3) == "替关者")
                             {
                                 pflag = "6";//人员调动类型:替关调动
@@ -2665,8 +2899,8 @@ namespace MachineSystem.form.Pad
                             //设置调入数据
                             m_PersonNull = ObjSender as UserPersonNull;
                             //组长、班长、副班长、替关者不可以调入(===============================================================2015-12-04 都可以调入)
-                            //if (m_PersonNull.TitleName.Substring(0,2) == "组长" || m_PersonNull.TitleName.Substring(0,2) == "班长"
-                            //    || m_PersonNull.TitleName.Substring(0,2) == "副班" || m_PersonNull.TitleName.Substring(0,2) == "替关")
+                            //if (m_PersonNull.TitleName.Substring(0, 2) == "组长" || m_PersonNull.TitleName.Substring(0, 2) == "班长"
+                            //    || m_PersonNull.TitleName.Substring(0, 2) == "副班" || m_PersonNull.TitleName.Substring(0, 2) == "替关")
                             //{
                             //    return;
                             //}
@@ -2675,8 +2909,15 @@ namespace MachineSystem.form.Pad
                             moveToPersonNull = m_PersonNull;
                             txtTo.Text = moveToPersonNull.TitleName;
                             moveToPersonFlg = "3";//1:moveToPersonList; 2:moveToPerson;3:moveToPersonNull
-                            if (moveFromPerson.TitleName.Substring(1, 1) == "替"
-                               || moveFromPerson.TitleName.Substring(0, 3) == "替关者" || moveFromPerson.TitleName.Substring(0, 2) == "班长")
+                            if (moveFromPerson.TitleName.Substring(0, 2) == "班长"
+                               || moveFromPerson.TitleName.Substring(0, 3) == "副班长" || moveFromPerson.TitleName.Substring(0, 2) == "组长")
+                            {
+                                pflag = "6";//人员调动类型:替关调动
+                                dtpStartDate.Enabled = true;//开始日期
+                                dtpEndDate.Enabled = true;//结束日期
+                            }
+                            else if (moveFromPerson.TitleName.Substring(1, 1) == "替"
+                               || moveFromPerson.TitleName.Substring(0, 3) == "替关者")
                             {
                                 pflag = "6";//人员调动类型:替关调动
                                 dtpStartDate.Enabled = true;//开始日期
@@ -2912,6 +3153,24 @@ namespace MachineSystem.form.Pad
         private void panelTop_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void frmProduce_TeamChange_Load(object sender, EventArgs e)
+        {
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);//防止窗口跳动
+            SetStyle(ControlStyles.DoubleBuffer, true); //防止控件跳动 
+        }
+
+        private void frmProduce_TeamChange_Deactivate(object sender, EventArgs e)
+        {
+            this.TopMost = false;
+        }
+
+        private void frmProduce_TeamChange_Leave(object sender, EventArgs e)
+        {
+            this.TopMost = false;
         }
 
 

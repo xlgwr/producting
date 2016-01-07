@@ -50,6 +50,7 @@
             this.Name = "frmBaseXC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBaseXC";
+            this.Load += new System.EventHandler(this.frmBaseXC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.validData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorInfo)).EndInit();
             this.ResumeLayout(false);

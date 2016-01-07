@@ -209,7 +209,9 @@ namespace MachineSystem.form.Master
 
                 m_frmMainMenu.SetFormValue();//打开菜单
                 Program._frmMain = m_frmMainMenu;
+
                 this.Hide();
+
                 m_frmMainMenu.ShowDialog();
                 this.DialogResult = DialogResult.OK;
 

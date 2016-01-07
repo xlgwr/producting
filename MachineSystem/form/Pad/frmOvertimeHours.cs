@@ -37,7 +37,27 @@ namespace MachineSystem.form.Pad
                 txtHour.Text = (int.Parse(txtHour.Text.Trim()) - 1).ToString();
             }
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
 
+                CreateParams cp = base.CreateParams;
+
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED  
+                this.Opacity = 1;
+
+                //if (this.IsXpOr2003 == true)
+                //{
+                //    cp.ExStyle |= 0x00080000;  // Turn on WS_EX_LAYERED
+                //    this.Opacity = 1;
+                //}
+
+                return cp;
+
+            }
+
+        }  //防止闪烁
         private void btnAddHour2_Click(object sender, EventArgs e)
         {
             int hour = int.Parse(txtHour.Text.Trim()) + int.Parse(txtHour2.Text.Trim());

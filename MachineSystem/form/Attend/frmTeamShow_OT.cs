@@ -360,7 +360,7 @@ namespace MachineSystem.TabPage
                //排班
                if (lookUpTeamSetName.EditValue.ToString() != "-1")
                {
-                   str_sql += " and  pTypeID = '" + lookUpTeamSetName.EditValue.ToString() + "' ";
+                   str_sql += " and  TeamSetiD = '" + lookUpTeamSetName.EditValue.ToString() + "' ";
                }
 
                if (Common._personid!=Common._Administrator)

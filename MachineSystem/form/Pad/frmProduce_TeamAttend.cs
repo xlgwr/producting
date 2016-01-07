@@ -27,6 +27,9 @@ namespace MachineSystem.form.Pad
         #region 变量定义
         public Control[] _tmPersonControl;
         public int _iUserNum;
+        public int _iUserNumOld;
+        public Control[] tmparea;
+        bool isFirst { get; set; }
         /// <summary>
         /// 人员数据表
         /// </summary>
@@ -72,14 +75,20 @@ namespace MachineSystem.form.Pad
         {
             try
             {
+
                 this.Cursor = Cursors.WaitCursor;
+                this.Opacity = 1;
 
                 InitializeComponent();
                 this.TopMost = true;
+                xtraScrollableControl1.HorizontalScroll.Enabled = false;
+                xtraScrollableControl1.HorizontalScroll.Visible = false;
                 isRun = false;
-                //init control 人员
-                initPersonCl(Program._objCl.UserPersonNum, panelContent);
-
+                _iUserNum = 0;
+                _iUserNumOld = 0;
+                m_Person = new UserPerson();
+                
+                tmparea = new Control[0];
 
                 this.parMyteamName = parMyteamName;
                 this.parDdateOperDate = parDdateOperDate;
@@ -203,22 +212,36 @@ namespace MachineSystem.form.Pad
         //人员调动按钮点击
         private void button1_Click(object sender, EventArgs e)
         {
-            //this.TopMost = false;
-            //this.timer1.Enabled = false;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
 
-            if (Program._frmProduce_TeamChange != null)
-            {
-                Program._frmProduce_TeamChange.parMyteamName = lookmyteamName.Text.ToString();
-                Program._frmProduce_TeamChange.parDdateOperDate = dateOperDate1.Text.ToString();
+                if (Program._frmProduce_TeamChange != null)
+                {
+                    Program._frmProduce_TeamChange.parMyteamName = lookmyteamName.Text.ToString();
+                    Program._frmProduce_TeamChange.parDdateOperDate = dateOperDate1.Text.ToString();
+                }
+                else
+                {
+                    frmProduce_TeamChange frm = new frmProduce_TeamChange(lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
+
+                }
+
+                this.TopMost = false;
+                this.Hide();
+
+                Program._frmProduce_TeamChange.Show();
+                Program._frmProduce_TeamChange.Visible = true;
             }
-            else
+            catch (Exception ex)
             {
-                frmProduce_TeamChange frm = new frmProduce_TeamChange(lookmyteamName.Text.ToString(), dateOperDate1.Text.Trim());
-                frm.TopMost = true;
+                MessageBox.Show(ex.Message);
             }
-            Program._frmProduce_TeamChange.Show();
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+
         }
 
         /// <summary>
@@ -226,17 +249,21 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnUserTotalShow_Click(object sender, EventArgs e)
         {
-            //this.timer1.Enabled = false;
-            //this.TopMost = false;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
 
             if (Program._frmProduce_UserTotalShow == null)
             {
                 frmProduce_UserTotalShow frm = new frmProduce_UserTotalShow(lookmyteamName.Text, dateOperDate1.Text);
             }
-            Program._frmProduce_UserTotalShow.TopMost = true;
+            else
+            {
+                Program._frmProduce_UserTotalShow.parMyteamName = lookmyteamName.Text.ToString();
+                Program._frmProduce_UserTotalShow.parDdateOperDate = dateOperDate1.Text.ToString();
+            }
+            this.TopMost = false;
+            this.Hide();
+
             Program._frmProduce_UserTotalShow.Show();
+            Program._frmProduce_UserTotalShow.TopMost = true;
             ////自动刷新
             //btnRef();
         }
@@ -255,6 +282,8 @@ namespace MachineSystem.form.Pad
             frm.TopMost = true;
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                frm.Hide();
+                Application.DoEvents();
                 lookmyteamName.Text = frm.m_myTeamName;
             }
         }
@@ -265,7 +294,6 @@ namespace MachineSystem.form.Pad
             if (lookmyteamName.Text.Trim() == "" || dateOperDate1.Text.Trim() == "") return;
             //自动刷新
             btnRef();
-            GetDspDataList();
             //ThreadPool.QueueUserWorkItem(btnRefleash, "刷新");
         }
 
@@ -275,7 +303,6 @@ namespace MachineSystem.form.Pad
             if (lookmyteamName.Text.Trim() == "" || dateOperDate1.Text.Trim() == "") return;
             //自动刷新
             btnRef();
-            GetDspDataList();
             //ThreadPool.QueueUserWorkItem(btnRefleash, "刷新");
         }
 
@@ -398,6 +425,7 @@ namespace MachineSystem.form.Pad
             {
                 FrmAttendDialog FrmDialog = new FrmAttendDialog("未选中任何人员信息！");
                 FrmDialog.ShowDialog();
+                Application.DoEvents();
                 return;
             }
 
@@ -405,6 +433,8 @@ namespace MachineSystem.form.Pad
             frm.m_DataTime = DateTime.Parse(dateOperDate1.Text.Trim());
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                frm.Hide();
+                Application.DoEvents();
                 //自动刷新
                 btnRef();
             }
@@ -498,9 +528,11 @@ namespace MachineSystem.form.Pad
         /// </summary>
         private void btnRef()
         {
+            this.Cursor = Cursors.WaitCursor;
             try
             {
-                //this.TopMost = false;
+                this.TopMost = true;
+
                 SqlParameter[] paraList = new SqlParameter[7];
                 paraList[0] = new SqlParameter("@SetDate", SqlDbType.VarChar, 10);
                 if (dateOperDate1.EditValue.ToString() != "")
@@ -579,6 +611,10 @@ namespace MachineSystem.form.Pad
                 FrmAttendDialog FrmDialog = new FrmAttendDialog("数据刷新失败！" + ex);
                 FrmDialog.ShowDialog();
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
 
@@ -593,6 +629,8 @@ namespace MachineSystem.form.Pad
             frm.TopMost = true;
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                frm.Hide();
+                Application.DoEvents();
                 dateOperDate1.Text = DateTime.Parse(frm.m_DateTime).ToString("yyyy-MM-dd HH:mm");
 
             }
@@ -606,8 +644,12 @@ namespace MachineSystem.form.Pad
             //this.TopMost = false;
             if (chkAll.Checked)
             {//全部选中
-                foreach (var col in panelContent.Controls)
+                foreach (Control col in panelContent.Controls)
                 {
+                    if (!col.Visible)
+                    {
+                        continue;
+                    }
                     if (col.GetType().ToString() == "MachineSystem.UserControls.UserPerson")
                     {
                         UserPerson person = col as UserPerson;
@@ -618,8 +660,12 @@ namespace MachineSystem.form.Pad
             }
             else
             {//取消全部选中
-                foreach (var col in panelContent.Controls)
+                foreach (Control col in panelContent.Controls)
                 {
+                    if (!col.Visible)
+                    {
+                        continue;
+                    }
                     if (col.GetType().ToString() == "MachineSystem.UserControls.UserPerson")
                     {
                         UserPerson person = col as UserPerson;
@@ -654,6 +700,7 @@ namespace MachineSystem.form.Pad
                     //this.panelContent.Controls.Clear();
                     foreach (Control item in _tmPersonControl)
                     {
+                        item.BackColor = Color.Transparent;
                         item.Tag = 0;
                         item.Visible = false;
                     }
@@ -807,7 +854,6 @@ namespace MachineSystem.form.Pad
 
                 Program._frmMain.Invoke(new Action(delegate()
                 {
-                    Application.DoEvents();
                     FrmAttendDialog FrmDialog = new FrmAttendDialog("数据加载失败！" + ex);
                     FrmDialog.ShowDialog();
                 }));
@@ -830,11 +876,9 @@ namespace MachineSystem.form.Pad
                 }
                 isRun = true;
 
-                foreach (Control item in _tmPersonControl)
-                {
-                    item.Tag = 0;
-                    item.Visible = false;
-                }
+                chkAll.Checked = false;
+
+                //panelContent.Controls.Clear();
 
                 //this.TopMost = false;
 
@@ -862,12 +906,46 @@ namespace MachineSystem.form.Pad
                 int lint_TopCount = 0;//当前Top有几行
                 int lint_Person = 0;//当前有多少人员 
                 this.SuspendLayout();
-                for (int i = 0; i < m_tblDataList.Rows.Count; i++)
+
+                _iUserNum = m_tblDataList.Rows.Count;
+                var tmpCLcount = panelContent.Controls.Count;
+
+                if (tmpCLcount > 0)
+                {
+                    if (tmpCLcount < _iUserNum)
+                    {
+                        var diff = _iUserNum - tmpCLcount;
+                        var tmplistcl = new Control[diff];
+                        for (int i = 0; i < diff; i++)
+                        {
+                            m_Person = new UserPerson();
+                            m_Person.Name = ("person" + (_iUserNum + i)).ToString();
+                            m_Person.Visible = false;
+                            tmplistcl[i] = m_Person;
+                        }
+                        panelContent.Controls.AddRange(tmplistcl);
+                    }
+                }
+                else
+                {
+                    tmparea = new Control[_iUserNum];
+                }
+                //panelContent.Width = 15 * (m_Person.Width);
+                panelContent.Height = ((_iUserNum / 14) + 3) * m_Person.Height;
+
+                for (int i = 0; i < _iUserNum; i++)
                 {
 
                     //人员信息
-                    var m_Person = (UserPerson)_tmPersonControl[_iUserNum];
-                    _iUserNum++;
+                    if (tmpCLcount <= 0)
+                    {
+                        m_Person = new UserPerson();
+                    }
+                    else
+                    {
+                        m_Person = (UserPerson)panelContent.Controls[i];
+                    }
+
 
                     m_Person.Name = ("person" + i).ToString();
                     m_Person.TitleName = m_tblDataList.Rows[i]["GuanweiNM"].ToString() + " - " + m_tblDataList.Rows[i]["GuanweiSite"].ToString();
@@ -905,27 +983,66 @@ namespace MachineSystem.form.Pad
                     m_Person.AllEventClick += new UserPerson.AllEvent(m_Person_AllEventClick);
                     m_Person.DoubleClick += new UserPerson.DoubleEvent(m_Person_DoubleClick);
                     m_Person.ImageUrl = GridCommon.GetUserImage(SysParam.m_daoCommon, m_tblDataList.Rows[i]["UserID"].ToString());
-
-                    //Top
-                    lint_width = m_Person.Height;
-                    lint_Top = lint_TopCount * (lint_width + 10);
-                    _point = new Point(lint_Left + 10, lint_Top);
-
-                    //panelContent.Controls.Add(m_Person);
-                    m_Person.Location = _point;
-                    m_Person.Visible = true;
-
-                    lint_Person++;
-                    lint_Left += lint_width + 10;
-
-                    if (lint_Person % 13 == 0)
-                    {//如果画的数量大于十个，则换行
-                        lint_Left = 0;
-                        lint_TopCount++;
+                    if (!m_Person.Visible)
+                    {
+                        m_Person.Visible = true;
                     }
+                    if (tmpCLcount <= 0)
+                    {
+                        tmparea[i] = m_Person;
+                    }
+                    //Top
+                    //lint_width = m_Person.Height;
+                    //lint_Top = lint_TopCount * (lint_width + 10);
+                    //_point = new Point(lint_Left + 10, lint_Top);
+
+                    ////panelContent.Controls.Add(m_Person);
+                    //m_Person.Location = _point;
+                    //m_Person.Visible = true;
+
+                    //lint_Person++;
+                    //lint_Left += lint_width + 10;
+
+                    //if (lint_Person % 13 == 0)
+                    //{//如果画的数量大于十个，则换行
+                    //    lint_Left = 0;
+                    //    lint_TopCount++;
+                    //}
                 }
+
+                if (tmpCLcount <= 0)
+                {
+                    panelContent.Controls.AddRange(tmparea);
+                }
+                else
+                {
+                    if (_iUserNum < tmpCLcount)
+                    {
+                        for (int i = _iUserNum; i < tmpCLcount; i++)
+                        {
+                            panelContent.Controls[i].Visible = false;
+                        }
+                    }
+
+                }
+
+                foreach (Control col in panelContent.Controls)
+                {
+                    if (!col.Visible)
+                    {
+                        continue;
+                    }
+                    if (!col.Tag.Equals(0))
+                    {
+                        col.BackColor = Color.Transparent;
+                        col.Tag = 0;
+                    }
+
+                }
+
                 this.ResumeLayout(false);
                 this.PerformLayout();
+
             }
             catch (Exception ex)
             {
@@ -980,6 +1097,10 @@ namespace MachineSystem.form.Pad
 
         private void frmProduce_TeamAttend_Load(object sender, EventArgs e)
         {
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);//防止窗口跳动
+            SetStyle(ControlStyles.DoubleBuffer, true); //防止控件跳动 
             // this.TopMost = true;
         }
 
@@ -994,9 +1115,18 @@ namespace MachineSystem.form.Pad
             if (lookmyteamName.Text.Trim() == "" || dateOperDate1.Text.Trim() == "") return;
             //自动刷新
             btnRef();
-            GetDspDataList();
             //
             //ThreadPool.QueueUserWorkItem(btnRefleash, "刷新");
+        }
+
+        private void frmProduce_TeamAttend_Deactivate(object sender, EventArgs e)
+        {
+            this.TopMost = false;
+        }
+
+        private void frmProduce_TeamAttend_Leave(object sender, EventArgs e)
+        {
+            this.TopMost = false;
         }
     }
 }

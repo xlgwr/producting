@@ -274,7 +274,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 35);
             this.label1.TabIndex = 125;
-            this.label1.Text = "加班类型:";
+            this.label1.Text = "加班类别:";
             // 
             // lookUpEditOTType
             // 

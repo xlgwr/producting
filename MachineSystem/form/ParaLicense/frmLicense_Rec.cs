@@ -28,7 +28,7 @@ using log4net;
 *********************************************************************************/
 namespace MachineSystem.TabPage
 {
-    public partial class frmLicense_Rec  :Framework.Abstract.frmSearchBasic2
+    public partial class frmLicense_Rec : Framework.Abstract.frmSearchBasic2
     {
         #region 变量定义
         /// <summary>
@@ -43,7 +43,7 @@ namespace MachineSystem.TabPage
         bool isLoad = true;
         #endregion
 
-       #region 画面初始化
+        #region 画面初始化
 
         public frmLicense_Rec()
         {
@@ -63,7 +63,7 @@ namespace MachineSystem.TabPage
             try
             {
                 base.SetFormValue();
-                 //获取下拉框数据
+                //获取下拉框数据
                 GetLookUpList();
                 isLoad = false;
                 lookUpEditJobFor.Text = Common._JobForName;
@@ -154,7 +154,7 @@ namespace MachineSystem.TabPage
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// 删除数据
         /// </summary>
         protected override void SetDeleteInit()
@@ -171,8 +171,6 @@ namespace MachineSystem.TabPage
                     XtraMsgBox.Show("未勾选任何数据！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                
-
                 if (XtraMsgBox.Show("是否删除数据？", this.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     Common.AdoConnect.Connect.CreateSqlTransaction();
@@ -183,53 +181,53 @@ namespace MachineSystem.TabPage
                             DataRow dr = drs[i];
 
                             string str_sql = "select ID FROM P_License_Detail where ID='" + dr["myID"].ToString() + "'";
-                             DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
-                             if (dt_temp.Rows.Count == 1)
-                             {
-                                 //***********免许资格数据删除*********
-                                 m_dicPrimarName.Clear();
-                                 m_dicItemData.Clear();
-                                 m_dicPrimarName["RecID"] = dr["myID"].ToString();
-                                 m_dicItemData["RecID"] = dr["myID"].ToString();
-                                 result = SysParam.m_daoCommon.SetDeleteDataItem("P_License_Rec_Entitle", m_dicItemData, m_dicPrimarName);
+                            DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
+                            if (dt_temp.Rows.Count == 1)
+                            {
+                                //***********免许资格数据删除*********
+                                m_dicPrimarName.Clear();
+                                m_dicItemData.Clear();
+                                m_dicPrimarName["RecID"] = dr["myID"].ToString();
+                                m_dicItemData["RecID"] = dr["myID"].ToString();
+                                result = SysParam.m_daoCommon.SetDeleteDataItem("P_License_Rec_Entitle", m_dicItemData, m_dicPrimarName);
 
-                                 //***********免许表数据删除*********
-                                 m_dicPrimarName.Clear();
-                                 m_dicItemData.Clear();
-                                 m_dicPrimarName["ID"] = dr["myID"].ToString();
-                                 m_dicItemData["ID"] = dr["myID"].ToString();
-                                 result = SysParam.m_daoCommon.SetDeleteDataItem("License_Rec_i", m_dicItemData, m_dicPrimarName);
+                                //***********免许表数据删除*********
+                                m_dicPrimarName.Clear();
+                                m_dicItemData.Clear();
+                                m_dicPrimarName["ID"] = dr["myID"].ToString();
+                                m_dicItemData["ID"] = dr["myID"].ToString();
+                                result = SysParam.m_daoCommon.SetDeleteDataItem("License_Rec_i", m_dicItemData, m_dicPrimarName);
 
-                                 //***********免许明细数据删除*********
-                                 m_dicPrimarName.Clear();
-                                 m_dicItemData.Clear();
-                                 m_dicPrimarName["ID"] = dr["myID"].ToString();
-                                 m_dicItemData["ID"] = dr["myID"].ToString();
-                                 result = SysParam.m_daoCommon.SetDeleteDataItem("P_License_Detail", m_dicItemData, m_dicPrimarName);
-                             }
-                             else //免许明细数据多条时，多条件删除选中的一条
-                             {
-                                 m_dicPrimarName.Clear();
-                                 m_dicItemData.Clear();
-                                 m_dicPrimarName["ID"] = dr["myID"].ToString();
-                                 m_dicItemData["ID"] = dr["myID"].ToString();
+                                //***********免许明细数据删除*********
+                                m_dicPrimarName.Clear();
+                                m_dicItemData.Clear();
+                                m_dicPrimarName["ID"] = dr["myID"].ToString();
+                                m_dicItemData["ID"] = dr["myID"].ToString();
+                                result = SysParam.m_daoCommon.SetDeleteDataItem("P_License_Detail", m_dicItemData, m_dicPrimarName);
+                            }
+                            else //免许明细数据多条时，多条件删除选中的一条
+                            {
+                                m_dicPrimarName.Clear();
+                                m_dicItemData.Clear();
+                                m_dicPrimarName["ID"] = dr["myID"].ToString();
+                                m_dicItemData["ID"] = dr["myID"].ToString();
 
-                                 m_dicPrimarName["JobForID"] = dr["JobForID"].ToString();
-                                 m_dicItemData["JobForID"] = dr["JobForID"].ToString();
+                                m_dicPrimarName["JobForID"] = dr["JobForID"].ToString();
+                                m_dicItemData["JobForID"] = dr["JobForID"].ToString();
 
-                                 m_dicPrimarName["ProjectID"] = dr["ProjectID"].ToString();
-                                 m_dicItemData["ProjectID"] = dr["ProjectID"].ToString();
+                                m_dicPrimarName["ProjectID"] = dr["ProjectID"].ToString();
+                                m_dicItemData["ProjectID"] = dr["ProjectID"].ToString();
 
-                                 m_dicPrimarName["LineID"] = dr["LineID"].ToString();
-                                 m_dicItemData["LineID"] = dr["LineID"].ToString();
+                                m_dicPrimarName["LineID"] = dr["LineID"].ToString();
+                                m_dicItemData["LineID"] = dr["LineID"].ToString();
 
-                                 m_dicPrimarName["guanweiID"] = dr["guanweiID"].ToString();
-                                 m_dicItemData["guanweiID"] = dr["guanweiID"].ToString();
+                                m_dicPrimarName["guanweiID"] = dr["guanweiID"].ToString();
+                                m_dicItemData["guanweiID"] = dr["guanweiID"].ToString();
 
-                                 //m_dicPrimarName["level"] = dr["level"].ToString();
-                                 //m_dicItemData["level"] = dr["level"].ToString();
-                                 result = SysParam.m_daoCommon.SetDeleteDataItem("P_License_Detail", m_dicItemData, m_dicPrimarName);
-                             }
+                                //m_dicPrimarName["level"] = dr["level"].ToString();
+                                //m_dicItemData["level"] = dr["level"].ToString();
+                                result = SysParam.m_daoCommon.SetDeleteDataItem("P_License_Detail", m_dicItemData, m_dicPrimarName);
+                            }
                             if (result > 0)
                             {
                                 //日志
@@ -237,14 +235,15 @@ namespace MachineSystem.TabPage
                             }
                         }
                     }
+                    Common.AdoConnect.Connect.TransactionCommit();
+                    GetDspDataList();
                     if (result > 0)
                     {
-                        Common.AdoConnect.Connect.TransactionCommit();
                         XtraMsgBox.Show("删除数据成功！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        GetDspDataList();
+                       
                     }
                 }
-  
+
             }
             catch (Exception ex)
             {
@@ -305,9 +304,9 @@ namespace MachineSystem.TabPage
             }
             if (lookUpEditProjectName.EditValue.ToString() != "-1")
             {
-                str_where +=  " AND ProjectID='" + lookUpEditProjectName.EditValue.ToString() + "'";
+                str_where += " AND ProjectID='" + lookUpEditProjectName.EditValue.ToString() + "'";
             }
-            
+
             string str_sql = string.Format(@"select DISTINCT LineID,LineName FROM  V_Produce_Para " + str_where + " order by LineName");
             DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
 
@@ -348,7 +347,7 @@ namespace MachineSystem.TabPage
             if (lookUpEditLineName.EditValue.ToString() != "-1")
             {
                 str_where += " AND LineID='" + lookUpEditLineName.EditValue.ToString() + "'";
-                
+
             }
             string str_sql = string.Format(@"select DISTINCT TeamID ,TeamName FROM  V_Produce_Para  " + str_where + " order by TeamName");
             DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
@@ -380,13 +379,13 @@ namespace MachineSystem.TabPage
                 this.txtUserName.EditValue = _frm.SelectRowData["UserName"].ToString();
             }
         }
-       
-       #endregion
 
-        
+        #endregion
+
+
 
         #region 共同方法
-       /// <summary>
+        /// <summary>
         /// 获取表格信息一览
         /// </summary>
         protected override void GetDspDataList()
@@ -414,11 +413,11 @@ namespace MachineSystem.TabPage
                 {
                     str_sql += " and UserName like '%" + txtUserName.Text.Trim() + "%' ";
                 }
-                if (lookUpEditPart.Text != "" && lookUpEditPart.EditValue.ToString() != "-1")                
+                if (lookUpEditPart.Text != "" && lookUpEditPart.EditValue.ToString() != "-1")
                 {
                     str_sql += " and  PartName = '" + lookUpEditPart.Text.ToString().Trim() + "' ";
                 }
-                if (lookUpEditDuty.Text != "" && lookUpEditDuty.EditValue.ToString() != "-1") 
+                if (lookUpEditDuty.Text != "" && lookUpEditDuty.EditValue.ToString() != "-1")
                 {
                     str_sql += " and  DutyName = '" + lookUpEditDuty.Text.ToString().Trim() + "' ";
                 }
@@ -434,16 +433,16 @@ namespace MachineSystem.TabPage
                 {
                     str_sql += " and LineID= " + lookUpEditLineName.EditValue.ToString().Trim() + " ";
                 }
-                if (lookUpEditTeamName.EditValue != null && lookUpEditTeamName.EditValue.ToString() != "-1")         
+                if (lookUpEditTeamName.EditValue != null && lookUpEditTeamName.EditValue.ToString() != "-1")
                 {
                     str_sql += " and TeamID= " + lookUpEditTeamName.EditValue.ToString().Trim() + " ";
                 }
-                
+
                 if (lookUpEditLicenseType.EditValue != null && lookUpEditLicenseType.EditValue.ToString() != "-1")
                 {
                     str_sql += " and LicenseType= " + lookUpEditLicenseType.EditValue.ToString().Trim() + " ";
                 }
-                
+
                 //有效日期
                 if ((dateValueBegin.EditValue != null && dateValueBegin.EditValue.ToString() != "") &&
              (dateValueEnd.EditValue != null && dateValueEnd.EditValue.ToString() != ""))
@@ -453,13 +452,13 @@ namespace MachineSystem.TabPage
 
                     str_sql += " and  ValidDate >= '" + dtBegin.ToString("yyyy-MM-dd") + "' AND ValidDate <= '" + dtEnd.ToString("yyyy-MM-dd") + "'  ";
                 }
-              
+
                 if (cboNewFlag.Text != null && cboNewFlag.Text.ToString() != "-请选择-")
                 {
                     str_sql += " and FlagName= '" + cboNewFlag.Text.ToString().Trim() + "' ";
                 }
- 
-                  //str_sql += " ORDER BY  OperDate,JobForID ,ProjectID ,LineID,TeamID DESC";
+
+                //str_sql += " ORDER BY  OperDate,JobForID ,ProjectID ,LineID,TeamID DESC";
                 str_sql += " ORDER BY JobForID asc,ProjectID asc ,LineID asc,GuanweiID asc";
                 m_tblDataList = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
                 if (m_tblDataList.Rows.Count > 0)
@@ -472,11 +471,11 @@ namespace MachineSystem.TabPage
                 else
                 {
                     DeleteButtonEnabled = false;
-                    this.SelectAllButtonEnabled =false;
+                    this.SelectAllButtonEnabled = false;
                     this.SelectOffButtonEnabled = false;
                     EditButtonEnabled = false;
                 }
-              
+
                 this.m_GridViewUtil.GridControlList.DataSource = m_tblDataList;
                 //设置只读在gridView1 设定
             }
@@ -487,7 +486,7 @@ namespace MachineSystem.TabPage
             }
         }
 
-       
+
 
         /// <summary>
         /// 获取勾选数据
@@ -520,10 +519,11 @@ namespace MachineSystem.TabPage
             {
                 strSql = string.Format(@"select distinct JobForID,JobForName from V_Produce_para order by JobForName");
             }
-            else {
+            else
+            {
                 strSql = string.Format(@"select distinct JobForID,JobForName from V_Produce_para where  myTeamName in ('{0}') order by JobForName", Common._myTeamName);
             }
-            
+
             DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(strSql);
 
             //默认选中
@@ -569,7 +569,7 @@ namespace MachineSystem.TabPage
             lookUpEditProjectName.ItemIndex = 0;
             lookUpEditProjectName.Properties.BestFit();
 
-           
+
             //Line别
             if (Common._myTeamName == "" || Common._myTeamName == null)
             {
@@ -623,10 +623,10 @@ namespace MachineSystem.TabPage
             }
             lookUpEditTeamName.ItemIndex = 0;
             lookUpEditTeamName.Properties.BestFit();
-                       
-           
+
+
         }
-       
+
         #endregion
 
     }

@@ -26,6 +26,7 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -40,7 +41,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,7 +76,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\x86\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -100,141 +100,123 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\AutoUpdate.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.BonusSkins.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.BonusSkins.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Localization.v14.2, Version=14.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Spreadsheet.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v14.2.Wizard, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v13.1.Wizard, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v14.2.UI, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraGauges.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v14.2.Win, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraGauges.v13.1.Win, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v14.2.Design, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v13.1.Design, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPivotGrid.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v14.2.UI, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v14.2.Extensions, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v13.1.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v14.2.Extensions, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v14.2.Reporting.Extensions, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v14.2.Extensions, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraSpellChecker.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.SpellChecker.v14.2.Core, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraWizard.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraScheduler.v13.1.Reporting.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v13.1.Extensions, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dxper.LocalizationCHS.Win.v13.1.5">
+      <HintPath>WorkDll\Dxper.LocalizationCHS.Win.v13.1.5.dll</HintPath>
     </Reference>
     <Reference Include="Encrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Interop.Excel, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -249,6 +231,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -256,6 +239,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
@@ -582,22 +566,16 @@
     <Compile Include="form\Search\FrmSetDateTime.Designer.cs">
       <DependentUpon>FrmSetDateTime.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\Search\FrmSetDateTime2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\Search\FrmSetDateTime2.Designer.cs">
-      <DependentUpon>FrmSetDateTime2.cs</DependentUpon>
-    </Compile>
     <Compile Include="form\Search\frmUserInfoSearch.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="form\Search\frmUserInfoSearch.Designer.cs">
       <DependentUpon>frmUserInfoSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\LogSystem\frmSiteLog.cs">
+    <Compile Include="form\Attend\LogSystem\frmSiteLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\LogSystem\frmSiteLog.Designer.cs">
+    <Compile Include="form\Attend\LogSystem\frmSiteLog.Designer.cs">
       <DependentUpon>frmSiteLog.cs</DependentUpon>
     </Compile>
     <Compile Include="form\Menu\frmAbout.cs">
@@ -737,6 +715,12 @@
     </Compile>
     <Compile Include="form\Remove\frmTeamShow_Replace.designer.cs">
       <DependentUpon>frmTeamShow_Replace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Search\FrmSetDateTime2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Search\FrmSetDateTime2.Designer.cs">
+      <DependentUpon>FrmSetDateTime2.cs</DependentUpon>
     </Compile>
     <Compile Include="form\UserRole\frmEditOper_Info.cs">
       <SubType>Form</SubType>
@@ -1011,13 +995,10 @@
     <EmbeddedResource Include="form\Search\FrmSetDateTime.resx">
       <DependentUpon>FrmSetDateTime.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\Search\FrmSetDateTime2.resx">
-      <DependentUpon>FrmSetDateTime2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="form\Search\frmUserInfoSearch.resx">
       <DependentUpon>frmUserInfoSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\LogSystem\frmSiteLog.resx">
+    <EmbeddedResource Include="form\Attend\LogSystem\frmSiteLog.resx">
       <DependentUpon>frmSiteLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\Menu\frmAbout.resx">
@@ -1102,6 +1083,9 @@
     <EmbeddedResource Include="form\Remove\frmTeamShow_Replace.resx">
       <DependentUpon>frmTeamShow_Replace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\Search\FrmSetDateTime2.resx">
+      <DependentUpon>FrmSetDateTime2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\UserRole\frmEditOper_Info.resx">
       <DependentUpon>frmEditOper_Info.cs</DependentUpon>
     </EmbeddedResource>
@@ -1149,6 +1133,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\501.bmp" />
   </ItemGroup>
@@ -1159,6 +1144,9 @@
     <None Include="Resources\adim1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="USER_PIC\01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="login48.ico" />
     <None Include="Resources\01.png" />
     <None Include="Resources\1.png" />
@@ -1532,107 +1520,36 @@
     <None Include="Resources\图标切片\主画面图标\15.png" />
     <None Include="Resources\X.png" />
     <None Include="Resources\X2.png" />
-    <Content Include="WorkDll\13\DevExpress.BonusSkins.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.Charts.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.Data.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.Office.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.PivotGrid.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.Printing.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.RichEdit.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.Sparkline.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.Spreadsheet.v13.1.Core.dll" />
-    <Content Include="WorkDll\13\DevExpress.Utils.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraBars.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraCharts.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraEditors.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraGrid.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraLayout.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraNavBar.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraPrinting.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraReports.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraRichEdit.v13.1.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraRichEdit.v13.1.Extensions.dll" />
-    <Content Include="WorkDll\13\DevExpress.XtraTreeList.v13.1.dll" />
-    <Content Include="WorkDll\13\Dxper.LocalizationCHS.Win.v13.1.5.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Dashboard.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Dashboard.v13.1.Web.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Dashboard.v13.1.Win.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Data.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.DataAccess.v13.1.UI.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.ConditionalEditorState.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.HtmlPropertyEditor.Win.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.PivotChart.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Reports.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Scheduler.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Scheduler.Web.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Security.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Validation.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Web.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.ExpressApp.Win.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Office.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Pdf.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.PivotGrid.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Printing.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.RichEdit.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Snap.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Snap.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Spreadsheet.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Utils.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Utils.v13.1.UI.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxHtmlEditor.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxScheduler.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxSpellChecker.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.ASPxTreeList.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Web.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Charts.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Core.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Docking.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Gauges.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Grid.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.LayoutControl.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.NavBar.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Printing.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.ReportDesigner.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Ribbon.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.RichEdit.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpf.Scheduler.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.Xpo.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraBars.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraCharts.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraCharts.v13.1.Wizard.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraDashboard.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraDashboard.v13.1.Web.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraEditors.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGauges.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGauges.v13.1.Presets.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGrid.v13.1.Design.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraGrid.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraLayout.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraNavBar.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraPdfViewer.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraPivotGrid.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraPrinting.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraReports.v13.1.Extensions.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraReports.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraReports.v13.1.Web.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraRichEdit.v13.1.Extensions.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraRichEdit.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.Core.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.Extensions.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.Reporting.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraScheduler.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraSpellChecker.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraTreeList.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraVerticalGrid.v13.1.resources.dll" />
-    <Content Include="WorkDll\13\zh-CN\DevExpress.XtraWizard.v13.1.resources.dll" />
     <Content Include="WorkDll\Basic.dll" />
+    <Content Include="WorkDll\DevExpress.BonusSkins.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.Charts.v9.3.Core.dll" />
+    <Content Include="WorkDll\DevExpress.Data.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.Localization.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.OfficeSkins.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.Utils.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraBars.v9.3.Design.dll" />
+    <Content Include="WorkDll\DevExpress.XtraBars.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraCharts.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraCharts.v9.3.UI.dll" />
+    <Content Include="WorkDll\DevExpress.XtraEditors.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraGrid.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraLayout.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraNavBar.v9.3.Design.dll" />
+    <Content Include="WorkDll\DevExpress.XtraNavBar.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraPivotGrid.v9.3.Core.dll" />
+    <Content Include="WorkDll\DevExpress.XtraPivotGrid.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraPrinting.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraReports.v9.3.dll" />
+    <Content Include="WorkDll\DevExpress.XtraTreeList.v9.3.dll" />
+    <Content Include="WorkDll\Dxper.LocalizationCHS.Win.v13.1.5.dll" />
     <Content Include="WorkDll\Encrypt.dll" />
     <Content Include="WorkDll\Interop.Excel.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="WorkDll\log4net.dll" />
-    <Content Include="WorkDll\UHFReader18CSharp.dll" />
+    <None Include="WorkDll\UHFReader18CSharp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

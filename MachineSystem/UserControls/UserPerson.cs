@@ -53,7 +53,7 @@ namespace MachineSystem.UserControls
             }
         }
 
-        
+
         private string m_GuanweiSite = string.Empty;
         /// <summary>
         /// 关位位置
@@ -67,7 +67,7 @@ namespace MachineSystem.UserControls
             }
         }
 
-       private string m_Guanweicolor = string.Empty;
+        private string m_Guanweicolor = string.Empty;
         /// <summary>
         /// 关位颜色
         /// </summary>
@@ -103,7 +103,7 @@ namespace MachineSystem.UserControls
                 {
                     userPicture1.bgColor = Color.Moccasin;
                 }
-                else if (m_GuanweiNM == "LQC" )
+                else if (m_GuanweiNM == "LQC")
                 {
                     userPicture1.bgColor = Color.LightGreen;
                 }
@@ -111,9 +111,9 @@ namespace MachineSystem.UserControls
                 {
                     userPicture1.bgColor = Color.SkyBlue;
                 }
-                else if (m_TitleName.Contains("替")) 
+                else if (m_TitleName.Contains("替"))
                 {
-                    userPicture1.bgColor = Color.SkyBlue; 
+                    userPicture1.bgColor = Color.SkyBlue;
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace MachineSystem.UserControls
                 m_Status = value;
                 lblStatus.Text = m_Status;
 
-                if (m_Status == "新人作业") 
+                if (m_Status == "新人作业")
                 {
                     userPicture1.bgColor = Color.MediumSpringGreen;
                 }
@@ -143,7 +143,7 @@ namespace MachineSystem.UserControls
                 {
                     userPicture1.bgColor = Color.MediumBlue;
                 }
-                else if (m_GuanweiNM=="")
+                else if (m_GuanweiNM == "")
                 {
                     userPicture1.bgColor = Color.Black;
                 }
@@ -206,12 +206,21 @@ namespace MachineSystem.UserControls
                 m_Remind = value;
                 if (m_Remind.Length > 0)
                 {
-                    lblRemind.Text = m_Remind.Substring(2).Replace("-","");
+                    if (m_Remind.Contains("假"))
+                    {
+                        lblRemind.Text = m_Remind.Replace("-", "");
+                    }
+                    else
+                    {
+                        lblRemind.Text = m_Remind.Substring(2).Replace("-", "");
+                    }
+
                 }
-                else {
+                else
+                {
                     lblRemind.Text = m_Remind;
                 }
-                
+
             }
         }
 
@@ -219,7 +228,7 @@ namespace MachineSystem.UserControls
         /// <summary>
         /// 向别
         /// </summary>
-        public string JobForID 
+        public string JobForID
         {
 
             get { return m_JobForID; }
@@ -368,13 +377,17 @@ namespace MachineSystem.UserControls
         public delegate void AllEvent(object sender, EventArgs e);
         public event AllEvent AllEventClick;
 
-        public delegate void DoubleEvent(object sender,EventArgs e);
+        public delegate void DoubleEvent(object sender, EventArgs e);
         public event DoubleEvent DoubleClick;
 
         public UserPerson()
         {
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);//防止窗口跳动
+            SetStyle(ControlStyles.DoubleBuffer, true); //防止控件跳动 
             InitializeComponent();
-            
+
         }
 
         //点击事件
@@ -427,7 +440,7 @@ namespace MachineSystem.UserControls
             }
         }
 
-        
+
 
     }
 }

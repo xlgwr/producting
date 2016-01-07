@@ -150,7 +150,7 @@ namespace MachineSystem.form.UserSystem
             }
             catch (Exception ex)
             {
-                XtraMsgBox.Show("保存数据失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, ex, this.GetType());
+                XtraMsgBox.Show("保存数据失败！"+ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, ex, this.GetType());
             }
         }
 
@@ -278,6 +278,9 @@ namespace MachineSystem.form.UserSystem
                         m_dicItemData["AttendUnit"] = "1";
                         //更新考勤单位是1的数据到Produce_User表中
                         result = SysParam.m_daoCommon.SetModifyDataItem("Produce_User", m_dicItemData, m_dicPrimarName);
+
+                        //考勤单位是1的数据更新到人事系统表中
+                        result = SetUserInfoToEmployee(m_dicItemData["userID"], m_tblDataList.Rows[i]["myTeamName"].ToString());
                     }
                      if (m_tblDataList.Rows.Count==1 && m_tblDataList.Rows[0]["pmark"].ToString() == "调出")
                      {
@@ -342,7 +345,7 @@ namespace MachineSystem.form.UserSystem
             catch (Exception ex)
             {
                 Common.AdoConnect.Connect.TransactionRollback();
-                XtraMsgBox.Show("保存数据失败！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, ex, this.GetType());
+                XtraMsgBox.Show("保存数据失败！"+ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, ex, this.GetType());
             }
         }
 
@@ -739,6 +742,14 @@ namespace MachineSystem.form.UserSystem
             string strStatus = string.Empty;
             string strStatusName = string.Empty;
 
+            //add by xlg 2015-12-16 17:59
+            if (this.gridView1.DataSource==null)
+            {
+                isSucces = true;
+                return;
+            }
+            //end by xlg
+
             DataTable tblList = ((DataView)this.gridView1.DataSource).ToTable();
             try
             {
@@ -815,7 +826,7 @@ namespace MachineSystem.form.UserSystem
             DataTable dt_temp = new DataTable();
             CboItemEntity item = new CboItemEntity();
             //获取向别下拉
-            string str_sql = string.Format(@"Select distinct myteamName from V_Produce_Para");
+            string str_sql = string.Format(@"Select distinct myteamName from V_Produce_Para order by myteamName");
             m_tblJobForID = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
             for (int i = 0; i < m_tblJobForID.Rows.Count; i++)
             {
@@ -903,6 +914,35 @@ namespace MachineSystem.form.UserSystem
             result = SysParam.m_daoCommon.SetInsertDataItem(TableNames.Attend_Move, m_dicItemData);
             return result;
         }
+
+
+
+        /// <summary>
+        /// 更新人员调动信息到人事系统数据库
+        /// 必须是考勤单位是1，不包括替关和支援
+        /// </summary>
+        public int SetUserInfoToEmployee(string userid, string myTeamName)
+        {
+            int result = 0;
+            try
+            {
+                DataTable dt_temp = new DataTable();
+                string str_sql = string.Format(@"Select *  from V_Produce_Para where myTeamName='{0}'", myTeamName);
+                dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
+                if (dt_temp.Rows.Count > 0)
+                {
+                    str_sql = string.Format(@"update D12011.dbo.Employee set CustomItem13='{0}',CustomItem14='{1}',CustomItem15='{2}',CustomItem9='{3}' where EmpNo='{4}'",
+                                                       dt_temp.Rows[0]["JobForName"].ToString(), dt_temp.Rows[0]["ProjectName"].ToString(), dt_temp.Rows[0]["LineName"].ToString(), dt_temp.Rows[0]["GuanweiName"].ToString(), userid);
+                    result = SysParam.m_daoCommon.SetModifyDataItemBySql(str_sql, new StringDictionary(), new StringDictionary(), new StringDictionary());
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+            return result;
+        }
+
         #endregion   
 
 

@@ -127,12 +127,36 @@ namespace MachineSystem.TabPage
                 m_dicItemData["ProjectID"] = lookUpEditProjectName.EditValue.ToString();
                 m_dicItemData["LineID"] = lookUpEditLineName.EditValue.ToString();
                 m_dicItemData["TeamID"] = lookUpEditTeamName.EditValue.ToString();
+
+
                 // 关位ID
                  m_dicItemData["GuanweiID"] = lookUpEditGuanweiName.EditValue.ToString();
                 //m_dicItemData["GuanweiNames"] = lookUpEditGuanweiName.Text;
                 //m_dicItemData["GuanweiType"] = comboBoxGuanweiType.Text;
                 m_dicItemData["SetNum"] = txtSetNum.Text;
                 m_dicItemData["RowID"] =txtRowID.Text;
+
+                var tmpcheckSQL = "select top 1 * from " + this.TableName + " where JobForID='" + m_dicItemData["JobForID"] +
+                    "' and ProjectID='" + m_dicItemData["ProjectID"] +
+                    "' and LineID='" + m_dicItemData["LineID"] +
+                    "' and TeamID='" + m_dicItemData["TeamID"] +
+                    "' and GuanweiID='" + m_dicItemData["GuanweiID"] + "'";
+                var tmptable = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(tmpcheckSQL);
+
+                if (tmptable!=null)
+                {
+                    if (tmptable.Rows.Count>0)
+                    {
+                        XtraMsgBox.Show("新增数据失败，系统存在相同的 关位设置！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //日志
+                        SysParam.m_daoCommon.WriteLog("关位参数设置-新增数据失败，系统存在相同的 关位设置", "新增", lookUpEditGuanweiName.Text);
+                        //DialogResult = DialogResult.Cancel;
+                        lookUpEditGuanweiName.Focus();
+
+                        RtnValue = -1;
+                        return;
+                    }
+                }
 
                 int result = SysParam.m_daoCommon.SetInsertDataItem(this.TableName, m_dicItemData);
                 if (result > 0)
@@ -339,7 +363,7 @@ namespace MachineSystem.TabPage
                      else
                      {
                          // 组长，班长，替关者的.RowID不能大于	5
-                         if (lookUpEditGuanweiName.Text == "组长" || lookUpEditGuanweiName.Text == "班长" || lookUpEditGuanweiName.Text == "替关者")
+                         if (lookUpEditGuanweiName.Text == "组长" || lookUpEditGuanweiName.Text == "班长" || lookUpEditGuanweiName.Text == "替关者" || lookUpEditGuanweiName.Text == "副班长")
                          {
                              if (int.Parse(txtRowID.Text) < 1 || int.Parse(txtRowID.Text) > 5)
                              {

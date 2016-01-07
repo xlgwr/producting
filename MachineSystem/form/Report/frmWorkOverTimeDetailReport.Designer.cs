@@ -237,8 +237,8 @@
             this.lookmyteamName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookmyteamName.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("myteamName", "myteamName", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("myteamName", "向别-班别")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("myTeamName", "myteamName", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("myTeamName", "向别-班别")});
             this.lookmyteamName.Properties.MaxLength = 30;
             this.lookmyteamName.Properties.NullText = "";
             this.lookmyteamName.Size = new System.Drawing.Size(159, 20);

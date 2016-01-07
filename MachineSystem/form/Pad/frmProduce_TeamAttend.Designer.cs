@@ -31,6 +31,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.button1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnUserTotalShow = new DevExpress.XtraEditors.SimpleButton();
             this.chkAll = new DevExpress.XtraEditors.CheckEdit();
             this.btnStatus = new DevExpress.XtraEditors.SimpleButton();
@@ -43,14 +44,15 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.dateOperDate1 = new DevExpress.XtraEditors.TextEdit();
             this.lookmyteamName = new DevExpress.XtraEditors.TextEdit();
-            this.panelContent = new System.Windows.Forms.Panel();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.panelContent = new System.Windows.Forms.FlowLayoutPanel();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.validData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorInfo)).BeginInit();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkAll.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOperDate1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookmyteamName.Properties)).BeginInit();
+            this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -102,6 +104,19 @@
             this.button1.TabIndex = 108;
             this.button1.Text = "人员调动";
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.Location = new System.Drawing.Point(774, 3);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(85, 63);
+            this.simpleButton1.TabIndex = 107;
+            this.simpleButton1.Text = "刷新";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // btnUserTotalShow
             // 
@@ -268,37 +283,34 @@
             // 
             // panelContent
             // 
-            this.panelContent.AutoScroll = true;
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(0, 141);
+            this.panelContent.Location = new System.Drawing.Point(0, 2);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1360, 550);
+            this.panelContent.Padding = new System.Windows.Forms.Padding(2);
+            this.panelContent.Size = new System.Drawing.Size(1340, 536);
             this.panelContent.TabIndex = 11;
             // 
-            // simpleButton1
+            // xtraScrollableControl1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.Location = new System.Drawing.Point(774, 3);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(85, 63);
-            this.simpleButton1.TabIndex = 107;
-            this.simpleButton1.Text = "刷新";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.xtraScrollableControl1.AllowTouchScroll = true;
+            this.xtraScrollableControl1.Controls.Add(this.panelContent);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 140);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1360, 536);
+            this.xtraScrollableControl1.TabIndex = 12;
             // 
             // frmProduce_TeamAttend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 691);
-            this.Controls.Add(this.panelContent);
+            this.Controls.Add(this.xtraScrollableControl1);
             this.Controls.Add(this.panelTop);
             this.MinimizeBox = false;
             this.Name = "frmProduce_TeamAttend";
             this.Text = "人员考勤";
+            this.Deactivate += new System.EventHandler(this.frmProduce_TeamAttend_Deactivate);
             this.Load += new System.EventHandler(this.frmProduce_TeamAttend_Load);
+            this.Leave += new System.EventHandler(this.frmProduce_TeamAttend_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.validData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorInfo)).EndInit();
             this.panelTop.ResumeLayout(false);
@@ -306,6 +318,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOperDate1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookmyteamName.Properties)).EndInit();
+            this.xtraScrollableControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -320,7 +333,6 @@
         private DevExpress.XtraEditors.SimpleButton Turnover;
         private DevExpress.XtraEditors.SimpleButton btnOvertime;
         private DevExpress.XtraEditors.SimpleButton btnScheduling;
-        private System.Windows.Forms.Panel panelContent;
         private DevExpress.XtraEditors.TextEdit dateOperDate1;
         private DevExpress.XtraEditors.TextEdit lookmyteamName;
         private DevExpress.XtraEditors.CheckEdit chkAll;
@@ -329,5 +341,7 @@
         private DevExpress.XtraEditors.SimpleButton btnStatus;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.FlowLayoutPanel panelContent;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
     }
 }

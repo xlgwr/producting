@@ -13,7 +13,7 @@ using MachineSystem.form.UserSystem;
 
 namespace MachineSystem.TabPage
 {
-    public partial class frmAttendanceSummaryReport : Framework.Abstract.frmSearchBasic2	
+    public partial class frmAttendanceSummaryReport : Framework.Abstract.frmSearchBasic2
     {
 
         #region 变量定义
@@ -27,7 +27,7 @@ namespace MachineSystem.TabPage
         /// </summary>
         bool isLoad = true;
         private int n1, n2, n3, n4, n5, n6, n7;
-        private DateTime dtBegin,dtEnd;
+        private DateTime dtBegin, dtEnd;
         #endregion
 
 
@@ -50,7 +50,7 @@ namespace MachineSystem.TabPage
             dateOperDate1.EditValue = DateTime.Now;
             dateOperDate2.EditValue = DateTime.Now;
         }
-        
+
         /// <summary>
         /// 窗体初始化处理
         /// </summary>
@@ -145,10 +145,10 @@ namespace MachineSystem.TabPage
         {
             if (isLoad) return;
 
-            string str_where=" where 1=1 ";
-            if (lookJobFor.EditValue.ToString()!="-1")
+            string str_where = " where 1=1 ";
+            if (lookJobFor.EditValue.ToString() != "-1")
             {
-                str_where+=" and JobForID='"+lookJobFor.EditValue.ToString()+"'";
+                str_where += " and JobForID='" + lookJobFor.EditValue.ToString() + "'";
             }
             string str_sql = string.Format(@"select DISTINCT ProjectID,ProjectName FROM V_Produce_Para " + str_where + " order by ProjectName");
             DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
@@ -178,13 +178,13 @@ namespace MachineSystem.TabPage
             if (isLoad) return;
 
             string str_where = "";
-            if (lookJobFor.EditValue.ToString()!="-1")
+            if (lookJobFor.EditValue.ToString() != "-1")
             {
                 str_where = " JobForID ='" + lookJobFor.EditValue.ToString() + "'";
             }
             if (lookProject.EditValue.ToString() != "-1")
             {
-                if (str_where != "") 
+                if (str_where != "")
                 {
                     str_where += " and ";
                 }
@@ -222,7 +222,7 @@ namespace MachineSystem.TabPage
             if (isLoad) return;
 
             string str_where = "";
-            if (lookJobFor.EditValue.ToString()!="-1")
+            if (lookJobFor.EditValue.ToString() != "-1")
             {
                 str_where += " and JobForID='" + lookJobFor.EditValue.ToString() + "'";
             }
@@ -279,7 +279,7 @@ namespace MachineSystem.TabPage
             {
                 str_where += " and LineID='" + lookLine.EditValue.ToString() + "'";
             }
-            if (lookProduce_Team.EditValue!= null)
+            if (lookProduce_Team.EditValue != null)
             {
                 if (lookProduce_Team.EditValue.ToString() != "-1")
                 {
@@ -302,7 +302,7 @@ namespace MachineSystem.TabPage
             dr[0] = "全部";
             dt_temp.Rows.InsertAt(dr, 0);
 
-            
+
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace MachineSystem.TabPage
             if (isLoad) return;
 
             string str_where = " where 1=1 ";
-            
+
 
             string str_sql = string.Format(@"Select DISTINCT GuanweiName From V_Produce_Para " + str_where + " Order by GuanweiName");
             DataTable dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(str_sql);
@@ -325,12 +325,12 @@ namespace MachineSystem.TabPage
             dr[0] = "全部";
             dt_temp.Rows.InsertAt(dr, 0);
 
-           
+
         }
 
         #endregion
 
-        
+
         #region 共同方法
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace MachineSystem.TabPage
 
                 m_tblDataList = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(_sql);
                 gridControl1.DataSource = m_tblDataList;
-                if (m_tblDataList.Rows.Count > 0) 
+                if (m_tblDataList.Rows.Count > 0)
                 {
                     ExcelButtonEnabled = true;
                 }
@@ -385,7 +385,7 @@ namespace MachineSystem.TabPage
                 {
                     ExcelButtonEnabled = false;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -395,7 +395,7 @@ namespace MachineSystem.TabPage
         }
 
 
-        public void GetComboBox() 
+        public void GetComboBox()
         {
             DataTable dt_temp = new DataTable();
             //工程别
@@ -417,7 +417,7 @@ namespace MachineSystem.TabPage
             }
             lookProject.ItemIndex = 0;
             lookProject.Properties.BestFit();
-            
+
             //Line别
             strSql = string.Format(@"Select DISTINCT LineID,LineName FROM V_Produce_Para order by LineName");
             dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(strSql);
@@ -441,13 +441,13 @@ namespace MachineSystem.TabPage
             //向别-班别
             strSql = string.Format(@"Select distinct myteamName from [V_Produce_Para] where myteamName is not null order by myteamName");
             dt_temp = SysParam.m_daoCommon.GetTableInfoBySqlNoWhere(strSql);
-           
+
             //默认选中
             dr = dt_temp.NewRow();
             dr[0] = "全部";
             dt_temp.Rows.InsertAt(dr, 0);
 
-          
+
             //默认选中
             dr = dt_temp.NewRow();
             dr[0] = "全部";
@@ -455,6 +455,28 @@ namespace MachineSystem.TabPage
 
         }
         #endregion
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+
+                CreateParams cp = base.CreateParams;
+
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED  
+                this.Opacity = 1;
+
+                //if (this.IsXpOr2003 == true)
+                //{
+                //    cp.ExStyle |= 0x00080000;  // Turn on WS_EX_LAYERED
+                //    this.Opacity = 1;
+                //}
+
+                return cp;
+
+            }
+
+        }  //防止闪烁
         /// <summary>
         /// 颜色
         /// </summary>
@@ -462,114 +484,122 @@ namespace MachineSystem.TabPage
         /// <param name="e"></param>
         private void bandedGridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
-            Color _newColor;
-            //练习
-            if (e.Column.FieldName == "LearnCnt")
+            try
             {
-                e.Appearance.BackColor = Color.Red;
+                Color _newColor;
+                //练习
+                if (e.Column.FieldName == "LearnCnt")
+                {
+                    e.Appearance.BackColor = Color.Red;
+                }
+                //lqc//替关
+                if (e.Column.FieldName == "LQCCnt" || e.Column.FieldName == "ReplaceCnt")
+                {
+                    _newColor = Color.FromArgb(0, 254, 255);
+                    e.Appearance.BackColor = _newColor;
+                }
+                //孕妇
+                if (e.Column.FieldName == "PregnantCnt")
+                {
+                    _newColor = Color.FromArgb(253, 152, 203);
+                    e.Appearance.BackColor = _newColor;
+                }
+                //残疾人女男
+                if (e.Column.FieldName == "DisabilityWoManCnt" || e.Column.FieldName == "DisabilityManCnt")
+                {
+                    _newColor = Color.FromArgb(253, 152, 203);
+                    e.Appearance.BackColor = _newColor;
+                }
+                //间男 间女
+                if (e.Column.FieldName == "IndirectWoManCnt" || e.Column.FieldName == "IndirectRemWoManCnt" ||
+                    e.Column.FieldName == "IndirectManCnt" ||
+                    e.Column.FieldName == "IndirectRemManCnt"
+                    )
+                {
+                    _newColor = Color.FromArgb(204, 153, 254);
+                    e.Appearance.BackColor = _newColor;
+                }
+                //剩女 男
+                if (e.Column.FieldName == "RemWoManCnt" || e.Column.FieldName == "RemManCnt")
+                {
+
+                    _newColor = Color.FromArgb(253, 100, 4);
+                    e.Appearance.BackColor = _newColor;
+                }
+                //班长合计
+                if (e.Column.FieldName == "banzhangheji")
+                {
+
+                    e.Appearance.BackColor = Color.Red;
+                    n1 = 0;
+                    n2 = 0;
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["LeaderCnt"]).ToString()))
+                    {
+                        n1 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["LeaderCnt"]).ToString());
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SubLeaderCnt"]).ToString()))
+                    {
+                        n2 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SubLeaderCnt"]).ToString());
+
+                    }
+                    bandedGridView1.SetRowCellValue(e.RowHandle, e.Column, (n1 + n2).ToString());
+                }
+                //合计
+                if (e.Column.FieldName == "heji")
+                {
+
+                    e.Appearance.BackColor = Color.Red;
+                    n1 = 0;
+                    n2 = 0;
+                    n3 = 0;
+                    n3 = 0;
+                    n4 = 0;
+                    n5 = 0;
+                    n6 = 0;
+                    n7 = 0;
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["CasualLeave"]).ToString()))
+                    {
+                        n1 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["CasualLeave"]).ToString());
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SickLeave"]).ToString()))
+                    {
+                        n2 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SickLeave"]).ToString());
+
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["FuneralLeave"]).ToString()))
+                    {
+                        n3 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["FuneralLeave"]).ToString());
+
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["PaidLeave"]).ToString()))
+                    {
+                        n4 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["PaidLeave"]).ToString());
+
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MarriageLeave"]).ToString()))
+                    {
+                        n5 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MarriageLeave"]).ToString());
+
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MaternityLeave"]).ToString()))
+                    {
+                        n6 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MaternityLeave"]).ToString());
+
+                    }
+                    if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["Absents"]).ToString()))
+                    {
+                        n7 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["Absents"]).ToString());
+
+                    }
+                    bandedGridView1.SetRowCellValue(e.RowHandle, e.Column, (n1 + n2 + n3 + n4 + n5 + n6 + n7).ToString());
+
+                }
             }
-            //lqc//替关
-            if (e.Column.FieldName == "LQCCnt"||e.Column.FieldName == "ReplaceCnt")
+            catch (Exception ex)
             {
-                _newColor = Color.FromArgb(0, 254, 255);
-                e.Appearance.BackColor = _newColor;
+                var dd = ex.Message;
             }
-            //孕妇
-            if (e.Column.FieldName == "PregnantCnt")
-            {
-                _newColor = Color.FromArgb(253, 152, 203);
-                e.Appearance.BackColor = _newColor;
-            }
-            //残疾人女男
-            if (e.Column.FieldName == "DisabilityWoManCnt" || e.Column.FieldName == "DisabilityManCnt")
-            {
-                _newColor = Color.FromArgb(253, 152, 203);
-                e.Appearance.BackColor = _newColor;
-            }
-            //间男 间女
-            if (e.Column.FieldName == "IndirectWoManCnt" || e.Column.FieldName == "IndirectRemWoManCnt"||
-                e.Column.FieldName == "IndirectManCnt" ||
-                e.Column.FieldName == "IndirectRemManCnt"
-                )
-            {
-                _newColor = Color.FromArgb(204, 153, 254);
-                e.Appearance.BackColor = _newColor;
-            }
-            //剩女 男
-            if (e.Column.FieldName == "RemWoManCnt" || e.Column.FieldName == "RemManCnt")
-            {
 
-                _newColor = Color.FromArgb(253, 100, 4);
-                e.Appearance.BackColor = _newColor;
-            }
-            //班长合计
-            if (e.Column.FieldName == "banzhangheji")
-            {
-
-                e.Appearance.BackColor = Color.Red;
-                n1 = 0;
-                n2 = 0;
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["LeaderCnt"]).ToString()))
-                {
-                    n1 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["LeaderCnt"]).ToString());
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SubLeaderCnt"]).ToString()))
-                {
-                    n2 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SubLeaderCnt"]).ToString());
-
-                }
-                bandedGridView1.SetRowCellValue(e.RowHandle, e.Column, (n1 + n2).ToString());
-            }
-            //合计
-            if (e.Column.FieldName == "heji")
-            {
-
-                e.Appearance.BackColor = Color.Red;
-                n1 = 0; 
-                n2 = 0; 
-                n3 = 0; 
-                n3 = 0;
-                n4 = 0;
-                n5 = 0;
-                n6 = 0;
-                n7 = 0;
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["CasualLeave"]).ToString()))
-                {
-                    n1 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["CasualLeave"]).ToString());
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SickLeave"]).ToString()))
-                {
-                    n2 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["SickLeave"]).ToString());
-
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["FuneralLeave"]).ToString()))
-                {
-                    n3 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["FuneralLeave"]).ToString());
-
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["PaidLeave"]).ToString()))
-                {
-                    n4 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["PaidLeave"]).ToString());
-
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MarriageLeave"]).ToString()))
-                {
-                    n5 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MarriageLeave"]).ToString());
-
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MaternityLeave"]).ToString()))
-                {
-                    n6 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["MaternityLeave"]).ToString());
-
-                }
-                if (!string.IsNullOrEmpty(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["Absents"]).ToString()))
-                {
-                    n7 = int.Parse(bandedGridView1.GetRowCellDisplayText(e.RowHandle, bandedGridView1.Columns["Absents"]).ToString());
-
-                }
-                bandedGridView1.SetRowCellValue(e.RowHandle, e.Column, (n1 + n2 + n3 + n4 + n5 + n6 + n7).ToString());
-          
-            }
 
         }
 

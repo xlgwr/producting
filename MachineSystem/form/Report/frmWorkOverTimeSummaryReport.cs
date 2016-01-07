@@ -124,7 +124,7 @@ namespace MachineSystem.TabPage
                     ||(dateOperDate2.EditValue != null && !string.IsNullOrEmpty(dateOperDate2.EditValue.ToString())))
                 {
                     _sql += " and (OTStrDate between '" + dateOperDate1.EditValue.ToString() + "' and  '" + dateOperDate2.EditValue.ToString() + "' ) ";
-                    _sql += " or (OTEndDate between '" + dateOperDate1.EditValue.ToString() + "' and  '" + dateOperDate2.EditValue.ToString() + "' ) ";
+                   //_sql += " or (OTEndDate between '" + dateOperDate1.EditValue.ToString() + "' and  '" + dateOperDate2.EditValue.ToString() + "' ) ";
                      
                 }
 

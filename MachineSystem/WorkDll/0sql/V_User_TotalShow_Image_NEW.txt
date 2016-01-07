@@ -1,0 +1,31 @@
+SELECT   a.AttendDate, a.UserID, 'green' AS UserIdColor, a.UserNM, 'green' AS UserNmColor, a.Sex, a.JobForID, a.JobForNM, 
+                a.ProjectID, a.ProjectNM, a.LineID, a.LineNM, a.TeamID, a.TeamNM, a.myTeamName, a.OrgName, a.GuanweiID, 
+                a.GuanweiNM, a.guanweisite, (CASE WHEN (a.AttendType = 'ÃÊπÿ' OR
+                (a.AttendType LIKE '%÷ß‘Æ%')) 
+                THEN 'red' ELSE (CASE WHEN a.AttendWork <> '1' THEN 'purple' ELSE (CASE WHEN a.GuanweiSite = '99' THEN 'blue' ELSE
+                 'green' END) END) END) AS GuanweiColor, a.TeamSetID, a.TeamSetNM, a.AttendType, 
+                (CASE WHEN a.AttendType = 'ÃÊπÿ' THEN a.GuanweiID ELSE 0 END) AS tiguanGuanweiID, ISNULL(e.pName, '') 
+                AS tiguanGuanweiNM, ISNULL(b.LicenseTypeName, '…Í«Î÷–') AS LicenseType, 
+                (CASE WHEN ISNULL(b.LicenseTypeName, '…Í«Î÷–') = '…Í«Î÷–' THEN 'yellow' ELSE 'green' END) AS LicenseColor, 
+                a.AttendMemo, (CASE WHEN a.AttendType LIKE '%¿Î÷∞%' THEN CONVERT(varchar(100), a.LastDate, 1) 
+                + '¿Î÷∞' ELSE (CASE WHEN a.AttendType LIKE '%«ÎºŸ%' OR
+                a.AttendType LIKE '%«∑«⁄%' THEN a.AttendMemo ELSE '' END) END) AS warnMemo, 
+                (CASE WHEN a.AttendType LIKE '%«∑«⁄%' OR
+                a.AttendType LIKE '%¿Î÷∞%' THEN 'red' ELSE (CASE WHEN (a.AttendType LIKE '%«ÎºŸ%') 
+                THEN 'yellow' ELSE (CASE WHEN (a.AttendType LIKE '%÷ß‘Æ%') THEN 'blue' ELSE 'white' END) END) END) 
+                AS warnColor, a.CardTime, ISNULL(h.ConfirmFlag, 0) AS ConfirmFlag, (CASE WHEN ISNULL(h.ConfirmFlag, 0) 
+                = '0' THEN (CASE WHEN ISNULL(a.CardTime, '') 
+                = '' THEN 'red' ELSE (CASE WHEN a.TeamSetNM = '∞◊∞‡' THEN (CASE WHEN CAST('2016-01-04 ' + a.CardTime AS datetime)
+                 BETWEEN CAST('2016-01-04 06:00' AS datetime) AND CAST('2016-01-04 08:30' AS datetime) 
+                THEN 'yellow' ELSE 'red' END) 
+                ELSE (CASE WHEN a.TeamSetNM = 'ÕÌ∞‡' THEN (CASE WHEN CAST('2016-01-04 ' + a.CardTime AS datetime) BETWEEN 
+                CAST('2016-01-04 17:00' AS datetime) AND CAST('2016-01-04 22:30' AS datetime) THEN 'yellow' ELSE 'red' END) 
+                ELSE 'red' END) END) END) ELSE 'green' END) AS CardTimeColor, a.AttendWork, a.StatusID, 
+                (CASE WHEN a.StatusName LIKE '%—ßœ∞%' THEN 'red' ELSE (CASE WHEN (a.AttendType LIKE '%¿Î÷∞%' AND 
+                a.AttendType LIKE '%«ÎºŸ%') THEN 'yellow' ELSE 'green' END) END) AS StatusColor, a.StatusName
+FROM      dbo.V_Attend_Result_Info AS a LEFT OUTER JOIN
+                dbo.V_License_Rec_i AS b ON a.UserID = b.UserID LEFT OUTER JOIN
+                dbo.P_Produce_Guanwei AS e ON (CASE WHEN a.AttendType = 'ÃÊπÿ' THEN a.GuanweiID ELSE 0 END) 
+                = e.ID LEFT OUTER JOIN
+                dbo.Attend_Line_Confirm AS h ON a.UserID = h.UserID AND a.JobForID = h.JobForID AND a.ProjectID = h.ProjectID AND 
+                a.LineID = h.LineID AND a.TeamID = h.TeamID AND a.AttendDate = h.AttendDate
